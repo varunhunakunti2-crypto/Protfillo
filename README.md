@@ -104,13 +104,3 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
-## Screenshots
-
-### English Version
-![Hero — English](./src/screenshots/hero-en.png)
-
-### Japanese Version
-![Hero — Japanese](./src/screenshots/hero-jp.png)
-
-### Mobile View
-![Mobile](./src/screenshots/mobile.jpeg)
