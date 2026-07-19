@@ -2,7 +2,7 @@
 
 A personal portfolio site built from scratch to showcase my frontend skills. No templates, no themes just clean code and intentional design choices.
 
-> 🔗 **Live:** [obliviousaman.netlify.app](https://obliviousaman.netlify.app/)
+> 🔗 **Live:** [obliviousaman.netlify.app]()
 
 ---
 
@@ -94,7 +94,7 @@ Working in two languages also forced me to think about users who aren't me. The 
 ## Run Locally
 
 ```bash
-git clone https://github.com/amanrai00/portfolio.git
+git clone https://github.com/varunhunakunti2-crypto/Protfillo
 cd portfolio
 npm install
 npm run dev
