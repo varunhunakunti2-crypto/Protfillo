@@ -50,7 +50,7 @@
         </div>
       </div>
 
-      <div class="flex flex-wrap justify-center gap-3 md:gap-4">
+      <div class="flex flex-wrap justify-center gap-3 md:gap-4" @mousemove="handleMouseMove">
         <div
           v-for="skill in skills"
           :key="skill.name"
@@ -116,8 +116,8 @@ const skills = [
   { name: 'Framer Motion', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/framermotion/framermotion-original.svg' },
   { name: 'Photoshop', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-original.svg' },
   { name: 'Illustrator', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-original.svg' },
-  { name: 'Premiere Pro', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/premierepro/premierepro-original.svg' },
-  { name: 'After Effects', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aftereffects/aftereffects-original.svg' },
+  { name: 'Premiere Pro', icon: 'https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Premiere_Pro_CC_icon.svg' },
+  { name: 'After Effects', icon: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg' },
   { name: 'Figma', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg' },
   { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
   { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg' },
@@ -132,6 +132,17 @@ const skillsTagline = ref(null);
 
 let skillsTimeline = null;
 let skillsGridTimeline = null;
+
+const handleMouseMove = (e) => {
+  const cards = document.querySelectorAll('.skill-tag');
+  for (const card of cards) {
+    const rect = card.getBoundingClientRect(),
+          x = e.clientX - rect.left,
+          y = e.clientY - rect.top;
+    card.style.setProperty("--mouse-x", `${x}px`);
+    card.style.setProperty("--mouse-y", `${y}px`);
+  }
+};
 
 onMounted(async () => {
   const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
@@ -372,6 +383,8 @@ onUnmounted(() => {
 }
 
 .skill-tag {
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -383,8 +396,31 @@ onUnmounted(() => {
   cursor: default;
 }
 
+.skill-tag::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.skill-tag:hover::before {
+  opacity: 1;
+}
+
+.skill-tag > * {
+  position: relative;
+  z-index: 1;
+}
+
 .skill-tag:hover {
-  transform: translateY(-2px);
+  transform: translateY(-4px) scale(1.05);
+  z-index: 10;
 }
 
 .skill-tag-name {
@@ -400,8 +436,17 @@ onUnmounted(() => {
 }
 
 :deep([data-theme="dark"]) .skill-tag:hover {
-  background: rgba(40, 45, 55, 0.9);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  background: rgba(45, 50, 65, 0.95);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 16px rgba(255, 255, 255, 0.1);
+}
+
+:deep([data-theme="dark"]) .skill-tag::before {
+  background: radial-gradient(
+    150px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 255, 255, 0.4),
+    transparent 50%
+  );
 }
 
 :deep([data-theme="dark"]) .skills-bg-text {
@@ -414,8 +459,17 @@ onUnmounted(() => {
 }
 
 :deep([data-theme="light"]) .skill-tag:hover {
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1), 0 0 12px rgba(0, 0, 0, 0.05);
+}
+
+:deep([data-theme="light"]) .skill-tag::before {
+  background: radial-gradient(
+    150px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(0, 0, 0, 0.15),
+    transparent 50%
+  );
 }
 
 :deep([data-theme="light"]) .skills-bg-text {

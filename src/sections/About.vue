@@ -8,7 +8,7 @@
       <div class="grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-center">
         <div class="flex items-center justify-center self-center">
           <div
-            class="relative w-[clamp(260px,32vw,360px)] h-[clamp(340px,42vw,480px)]"
+            class="relative w-[clamp(260px,32vw,360px)] aspect-[2555/3110]"
             aria-hidden="true"
           >
             <div
@@ -61,8 +61,8 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useI18n } from 'vue-i18n';
-import profileImage from '@/assets/profile.jpg';
-import profileImageSmall from '@/assets/profile-1280.jpg';
+import profileImage from '@/assets/profile.png';
+import profileImageSmall from '@/assets/profile-1280.png';
 
 const { t } = useI18n();
 

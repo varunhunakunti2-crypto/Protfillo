@@ -15,32 +15,18 @@
           <div
             v-if="!isProjectPage"
             :class="[
-              'flex w-fit items-center gap-1 cursor-pointer origin-center transition-all duration-300 hover:scale-103 active:scale-95 lg:justify-self-start',
+              'group flex w-fit items-center gap-1 cursor-pointer origin-center transition-all duration-300 hover:scale-103 active:scale-95 lg:justify-self-start',
               'opacity-100',
               isOpen ? 'lg:static fixed left-5 top-5 z-[101]' : 'lg:static'
             ]"
             @click="handleLogoClick"
           >
-            <img
-              :src="logo"
-              alt="Logo"
-              class="h-11 w-auto lg:h-11 logo-primary"
-              width="716"
-              height="413"
-              loading="eager"
-              decoding="async"
-              fetchpriority="high"
-            />
-            <img
-              :src="SecondLogo"
-              alt="Second Logo"
-              class="h-8 w-auto lg:h-8 logo-secondary"
-              width="804"
-              height="312"
-              loading="eager"
-              decoding="async"
-              fetchpriority="high"
-            />
+            <span 
+              class="text-3xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[color:var(--theme-text-strong)] to-gray-400 drop-shadow-sm transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-md" 
+              style="font-family: 'Playfair Display', serif; letter-spacing: -0.02em;"
+            >
+              Varun S
+            </span>
           </div>
 
           <!-- Desktop nav -->
@@ -61,37 +47,6 @@
 
           <!-- Desktop resume + mobile toggle -->
           <div class="ml-auto flex items-center gap-3 lg:ml-0 lg:justify-self-end">
-            <!-- Language Switcher -->
-            <button
-              class="lang-switcher hidden lg:inline-flex items-center mr-3"
-              :class="isJa ? 'is-ja' : ''"
-              type="button"
-              aria-label="Switch language"
-              :aria-pressed="isJa"
-              @click="toggleLocale"
-              v-if="!isProjectPage"
-            >
-              <span class="lang-roll">
-                <span class="lang-roll-track">
-                  <span class="lang-roll-item">
-                    <svg class="lang-globe" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="12" cy="12" r="10"/>
-                      <path d="M2 12h20"/>
-                      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-                    </svg>
-                    <span class="lang-text">EN</span>
-                  </span>
-                  <span class="lang-roll-item">
-                    <svg class="lang-globe" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="12" cy="12" r="10"/>
-                      <path d="M2 12h20"/>
-                      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-                    </svg>
-                    <span class="lang-text">JA</span>
-                  </span>
-                </span>
-              </span>
-            </button>
 
             <!-- Desktop Resume -->
             <label v-if="!isProjectPage" class="ui-switch hidden lg:inline-flex mr-5 desktop-switch">
@@ -164,17 +119,7 @@
                     <span class="resume-dropdown-item-bg"></span>
                     <span class="resume-dropdown-item-text">{{ t('nav.resumeEnglish') }}</span>
                   </a>
-                  <a
-                    :href="resumeLinks.ja"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="resume-dropdown-item group"
-                    @click.prevent="openResume(resumeLinks.ja)"
-                    @keydown.escape="closeResumeDropdown"
-                  >
-                    <span class="resume-dropdown-item-bg"></span>
-                    <span class="resume-dropdown-item-text">{{ t('nav.resumeJapanese') }}</span>
-                  </a>
+
                 </div>
               </div>
             </div>
@@ -322,15 +267,7 @@
                 >
                   {{ t('nav.resumeEnglish') }}
                 </a>
-                <a
-                  :href="resumeLinks.ja"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="resume-dropdown-item-mobile"
-                  @click.prevent="openResume(resumeLinks.ja, true)"
-                >
-                  {{ t('nav.resumeJapanese') }}
-                </a>
+
               </div>
             </div>
           </div>
@@ -347,36 +284,6 @@
           }"
         >
           <div class="flex items-center justify-center gap-6">
-            <!-- Mobile Language Switcher -->
-            <button
-              class="lang-switcher inline-flex items-center"
-              :class="isJa ? 'is-ja' : ''"
-              type="button"
-              aria-label="Switch language"
-              :aria-pressed="isJa"
-              @click="toggleLocale"
-            >
-              <span class="lang-roll">
-                <span class="lang-roll-track">
-                  <span class="lang-roll-item">
-                    <svg class="lang-globe" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="12" cy="12" r="10"/>
-                      <path d="M2 12h20"/>
-                      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-                    </svg>
-                    <span class="lang-text">EN</span>
-                  </span>
-                  <span class="lang-roll-item">
-                    <svg class="lang-globe" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="12" cy="12" r="10"/>
-                      <path d="M2 12h20"/>
-                      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-                    </svg>
-                    <span class="lang-text">JA</span>
-                  </span>
-                </span>
-              </span>
-            </button>
 
             <label class="ui-switch inline-flex">
               <input v-model="isDark" type="checkbox" aria-label="Toggle theme" />

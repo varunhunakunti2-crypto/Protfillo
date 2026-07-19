@@ -16,17 +16,17 @@
     "tagline": "Turning ideas into thoughtful web experiences",
     "cta": "Let's connect",
     "exploreCta": "Let's connect",
-    "role": "Front-End Engineer",
-    "subtitle": "Crafting fast, accessible web interfaces",
-    "location": "Based in Japan・Vue・Tailwind"
+    "role": "Full-Stack Software Engineer",
+    "subtitle": "Turning ideas into powerful digital experiences",
+    "location": "React • Node.js • Tailwind CSS • REST APIs"
   },
   "impact": {
     "quote": "This portfolio is a snapshot of my problem-solving mindset, design decisions, and the way I turn ideas into reliable interfaces."
   },
   "about": {
     "title": "About me",
-    "paragraph1": "I'm Aman, a web developer focused on crafting clear, modern interfaces that balance design and functionality.",
-    "paragraph2": "With a background in creative work, I approach development with both logic and visual intention, designing digital experiences that are built to grow and adapt."
+    "paragraph1": "I'm Varun S, a Full-Stack Developer focused on building modern, scalable web applications that combine clean design with robust functionality.",
+    "paragraph2": "With a background in creative work, I approach development with both technical precision and visual intention, creating digital experiences that are intuitive, performant, and built to grow."
   },
   "skills": {
     "title": "Skills",
@@ -69,10 +69,10 @@
     "github": "GITHUB",
     "linkedin": "LINKEDIN",
     "inquiry": "INQUIRY",
-    "location": "TOKYO, JAPAN: (GMT+9)",
+    "location": "INDIA: (GMT+5:30)",
     "tagline": "DESIGNING WITH CODE",
     "rights": "All Rights Reserved.",
-    "name": "AMAN"
+    "name": "VARUN"
   },
   "projects": {
     "jlptLab": "JLPT Practice Lab",
