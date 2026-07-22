@@ -50,7 +50,7 @@
         </div>
       </div>
 
-      <div class="flex flex-wrap justify-center gap-3 md:gap-4" @mousemove="handleMouseMove">
+      <div class="flex flex-wrap justify-center gap-3 md:gap-4" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
         <div
           v-for="skill in skills"
           :key="skill.name"
@@ -76,6 +76,7 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+import gsap from 'gsap';
 
 const { t, tm, locale } = useI18n();
 const isJa = computed(() => locale.value === 'ja');
@@ -134,21 +135,67 @@ let skillsTimeline = null;
 let skillsGridTimeline = null;
 
 const handleMouseMove = (e) => {
-  const cards = document.querySelectorAll('.skill-tag');
+  const cards = skillsSection.value?.querySelectorAll('.skill-tag');
+  if (!cards) return;
+  
   for (const card of cards) {
     const rect = card.getBoundingClientRect(),
           x = e.clientX - rect.left,
           y = e.clientY - rect.top;
     card.style.setProperty("--mouse-x", `${x}px`);
     card.style.setProperty("--mouse-y", `${y}px`);
+
+    // Dynamic Repulsion Effect
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const distX = e.clientX - centerX;
+    const distY = e.clientY - centerY;
+    const distance = Math.sqrt(distX * distX + distY * distY);
+    const maxDist = 140;
+
+    if (distance < maxDist) {
+      const force = (maxDist - distance) / maxDist; // 0 (far) to 1 (close)
+      const repelX = -(distX / distance) * force * 16; // Repel up to 16px
+      const repelY = -(distY / distance) * force * 16;
+      
+      gsap.to(card, {
+        x: repelX,
+        y: repelY,
+        scale: 1.05,
+        duration: 0.35,
+        ease: 'power2.out',
+        overwrite: 'auto'
+      });
+    } else {
+      gsap.to(card, {
+        x: 0,
+        y: 0,
+        scale: 1,
+        duration: 0.5,
+        ease: 'power2.out',
+        overwrite: 'auto'
+      });
+    }
+  }
+};
+
+const handleMouseLeave = () => {
+  const cards = skillsSection.value?.querySelectorAll('.skill-tag');
+  if (!cards) return;
+  for (const card of cards) {
+    gsap.to(card, {
+      x: 0,
+      y: 0,
+      scale: 1,
+      duration: 0.6,
+      ease: 'elastic.out(1, 0.45)',
+      overwrite: 'auto'
+    });
   }
 };
 
 onMounted(async () => {
-  const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
-    import('gsap'),
-    import('gsap/ScrollTrigger'),
-  ]);
+  const { ScrollTrigger } = await import('gsap/ScrollTrigger');
   gsap.registerPlugin(ScrollTrigger);
 
   const sectionEl = skillsSection.value;
@@ -392,7 +439,7 @@ onUnmounted(() => {
   border-radius: 9999px;
   background: var(--theme-pill-bg);
   border: 1px solid var(--theme-pill-border);
-  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
   cursor: default;
 }
 

@@ -28,6 +28,24 @@
     "paragraph1": "I'm Varun S, a Full-Stack Developer focused on building modern, scalable web applications that combine clean design with robust functionality.",
     "paragraph2": "With a background in creative work, I approach development with both technical precision and visual intention, creating digital experiences that are intuitive, performant, and built to grow."
   },
+  "experience": {
+    "title": "Experience",
+    "bgText": "CAREER",
+    "jobs": [
+      {
+        "role": "Full-Stack Software Engineer",
+        "company": "Freelance",
+        "duration": "2024 - Present",
+        "description": "Designing and building high-performance web applications using React, Vue, Node.js, and modern styling libraries. Collaborating with global clients to deliver clean code architectures."
+      },
+      {
+        "role": "Frontend Developer Intern",
+        "company": "Tech Solutions Inc.",
+        "duration": "2023 - 2024",
+        "description": "Developed interactive user interfaces and modular layouts. Optimized core web vitals performance by 35% and integrated REST APIs."
+      }
+    ]
+  },
   "skills": {
     "title": "Skills",
     "bgText": "SKILLS",

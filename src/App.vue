@@ -2,6 +2,7 @@
   <IntroLoader v-if="showLoader" @done="showLoader = false" />
   <ScrollIndicator v-if="showScrollIndicator" />
   <Background />
+  <div class="noise-overlay" aria-hidden="true"></div>
   <Navbar />
   <div class="page-transition" :class="{ 'is-active': isPageTransitioning }" aria-hidden="true">
     <div class="wipe-panel panel-1"></div>
@@ -15,7 +16,7 @@
 
 <script setup>
 import { computed, provide, ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import Navbar from "./components/Navbar.vue";
 import Background from "./components/Background.vue";
 import ScrollIndicator from "./components/ScrollIndicator.vue";
@@ -23,6 +24,7 @@ import IntroLoader from "./components/IntroLoader.vue";
 
 const showLoader = ref(true);
 const route = useRoute();
+const router = useRouter();
 const showScrollIndicator = computed(() =>
   route.name === "home" || route.name === "project-progress"
 );
@@ -51,6 +53,23 @@ const startPageTransition = (onMidpoint) => {
 };
 
 provide("startPageTransition", startPageTransition);
+
+// Automate routing page transition
+router.beforeEach((to, from, next) => {
+  if (!from.name) {
+    next();
+    return;
+  }
+  
+  if (isPageTransitioning.value) {
+    next();
+    return;
+  }
+
+  startPageTransition(() => {
+    next();
+  });
+});
 
 // Restore scroll position while the intro tiles still cover the screen.
 // intro:reveal fires early in the exit animation, before tiles slide away,
@@ -131,5 +150,32 @@ html::-webkit-scrollbar,
 body::-webkit-scrollbar {
   width: 0;
   height: 0;
+}
+
+/* Dynamic Noise Overlay */
+.noise-overlay {
+  position: fixed;
+  inset: -100%;
+  width: 300%;
+  height: 300%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 99;
+  animation: noiseAnimation 0.8s steps(4) infinite;
+}
+
+@keyframes noiseAnimation {
+  0% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -5%); }
+  20% { transform: translate(-10%, 5%); }
+  30% { transform: translate(5%, -10%); }
+  40% { transform: translate(-5%, 15%); }
+  50% { transform: translate(-10%, 5%); }
+  60% { transform: translate(15%, -5%); }
+  70% { transform: translate(0%, 10%); }
+  80% { transform: translate(-15%, 15%); }
+  90% { transform: translate(10%, -5%); }
+  100% { transform: translate(5%, 5%); }
 }
 </style>

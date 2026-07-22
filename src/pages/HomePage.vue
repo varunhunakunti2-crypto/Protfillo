@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <main class="home-page">
     <Home />
     <Impact />

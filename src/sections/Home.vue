@@ -53,7 +53,7 @@
         <div class="hero-right w-full text-base text-[color:var(--theme-text-soft)] lg:text-lg lg:pl-20 lg:mt-[26px]" :class="isJa ? 'is-ja' : ''">
           <div class="flex flex-col items-center justify-center gap-4 text-center lg:hidden">
             <p class="text-sm font-medium text-[color:var(--theme-text-muted)] leading-relaxed tracking-wide">
-              {{ t('home.tagline') }}
+              <SplitText :text="t('home.tagline')" :stagger="0.03" />
             </p>
             <div class="mt-6 flex justify-center">
               <button
@@ -68,9 +68,15 @@
           </div>
 
           <div class="hidden space-y-2 lg:block lg:text-left">
-            <p class="font-semibold text-[color:var(--theme-text-strong)]">{{ t('home.role') }}</p>
-            <p class="hero-subtitle text-[color:var(--theme-text-muted)]" :class="isJa ? 'is-ja' : ''">{{ t('home.subtitle') }}</p>
-            <p>{{ t('home.location') }}</p>
+            <p class="font-semibold text-[color:var(--theme-text-strong)]">
+              <SplitText :text="t('home.role')" :stagger="0.04" />
+            </p>
+            <p class="hero-subtitle text-[color:var(--theme-text-muted)]" :class="isJa ? 'is-ja' : ''">
+              <SplitText :text="t('home.subtitle')" :stagger="0.03" />
+            </p>
+            <p>
+              <SplitText :text="t('home.location')" :stagger="0.05" />
+            </p>
           </div>
         </div>
       </div>
@@ -122,6 +128,7 @@
 <script setup>
 import { computed, ref, onMounted, onBeforeUnmount } from "vue";
 import { useI18n } from "vue-i18n";
+import SplitText from "@/components/SplitText.vue";
 
 const sectionIds = ["home", "about", "statement", "contact"];
 // Keep timing/breakpoints centralized so tweaks stay intentional.

@@ -10,6 +10,7 @@
         :key="project.id"
         class="project-card flex flex-col rounded-[20px] overflow-hidden cursor-pointer"
         ref="projectItems"
+        data-cursor="view"
         @click="goToProject(project)"
       >
         <div class="project-image-container relative h-56 w-full overflow-hidden">
@@ -20,10 +21,10 @@
           
           <!-- Links -->
           <div class="absolute top-4 right-4 z-10 flex gap-2">
-             <a v-if="project.github" :href="project.github" target="_blank" @click.stop class="icon-btn" aria-label="GitHub Repository">
+             <a v-if="project.github" :href="project.github" target="_blank" @click.stop class="icon-btn magnetic-project-btn" aria-label="GitHub Repository">
                 <i class="bi bi-github"></i>
              </a>
-             <a v-if="project.link" :href="project.link" target="_blank" @click.stop class="icon-btn" aria-label="Live Site">
+             <a v-if="project.link" :href="project.link" target="_blank" @click.stop class="icon-btn magnetic-project-btn" aria-label="Live Site">
                 <i class="bi bi-box-arrow-up-right"></i>
              </a>
           </div>
@@ -60,6 +61,7 @@
 import { computed, inject, onMounted, onUnmounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
+import { makeMagnetic } from '@/composables/useMagnetic.js';
 import progress1Img from '@/assets/progress1.jpg';
 import freelanceHubImg from '@/assets/freelance-hub.png';
 import vibeVineImg from '@/assets/vibe-vine.png';
@@ -70,6 +72,7 @@ const router = useRouter();
 const startPageTransition = inject('startPageTransition', null);
 const projectsSection = ref(null);
 const projectItems = ref([]);
+const magneticCleanups = [];
 
 const projects = computed(() => [
   {
@@ -162,9 +165,16 @@ onMounted(async () => {
     ease: 'power3.out',
     stagger: 0.15
   });
+
+  const magneticEls = sectionEl.querySelectorAll('.magnetic-project-btn');
+  magneticEls.forEach((el) => {
+    const cleanup = makeMagnetic(el, { strength: 0.35 });
+    if (cleanup) magneticCleanups.push(cleanup);
+  });
 });
 
 onUnmounted(() => {
+  magneticCleanups.forEach((cleanup) => cleanup());
   if (projectsTimeline) {
     if (projectsTimeline.scrollTrigger) projectsTimeline.scrollTrigger.kill();
     projectsTimeline.kill();

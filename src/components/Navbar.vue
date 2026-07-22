@@ -15,7 +15,7 @@
           <div
             v-if="!isProjectPage"
             :class="[
-              'group flex w-fit items-center gap-1 cursor-pointer origin-center transition-all duration-300 hover:scale-103 active:scale-95 lg:justify-self-start',
+              'group flex w-fit items-center gap-1 cursor-pointer origin-center transition-all duration-300 hover:scale-103 active:scale-95 lg:justify-self-start magnetic-nav',
               'opacity-100',
               isOpen ? 'lg:static fixed left-5 top-5 z-[101]' : 'lg:static'
             ]"
@@ -37,7 +37,7 @@
                 :key="item.id"
                 class="group"
               >
-                <button class="nav-link text-[16.5px] lg:text-[17.5px] tracking-wide font-semibold hover:text-[color:var(--theme-text-hover)] transition-colors cursor-pointer" @click="scrollToSection(item.targetId ?? item.id)">
+                <button class="nav-link magnetic-nav text-[16.5px] lg:text-[17.5px] tracking-wide font-semibold hover:text-[color:var(--theme-text-hover)] transition-colors cursor-pointer" @click="scrollToSection(item.targetId ?? item.id)">
                   {{ item.label }}
                 </button>
                 <span class="nav-underline mt-1 block h-[2.5px] w-0 bg-[color:var(--theme-text-strong)] transition-all duration-300 group-hover:w-full"></span>
@@ -49,7 +49,7 @@
           <div class="ml-auto flex items-center gap-3 lg:ml-0 lg:justify-self-end">
 
             <!-- Desktop Resume -->
-            <label v-if="!isProjectPage" class="ui-switch hidden lg:inline-flex mr-5 desktop-switch">
+            <label v-if="!isProjectPage" class="ui-switch hidden lg:inline-flex mr-5 desktop-switch magnetic-nav">
               <input v-model="isDark" type="checkbox" aria-label="Toggle theme" />
               <div class="slider">
                 <div class="circle"></div>
@@ -68,7 +68,7 @@
             >
               <button
                 type="button"
-                class="group relative px-4 py-2 font-medium"
+                class="group relative px-4 py-2 font-medium magnetic-nav"
                 :class="{ 'is-open': isResumeDropdownActive }"
                 @keydown.escape="closeResumeDropdown"
                 aria-haspopup="true"
@@ -131,7 +131,7 @@
     </nav>
 
     <button
-      class="fixed top-5 right-[clamp(1.5rem,5vw,4rem)] z-[100] scale-110 cursor-pointer hamburger-btn"
+      class="fixed top-5 right-[clamp(1.5rem,5vw,4rem)] z-[100] scale-110 cursor-pointer hamburger-btn magnetic-nav"
       :class="isProjectPage ? '' : 'lg:hidden'"
       @click="toggleMenu"
       aria-label="Toggle menu"
@@ -302,6 +302,7 @@
 import { computed, inject, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRoute, useRouter } from "vue-router";
+import { makeMagnetic } from "@/composables/useMagnetic.js";
 import logo from "../assets/logo1.png";
 import SecondLogo from "../assets/second-logo.png";
 import hamburgerAnim from "@/assets/lottie/hamburger.json";
@@ -316,6 +317,7 @@ const isResumeDropdownHovering = ref(false);
 const isMobileResumeDropdownOpen = ref(false);
 const desktopResumeDropdown = ref(null);
 const mobileResumeDropdown = ref(null);
+const magneticCleanups = [];
 
 const resumeLinks = {
   en: '/resume/first resume.pdf',
@@ -514,6 +516,13 @@ onMounted(async () => {
   handleScroll();
   handleResize();
 
+  // Initialize magnetic navbar elements
+  const magneticEls = document.querySelectorAll(".magnetic-nav");
+  magneticEls.forEach((el) => {
+    const cleanup = makeMagnetic(el, { strength: 0.2 });
+    if (cleanup) magneticCleanups.push(cleanup);
+  });
+
   requestAnimationFrame(() => {
     isReady.value = true;
   });
@@ -578,6 +587,8 @@ onBeforeUnmount(() => {
   window.removeEventListener("scroll", handleScroll);
   window.removeEventListener("resize", handleResize);
   document.removeEventListener("click", handleClickOutside);
+
+  magneticCleanups.forEach((cleanup) => cleanup());
 
   menuAnim?.destroy();
   menuAnim = null;
