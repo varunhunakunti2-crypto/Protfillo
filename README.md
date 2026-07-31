@@ -25,8 +25,9 @@ A personal portfolio site built from scratch to showcase my frontend skills. No 
 - **Bilingual (EN/JP)** — full language toggle, not just translated strings. Layout spacing and font sizing adjust per language since Japanese characters need different breathing room
 - **Scroll-triggered animations** — each section animates into view using GSAP + ScrollTrigger, lazy-loaded so off-screen sections don't initialize unnecessarily
 - **Custom mobile navigation** — hamburger menu with circular expansion animation, not a library dropdown
-- **Responsive across devices** — mplemented with mobile/tablet/desktop breakpoints and adaptive layout behavior.
+- **Responsive across devices** — implemented with mobile/tablet/desktop breakpoints and adaptive layout behavior.
 - **Section-based architecture** — each part of the site is its own Vue component, easy to maintain and extend
+- **WhatsApp Chat Widget** — A floating, responsive chat bubble widget styled to match the site's dark/light theme, featuring entry animations, a contact card overlay, click-outside dismissal, and alignment with the sidebar social links
 
 ---
 
