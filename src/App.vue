@@ -11,7 +11,7 @@
     <div class="wipe-panel panel-4"></div>
   </div>
   <RouterView />
-
+  <WhatsAppBubble />
 </template>
 
 <script setup>
@@ -21,6 +21,7 @@ import Navbar from "./components/Navbar.vue";
 import Background from "./components/Background.vue";
 import ScrollIndicator from "./components/ScrollIndicator.vue";
 import IntroLoader from "./components/IntroLoader.vue";
+import WhatsAppBubble from "./components/WhatsAppBubble.vue";
 
 const showLoader = ref(true);
 const route = useRoute();

@@ -83,7 +83,7 @@
     </div>
 
     <aside
-      class="hidden lg:flex fixed right-6 bottom-12 z-30 flex-col items-end gap-4 text-[color:var(--theme-text-strong)]"
+      class="hidden lg:flex fixed right-6 bottom-[6.6rem] z-30 flex-col items-end gap-4 text-[color:var(--theme-text-strong)]"
       :class="{ 'social-links-hidden': isContactFading }"
       aria-label="Social links"
     >
