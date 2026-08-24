@@ -4,6 +4,7 @@
     <Impact />
     <About />
     <Skills />
+    <Keyboard />
     <Statement />
     <div id="projects-anchor" class="projects-anchor" aria-hidden="true"></div>
     <Projects />
@@ -19,6 +20,7 @@ import Home from "@/sections/Home.vue";
 import Impact from "@/sections/Impact.vue";
 import About from "@/sections/About.vue";
 import Skills from "@/sections/Skills.vue";
+import Keyboard from "@/sections/Keyboard.vue";
 import Statement from "@/sections/Statement.vue";
 import Projects from "@/sections/Projects.vue";
 import Contact from "@/sections/Contact.vue";
