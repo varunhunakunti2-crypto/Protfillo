@@ -1,6 +1,6 @@
 <template>
   <div
-    class="kb-viewport flex w-full items-center justify-center overflow-x-hidden bg-black"
+    class="kb-viewport flex w-full items-center justify-center overflow-x-hidden bg-transparent"
     :style="{ padding: container.padding }"
   >
     <div

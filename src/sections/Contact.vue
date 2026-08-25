@@ -1,12 +1,12 @@
 <template>
-  <div id="contact" ref="contactWrapper" class="contact-wrapper relative z-10 w-full bg-[#0c0c0e] shadow-2xl">
+  <div id="contact" ref="contactWrapper" class="contact-wrapper relative z-10 w-full bg-[color:var(--theme-bg)] shadow-2xl">
     <section
       ref="contactSection"
       class="w-full"
     >
       <div class="flex flex-col md:flex-row min-h-[85vh] w-full items-stretch">
         <!-- Left Panel: Image ONLY (No text overlay, fills height, crops sides) -->
-        <div class="contact-left-panel relative flex w-full md:w-1/2 items-center justify-center bg-[#0c0c0e] min-h-[40vh] md:min-h-[85vh] overflow-hidden opacity-0">
+        <div class="contact-left-panel relative flex w-full md:w-1/2 items-center justify-center bg-[color:var(--theme-bg)] min-h-[40vh] md:min-h-[85vh] overflow-hidden opacity-0">
           <img
             :src="contactLeftBg"
             alt="Varun S character illustration"
@@ -15,7 +15,7 @@
         </div>
 
         <!-- Right Panel: Text Content + Form -->
-        <div class="flex w-full md:w-1/2 flex-col justify-center bg-[#121214] p-8 md:p-16 lg:p-20 border-t md:border-t-0 md:border-l border-white/5">
+        <div class="flex w-full md:w-1/2 flex-col justify-center bg-[color:var(--theme-nav-bg)] p-8 md:p-16 lg:p-20 border-t md:border-t-0 md:border-l border-[color:var(--theme-line-soft)]">
           <div class="w-full max-w-md mx-auto space-y-8">
             <!-- Header Text -->
             <div class="contact-right-panel-item text-left space-y-3 opacity-0">
@@ -80,11 +80,11 @@
 
                 <!-- Email field -->
                 <div class="contact-right-panel-item space-y-1.5 text-left opacity-0">
-                  <label class="text-xs font-medium text-neutral-300">{{ t('contact.emailLabel') }}</label>
+                  <label class="text-xs font-medium text-[color:var(--theme-text-muted)]">{{ t('contact.emailLabel') }}</label>
                   <input
                     ref="emailInputRef"
                     v-model.trim="formState.email"
-                    class="flex h-10 w-full rounded-md border border-white/10 bg-black/30 px-3 py-2 text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all disabled:cursor-not-allowed disabled:opacity-50"
+                    class="flex h-10 w-full rounded-md border border-[color:var(--theme-pill-border)] bg-[color:var(--theme-pill-bg)] px-3 py-2 text-sm text-[color:var(--theme-text-strong)] placeholder-[color:var(--theme-text-muted)] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all disabled:cursor-not-allowed disabled:opacity-50"
                     :class="{ 'border-red-500 focus:ring-red-500': errors.email }"
                     type="email"
                     name="email"
@@ -106,7 +106,7 @@
                   <label class="text-xs font-medium text-neutral-300">{{ t('contact.messageLabel') }}</label>
                   <textarea
                     v-model.trim="formState.message"
-                    class="flex min-h-[95px] w-full rounded-md border border-white/10 bg-black/30 px-3 py-2 text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all disabled:cursor-not-allowed disabled:opacity-50"
+                    class="flex min-h-[95px] w-full rounded-md border border-[color:var(--theme-pill-border)] bg-[color:var(--theme-pill-bg)] px-3 py-2 text-sm text-[color:var(--theme-text-strong)] placeholder-[color:var(--theme-text-muted)] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all disabled:cursor-not-allowed disabled:opacity-50"
                     :class="{ 'border-red-500 focus:ring-red-500': errors.message }"
                     rows="3"
                     name="message"

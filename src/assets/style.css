@@ -28,19 +28,10 @@ html {
 
 :root {
   color-scheme: light;
-  --theme-bg: #f3eadc;
-  --theme-bg-gradient:
-    radial-gradient(140% 140% at 50% -14%, rgba(250, 232, 206, 1) 0%, rgba(250, 232, 206, 0.75) 40%, rgba(250, 232, 206, 0) 72%),
-    radial-gradient(105% 100% at 14% 28%, rgba(247, 210, 176, 0.95) 0%, rgba(247, 210, 176, 0.48) 46%, rgba(247, 210, 176, 0) 78%),
-    radial-gradient(105% 100% at 86% 24%, rgba(245, 204, 166, 0.9) 0%, rgba(245, 204, 166, 0.45) 46%, rgba(245, 204, 166, 0) 78%),
-    radial-gradient(140% 65% at 50% 90%, rgba(170, 132, 226, 0.85) 0%, rgba(170, 132, 226, 0.4) 46%, rgba(170, 132, 226, 0) 72%),
-    linear-gradient(180deg, #f6e7d3 0%, #e5d0b7 55%, #d8c1ab 100%);
-  --theme-nav-bg: rgba(248, 250, 252, 0.78);
-  --theme-bg-overlay:
-    radial-gradient(140% 140% at 50% -14%, rgba(255, 248, 238, 0.24) 0%, rgba(255, 248, 238, 0.12) 42%, rgba(255, 248, 238, 0) 74%),
-    radial-gradient(105% 100% at 14% 28%, rgba(255, 236, 216, 0.16) 0%, rgba(255, 236, 216, 0.07) 46%, rgba(255, 236, 216, 0) 78%),
-    radial-gradient(105% 100% at 86% 24%, rgba(255, 232, 210, 0.14) 0%, rgba(255, 232, 210, 0.06) 46%, rgba(255, 232, 210, 0) 78%),
-    radial-gradient(140% 65% at 50% 90%, rgba(208, 188, 238, 0.1) 0%, rgba(208, 188, 238, 0.04) 46%, rgba(208, 188, 238, 0) 72%);
+  --theme-bg: #ffffff;
+  --theme-bg-gradient: none;
+  --theme-nav-bg: rgba(255, 255, 255, 0.85);
+  --theme-bg-overlay: none;
   --theme-bg-filter: invert(1) brightness(1.05) saturate(0.75) contrast(1.08);
   --theme-bg-blend: multiply;
   --theme-bg-scale: 1.08;

@@ -1,5 +1,5 @@
 <template>
-  <section id="keyboard" class="relative py-20 bg-black overflow-hidden">
+  <section id="keyboard" class="relative py-20 bg-[color:var(--theme-bg)] overflow-hidden">
     <div class="container mx-auto px-4 md:px-6 relative z-10">
       <div class="mb-12 text-center" v-if="!hideTitle">
         <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-foreground mb-4 opacity-0 section-title">

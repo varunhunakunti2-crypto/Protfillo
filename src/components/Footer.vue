@@ -5,7 +5,7 @@
   >
     <!-- The actual footer stays fixed to the viewport underneath everything during curtain reveal -->
     <footer
-      class="fixed bottom-0 left-0 flex min-h-screen w-full flex-col justify-between overflow-hidden bg-[#0c0c0e] text-[#f4f4f5] cinematic-footer-wrapper"
+      class="fixed bottom-0 left-0 flex min-h-screen w-full flex-col justify-between overflow-hidden bg-[color:var(--theme-bg)] text-[color:var(--theme-text-strong)] cinematic-footer-wrapper"
     >
       <!-- Ambient Light & Grid Background -->
       <div
@@ -23,10 +23,10 @@
 
       <!-- 1. Diagonal Sleek Marquee (Top of footer) -->
       <div
-        class="absolute top-12 left-0 w-full overflow-hidden border-y border-white/10 bg-black/40 backdrop-blur-md py-4 z-10 -rotate-2 scale-110 shadow-2xl"
+        class="absolute top-12 left-0 w-full overflow-hidden border-y border-[color:var(--theme-line-soft)] bg-[color:var(--theme-nav-bg)] backdrop-blur-md py-4 z-10 -rotate-2 scale-110 shadow-2xl"
       >
         <div
-          class="flex w-max animate-footer-scroll-marquee text-xs md:text-sm font-bold tracking-[0.3em] text-neutral-400 uppercase"
+          class="flex w-max animate-footer-scroll-marquee text-xs md:text-sm font-bold tracking-[0.3em] text-[color:var(--theme-text-muted)] uppercase"
         >
           <MarqueeItems />
           <MarqueeItems />
@@ -53,9 +53,9 @@
               href="https://github.com/varunhunakunti2-crypto"
               target="_blank"
               rel="noopener noreferrer"
-              class="footer-glass-pill px-8 py-4 rounded-full text-[#f4f4f5] font-bold text-sm md:text-base flex items-center gap-3 group"
+              class="footer-glass-pill px-8 py-4 rounded-full text-[color:var(--theme-text-strong)] font-bold text-sm md:text-base flex items-center gap-3 group"
             >
-              <i class="bi bi-github text-lg text-neutral-400 group-hover:text-[#f4f4f5] transition-colors"></i>
+              <i class="bi bi-github text-lg text-[color:var(--theme-text-muted)] group-hover:text-[color:var(--theme-text-strong)] transition-colors"></i>
               {{ t('footer.github') }}
             </a>
 
@@ -64,28 +64,28 @@
               href="https://www.linkedin.com/in/varun-kumar11/"
               target="_blank"
               rel="noopener noreferrer"
-              class="footer-glass-pill px-8 py-4 rounded-full text-[#f4f4f5] font-bold text-sm md:text-base flex items-center gap-3 group"
+              class="footer-glass-pill px-8 py-4 rounded-full text-[color:var(--theme-text-strong)] font-bold text-sm md:text-base flex items-center gap-3 group"
             >
-              <i class="bi bi-linkedin text-lg text-neutral-400 group-hover:text-[#f4f4f5] transition-colors"></i>
+              <i class="bi bi-linkedin text-lg text-[color:var(--theme-text-muted)] group-hover:text-[color:var(--theme-text-strong)] transition-colors"></i>
               {{ t('footer.linkedin') }}
             </a>
 
             <a
               v-magnetic
               href="mailto:varunhunakunti2@gmail.com"
-              class="footer-glass-pill px-8 py-4 rounded-full text-[#f4f4f5] font-bold text-sm md:text-base flex items-center gap-3 group"
+              class="footer-glass-pill px-8 py-4 rounded-full text-[color:var(--theme-text-strong)] font-bold text-sm md:text-base flex items-center gap-3 group"
             >
-              <i class="bi bi-envelope text-lg text-neutral-400 group-hover:text-[#f4f4f5] transition-colors"></i>
+              <i class="bi bi-envelope text-lg text-[color:var(--theme-text-muted)] group-hover:text-[color:var(--theme-text-strong)] transition-colors"></i>
               {{ t('footer.inquiry') }}
             </a>
           </div>
 
           <!-- Secondary Custom Text/Badge links -->
           <div class="flex flex-wrap justify-center gap-3 md:gap-6 w-full mt-2">
-            <div class="footer-glass-pill px-6 py-2.5 rounded-full text-neutral-400 font-medium text-xs md:text-sm">
+            <div class="footer-glass-pill px-6 py-2.5 rounded-full text-[color:var(--theme-text-muted)] font-medium text-xs md:text-sm">
               {{ t('footer.tagline') }}
             </div>
-            <div class="footer-glass-pill px-6 py-2.5 rounded-full text-neutral-400 font-medium text-xs md:text-sm">
+            <div class="footer-glass-pill px-6 py-2.5 rounded-full text-[color:var(--theme-text-muted)] font-medium text-xs md:text-sm">
               {{ t('footer.location') }} {{ currentTime }}
             </div>
           </div>
@@ -98,27 +98,19 @@
       >
         <!-- Copyright -->
         <div
-          class="text-neutral-400 text-[10px] md:text-xs font-semibold tracking-widest uppercase order-2 md:order-1"
+          class="text-[color:var(--theme-text-muted)] text-[10px] md:text-xs font-semibold tracking-widest uppercase order-2 md:order-1"
         >
           &copy; {{ currentYear }} {{ t('footer.name') }}. {{ t('footer.rights') }}
         </div>
 
-        <!-- "Made with Love" Badge -->
-        <div
-          class="footer-glass-pill px-6 py-3 rounded-full flex items-center gap-2 order-1 md:order-2 cursor-default border-white/10"
-        >
-          <span class="text-neutral-400 text-[10px] md:text-xs font-bold uppercase tracking-widest">Crafted with</span>
-          <span class="animate-footer-heartbeat text-sm md:text-base text-red-500">❤</span>
-          <span class="text-neutral-400 text-[10px] md:text-xs font-bold uppercase tracking-widest">by</span>
-          <span class="text-[#f4f4f5] font-black text-xs md:text-sm tracking-normal ml-1">Varun S</span>
-        </div>
+
 
         <!-- Back to top -->
         <button
           v-magnetic
           type="button"
           @click="scrollToTop"
-          class="w-12 h-12 rounded-full footer-glass-pill flex items-center justify-center text-neutral-400 hover:text-[#f4f4f5] group order-3 cursor-pointer"
+          class="w-12 h-12 rounded-full footer-glass-pill flex items-center justify-center text-[color:var(--theme-text-muted)] hover:text-[color:var(--theme-text-strong)] group order-3 cursor-pointer"
         >
           <svg
             class="w-5 h-5 transform group-hover:-translate-y-1.5 transition-transform duration-300"
@@ -353,18 +345,19 @@ const scrollToTop = () => {
   font-weight: 900;
   letter-spacing: -0.05em;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.04);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, transparent 60%);
-  -webkit-background-clip: text;
-  background-clip: text;
+  -webkit-text-stroke: 2px var(--theme-text-strong);
+  background: transparent;
+  filter: blur(3px);
+  -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, transparent 50%);
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, transparent 50%);
 }
 
 /* Metallic Text Glow */
 .footer-text-glow {
-  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.4) 100%);
+  background: linear-gradient(180deg, var(--theme-text-strong) 0%, var(--theme-text-muted) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0px 0px 20px rgba(255, 255, 255, 0.15));
+  filter: drop-shadow(0px 0px 20px var(--theme-line-shadow));
 }
 </style>

@@ -121,6 +121,18 @@
         </span>
         <span class="social-label">varunhunakunti2-crypto</span>
       </a>
+      <a
+        class="social-item group"
+        href="https://wa.me/919019816514?text=Hi%2C%20I%20found%20your%20portfolio%20and%20I%27d%20like%20to%20discuss%20a%20project."
+        aria-label="WhatsApp"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span class="social-circle">
+          <i class="bi bi-whatsapp text-lg"></i>
+        </span>
+        <span class="social-label">+91 9019816514</span>
+      </a>
     </aside>
   </section>
 </template>
