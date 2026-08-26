@@ -85,10 +85,6 @@
 import { computed, inject } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
-import ProjectHeader from "@/components/ProjectHeader.vue";
-import ProjectContent from "@/components/ProjectContent.vue";
-import ProjectGallery from "@/components/ProjectGallery.vue";
-import ProjectNext from "@/components/ProjectNext.vue";
 import CinematicFooter from "@/components/ui/CinematicFooter.vue";
 
 const { t, tm } = useI18n();
