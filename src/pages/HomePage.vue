@@ -9,7 +9,7 @@
     <div id="projects-anchor" class="projects-anchor" aria-hidden="true"></div>
     <Projects />
     <Contact />
-    <Footer />
+    <CinematicFooter />
   </main>
 </template>
 
@@ -24,7 +24,7 @@ import Keyboard from "@/sections/Keyboard.vue";
 import Statement from "@/sections/Statement.vue";
 import Projects from "@/sections/Projects.vue";
 import Contact from "@/sections/Contact.vue";
-import Footer from "@/components/Footer.vue";
+import CinematicFooter from "@/components/ui/CinematicFooter.vue";
 
 const route = useRoute();
 const router = useRouter();
