@@ -303,8 +303,6 @@ import { computed, inject, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRoute, useRouter } from "vue-router";
 import { makeMagnetic } from "@/composables/useMagnetic.js";
-import logo from "../assets/logo1.png";
-import SecondLogo from "../assets/second-logo.png";
 import hamburgerAnim from "@/assets/lottie/hamburger.json";
 import nightSky from "@/assets/lottie/night-sky.json";
 
