@@ -469,7 +469,7 @@ const handleSubmit = async () => {
         'Accept': 'application/json'
       },
       body: JSON.stringify({
-        access_key: "YOUR_WEB3FORMS_ACCESS_KEY",
+        access_key: "047ee733-1efa-4cd7-84bb-3622451f0d87",
         name,
         email,
         message,
