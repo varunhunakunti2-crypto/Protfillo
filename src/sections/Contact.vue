@@ -47,8 +47,6 @@
                 name="contact"
                 method="POST"
                 novalidate
-                data-netlify="true"
-                netlify-honeypot="bot-field"
                 @submit.prevent="handleSubmit"
               >
                 <input type="hidden" name="form-name" value="contact" />
@@ -463,21 +461,26 @@ const handleSubmit = async () => {
 
   isSubmitting.value = true;
 
-  const formData = new URLSearchParams();
-  formData.append('form-name', 'contact');
-  formData.append('name', name);
-  formData.append('email', email);
-  formData.append('message', message);
-
   try {
-    const response = await fetch('/', {
+    const response = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: formData.toString(),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        access_key: "YOUR_WEB3FORMS_ACCESS_KEY",
+        name,
+        email,
+        message,
+        subject: "New Contact Form Submission from Portfolio"
+      }),
     });
 
-    if (!response.ok) {
-      console.error('Form submission failed:', response.status, response.statusText);
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      console.error('Form submission failed:', result);
       throw new Error('Submission failed');
     }
 
