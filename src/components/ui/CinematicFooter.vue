@@ -4,7 +4,7 @@
     class="relative h-screen w-full"
     style="clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%)"
   >
-    <footer class="fixed bottom-0 left-0 flex h-screen w-full flex-col justify-between overflow-hidden cinematic-footer-wrapper text-white bg-black" style="--background: #000000; --foreground: #ffffff; --primary: #ffffff; --secondary: #a3a3a3; --destructive: #ef4444; --border: #333333; --muted-foreground: #a3a3a3;">
+    <footer class="fixed bottom-0 left-0 flex h-screen w-full flex-col justify-between overflow-hidden cinematic-footer-wrapper text-[color:var(--theme-text-strong)] bg-[color:var(--theme-bg)]" style="--background: var(--theme-bg); --foreground: var(--theme-text-strong); --primary: var(--theme-text-strong); --secondary: var(--theme-text-muted); --destructive: #ef4444; --border: var(--theme-line-soft); --muted-foreground: var(--theme-text-muted);">
       
       <!-- Ambient Light & Grid Background -->
       <div class="footer-aurora absolute left-1/2 top-1/2 h-[60vh] w-[80vw] -translate-x-1/2 -translate-y-1/2 animate-footer-breathe rounded-[50%] blur-[80px] pointer-events-none z-0" />
@@ -19,7 +19,7 @@
       </div>
 
       <!-- 1. Diagonal Sleek Marquee (Top of footer) -->
-      <div class="absolute top-12 left-0 w-full overflow-hidden border-y border-[var(--border)] bg-black/60 backdrop-blur-md py-4 z-10 -rotate-2 scale-110 shadow-2xl">
+      <div class="absolute top-12 left-0 w-full overflow-hidden border-y border-[var(--border)] bg-[color-mix(in_srgb,var(--theme-bg)_60%,transparent)] backdrop-blur-md py-4 z-10 -rotate-2 scale-110 shadow-2xl">
         <div class="flex w-max animate-footer-scroll-marquee text-xs md:text-sm font-bold tracking-[0.3em] text-[var(--muted-foreground)] uppercase">
           <div class="flex items-center space-x-12 px-6">
             <span>Accountability Redefined</span> <span class="text-[var(--primary)]/60">✦</span>
@@ -52,17 +52,17 @@
           <!-- Social & Inquiry Links (Primary) -->
           <div class="flex flex-wrap justify-center gap-4 w-full">
             <a href="https://github.com/varunhunakunti2-crypto" target="_blank" rel="noopener noreferrer" class="footer-glass-pill cursor-pointer px-10 py-5 rounded-full font-bold text-sm md:text-base flex items-center gap-3 group" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
-              <i class="bi bi-github text-lg text-[var(--muted-foreground)] group-hover:text-white transition-colors"></i>
+              <i class="bi bi-github text-lg text-[var(--muted-foreground)] group-hover:text-[color:var(--foreground)] transition-colors"></i>
               GITHUB
             </a>
             
             <a href="https://www.linkedin.com/in/varun-kumar11/" target="_blank" rel="noopener noreferrer" class="footer-glass-pill cursor-pointer px-10 py-5 rounded-full font-bold text-sm md:text-base flex items-center gap-3 group" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
-              <i class="bi bi-linkedin text-lg text-[var(--muted-foreground)] group-hover:text-white transition-colors"></i>
+              <i class="bi bi-linkedin text-lg text-[var(--muted-foreground)] group-hover:text-[color:var(--foreground)] transition-colors"></i>
               LINKEDIN
             </a>
 
             <a href="mailto:varunhunakunti2@gmail.com" class="footer-glass-pill cursor-pointer px-10 py-5 rounded-full font-bold text-sm md:text-base flex items-center gap-3 group" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
-              <i class="bi bi-envelope text-lg text-[var(--muted-foreground)] group-hover:text-white transition-colors"></i>
+              <i class="bi bi-envelope text-lg text-[var(--muted-foreground)] group-hover:text-[color:var(--foreground)] transition-colors"></i>
               INQUIRY
             </a>
           </div>
@@ -84,7 +84,7 @@
         <!-- Back to top -->
         <button
           @click="scrollToTop"
-          class="w-12 h-12 cursor-pointer rounded-full footer-glass-pill flex items-center justify-center text-[var(--muted-foreground)] hover:text-white group order-3"
+          class="w-12 h-12 cursor-pointer rounded-full footer-glass-pill flex items-center justify-center text-[var(--muted-foreground)] hover:text-[color:var(--foreground)] group order-3"
           @mousemove="handleMouseMove" 
           @mouseleave="handleMouseLeave"
         >
