@@ -194,11 +194,11 @@ const layers = computed(() => {
   
   return {
     insetTRBL,
-    wallGradient: `linear-gradient(180deg, ${shiftLightness("#f0e4d1", v.lightnessShift)} 0%, ${shiftLightness("#e0cead", v.lightnessShift)} 18%, ${shiftLightness("#c8b394", v.lightnessShift)} 46%, ${shiftLightness("#a68e70", v.lightnessShift * 0.7)} 78%, ${shiftLightness("#8c7458", v.lightnessShift * 0.5)} 100%)`,
+    wallGradient: `linear-gradient(180deg, ${shiftLightness(props.config.orange ? "#ffb74d" : "#f0e4d1", v.lightnessShift)} 0%, ${shiftLightness(props.config.orange ? "#ffa726" : "#e0cead", v.lightnessShift)} 18%, ${shiftLightness(props.config.orange ? "#ff9800" : "#c8b394", v.lightnessShift)} 46%, ${shiftLightness(props.config.orange ? "#f57c00" : "#a68e70", v.lightnessShift * 0.7)} 78%, ${shiftLightness(props.config.orange ? "#e65100" : "#8c7458", v.lightnessShift * 0.5)} 100%)`,
     wallFilter: `hue-rotate(${v.hueShift}deg)`,
     wallNoisePosition: `${v.specularShiftX}px ${v.specularShiftY}px`,
     wallShadow: `inset 0 1px 0 rgba(255,255,255,0.4), inset 0.6px 0.4px 0 rgba(255,255,255,0.14), inset 0 -1.5px 2px rgba(15,9,4,0.16), inset 0 0 0 0.5px rgba(15,9,4,0.06)`,
-    topGradient: `radial-gradient(115% 125% at ${23 + v.specularShiftX * 0.4}% 9%, rgba(255,255,255,${0.4 - v.wearAmount * 0.06}), rgba(255,255,255,0) 44%), radial-gradient(150% 120% at 50% 118%, rgba(15,9,4,${0.07 + v.wearAmount * 0.02}), transparent 60%), ${shiftLightness(KEYCAP_BASE, v.lightnessShift * 0.6)}`,
+    topGradient: `radial-gradient(115% 125% at ${23 + v.specularShiftX * 0.4}% 9%, rgba(255,255,255,${0.4 - v.wearAmount * 0.06}), rgba(255,255,255,0) 44%), radial-gradient(150% 120% at 50% 118%, rgba(15,9,4,${0.07 + v.wearAmount * 0.02}), transparent 60%), ${shiftLightness(props.config.orange ? "#ff9800" : KEYCAP_BASE, v.lightnessShift * 0.6)}`,
     topFilter: `hue-rotate(${v.hueShift * 0.4}deg)`,
     topNoisePosition: `${v.specularShiftY}px ${v.specularShiftX}px`,
     topShadow: `inset 0 0 0 0.75px rgba(96,70,42,0.28), inset 0 0.6px 0 rgba(255,250,238,0.4), inset 0 -0.8px 1.2px rgba(15,9,4,0.04)`,
@@ -283,10 +283,10 @@ const shiftLabelStyle = computed(() => ({
   top: `calc(${sculpt.value.insetTop}px + ${LEGEND_SHARED.shiftTopOffset})`,
   left: LEGEND_SHARED.shiftLeftOffset,
   fontSize: legendFont.value.shift,
-  color: LEGEND_INK_SOFT,
+  color: props.config.orange ? '#ffffff' : LEGEND_INK_SOFT,
   opacity: LEGEND_SHARED.shiftOpacity,
   letterSpacing: '0.01em',
-  textShadow: '0 0.4px 0 rgba(255,255,255,0.32), 0 0 0.3px rgba(35,28,18,0.3)',
+  textShadow: props.config.orange ? '0 0.4px 0 rgba(0,0,0,0.1), 0 0 0.3px rgba(35,28,18,0.3)' : '0 0.4px 0 rgba(255,255,255,0.32), 0 0 0.3px rgba(35,28,18,0.3)',
 }));
 
 const primaryLabelStyle = computed(() => ({
@@ -294,10 +294,10 @@ const primaryLabelStyle = computed(() => ({
   left: primaryAlign.value === 'left' ? LEGEND_SHARED.primaryLeftOffset : (props.config.shiftLabel ? `calc(50% - ${LEGEND_SHARED.opticalCenterShift})` : '50%'),
   transform: primaryAlign.value === 'left' ? undefined : 'translateX(-50%)',
   fontSize: small.value ? legendFont.value.small : legendFont.value.normal,
-  color: LEGEND_INK,
+  color: props.config.orange ? '#ffffff' : LEGEND_INK,
   opacity: LEGEND_SHARED.primaryOpacity,
   letterSpacing: small.value ? '0.015em' : '-0.01em',
-  textShadow: '0 0.4px 0 rgba(255,255,255,0.28), 0 0 0.35px rgba(30,24,16,0.35)',
+  textShadow: props.config.orange ? '0 0.4px 0 rgba(0,0,0,0.1), 0 0 0.35px rgba(30,24,16,0.35)' : '0 0.4px 0 rgba(255,255,255,0.28), 0 0 0.35px rgba(30,24,16,0.35)',
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'clip',

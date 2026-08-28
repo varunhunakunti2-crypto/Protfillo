@@ -24,7 +24,7 @@ export const ROWS = [
   [
     { id: "tab", label: "Tab", width: 1.5, align: "left", small: true },
     { id: "q", label: "Q" },
-    { id: "w", label: "W" },
+    { id: "w", label: "W", orange: true },
     { id: "e", label: "E" },
     { id: "r", label: "R" },
     { id: "t", label: "T" },
@@ -39,9 +39,9 @@ export const ROWS = [
   ],
   [
     { id: "caps", label: "CapsLock", width: 1.75, align: "left", small: true },
-    { id: "a", label: "A" },
-    { id: "s", label: "S" },
-    { id: "d", label: "D" },
+    { id: "a", label: "A", orange: true },
+    { id: "s", label: "S", orange: true },
+    { id: "d", label: "D", orange: true },
     { id: "f", label: "F" },
     { id: "g", label: "G" },
     { id: "h", label: "H" },
