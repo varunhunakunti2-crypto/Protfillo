@@ -67,15 +67,7 @@
             </a>
           </div>
 
-          <!-- Secondary Text Links -->
-          <div class="flex flex-wrap justify-center gap-3 md:gap-6 w-full mt-2">
-            <div class="footer-glass-pill px-6 py-3 rounded-full text-[var(--muted-foreground)] font-medium text-xs md:text-sm">
-              DESIGNING WITH CODE
-            </div>
-            <div class="footer-glass-pill px-6 py-3 rounded-full text-[var(--muted-foreground)] font-medium text-xs md:text-sm">
-              INDIA: (GMT+5:30) {{ currentTime }}
-            </div>
-          </div>
+
         </div>
       </div>
 
@@ -120,18 +112,7 @@ const linksRef = ref(null);
 
 let ctx;
 
-const currentTime = ref("");
-let timeInterval = null;
 
-function updateTime() {
-  const now = new Date();
-  currentTime.value = new Intl.DateTimeFormat("en-GB", {
-    timeZone: "Asia/Kolkata",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  }).format(now);
-}
 
 const handleMouseMove = (e) => {
   const element = e.currentTarget;
@@ -170,8 +151,7 @@ const scrollToTop = () => {
 };
 
 onMounted(() => {
-  updateTime();
-  timeInterval = setInterval(updateTime, 60000);
+
 
   ctx = gsap.context(() => {
     // Background Parallax
@@ -213,7 +193,7 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-  if (timeInterval) clearInterval(timeInterval);
+
   if (ctx) ctx.revert();
 });
 </script>

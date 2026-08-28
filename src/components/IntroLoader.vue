@@ -166,7 +166,7 @@ onBeforeUnmount(() => {
   inset: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(45deg, rgba(194, 233, 221, 1) 1%, rgba(104, 119, 132, 1) 100%), linear-gradient(-45deg, #494d71 0%, rgba(217, 230, 185, 1) 80%);
+  background-color: white;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -228,7 +228,7 @@ onBeforeUnmount(() => {
   font-size: clamp(2.2rem, 5.5vw, 4rem);
   letter-spacing: -0.02em;
   line-height: 1;
-  color: #fff;
+  color: #000;
   white-space: nowrap;
 }
 
