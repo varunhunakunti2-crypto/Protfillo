@@ -1,0 +1,287 @@
+{
+  "nav": {
+    "about": "About",
+    "impact": "Impact",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact",
+    "home": "Home",
+    "resume": "Resume",
+    "resumeEnglish": "English",
+    "resumeJapanese": "Japanese"
+  },
+  "home": {
+    "scrollDown": "SCROLL DOWN",
+    "words": ["Engineer", "Designer", "Builder", "WebDev", "Commit", "Creative", "Crafting", "Focused"],
+    "tagline": "Turning ideas into thoughtful web experiences",
+    "cta": "Let's connect",
+    "exploreCta": "Let's connect",
+    "role": "Full-Stack Software Engineer",
+    "subtitle": "Turning ideas into powerful digital experiences",
+    "location": "React • Node.js • Tailwind CSS • REST APIs"
+  },
+  "impact": {
+    "quote": "This portfolio is a snapshot of my problem-solving mindset, design decisions, and the way I turn ideas into reliable interfaces."
+  },
+  "about": {
+    "title": "About me",
+    "paragraph1": "I'm Varun S, a Full-Stack Developer focused on building modern, scalable web applications that combine clean design with robust functionality.",
+    "paragraph2": "With a background in creative work, I approach development with both technical precision and visual intention, creating digital experiences that are intuitive, performant, and built to grow."
+  },
+  "experience": {
+    "title": "Experience",
+    "bgText": "CAREER",
+    "jobs": [
+      {
+        "role": "Full-Stack Software Engineer",
+        "company": "Freelance",
+        "duration": "2024 - Present",
+        "description": "Designing and building high-performance web applications using React, Vue, Node.js, and modern styling libraries. Collaborating with global clients to deliver clean code architectures."
+      },
+      {
+        "role": "Frontend Developer Intern",
+        "company": "Tech Solutions Inc.",
+        "duration": "2023 - 2024",
+        "description": "Developed interactive user interfaces and modular layouts. Optimized core web vitals performance by 35% and integrated REST APIs."
+      }
+    ]
+  },
+  "skills": {
+    "title": "Skills",
+    "bgText": "SKILLS",
+    "taglineStatic": "I constantly try to",
+    "taglineWords": ["Improve", "Learn", "Adapt", "Grow"]
+  },
+  "statement": {
+    "dividerText": "Each project shaped",
+    "dividerText2": "how I work today.",
+    "selected": "SELECTED",
+    "projects": "PROJECTS",
+    "showcase": "SHOWCASE"
+  },
+  "contact": {
+    "title": "Conversation comes first",
+    "subtitle": "That's often where good things begin.",
+    "formTitle": "Open to opportunities",
+    "nameLabel": "Name",
+    "namePlaceholder": "How should I call you?",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Where can I reach you?",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Anything you'd like to discuss?",
+    "errors": {
+      "nameRequired": "Please enter your name",
+      "emailInvalid": "Please enter a valid email address",
+      "messageRequired": "Please enter your message."
+    },
+    "warnings": {
+      "emailDomainTypo": "Did you mean {domain}?"
+    },
+    "requiredFieldMessage": "Please fill out this field.",
+    "send": "Send",
+    "sendLoading": "Sending...",
+    "successTitle": "Thanks for getting in touch.",
+    "successMessage": "I've received your message and will follow up soon."
+  },
+  "footer": {
+    "github": "GITHUB",
+    "linkedin": "LINKEDIN",
+    "inquiry": "INQUIRY",
+    "location": "INDIA: (GMT+5:30)",
+    "tagline": "DESIGNING WITH CODE",
+    "rights": "All Rights Reserved.",
+    "name": "VARUN"
+  },
+  "projects": {
+    "jlptLab": "JLPT Practice Lab",
+    "jlptLabSubtitle": "Interactive JLPT practice platform built from real exam patterns to make learning clearer and less stressful.",
+    "freelanceHub": "FreelaceHub",
+    "freelanceHubSubtitle": "A platform for freelancers and clients to connect and collaborate.",
+    "vibeVine": "VIBE&VINE",
+    "vibeVineSubtitle": "Experience the best of modern flavors in a vibrant atmosphere with craft cocktails and social dining.",
+    "animationGallery": "animation_gallary",
+    "animationGallerySubtitle": "A place to display your masterpiece. Artists can display their masterpieces, and buyers can discover and collect."
+  },
+  "projectDetail": {
+    "back": "Back",
+    "status": "Full-Stack Freelance Marketplace",
+    "title": "FreelaceHub"
+  },
+  "projectDetails": {
+    "1": {
+      "status": "Full-Stack Freelance Marketplace",
+      "title": "FreelaceHub",
+      "sections": {
+        "description": {
+          "title": "Project Description",
+          "p1": "FreelaceHub is a modern full-stack freelance marketplace designed to connect clients with skilled freelancers. The platform provides a seamless experience for posting projects, discovering talent, managing applications, and collaborating efficiently through a responsive and user-friendly interface.",
+          "p2": "Built with performance, scalability, and security in mind, FreelaceHub leverages modern web technologies to deliver a fast and reliable user experience."
+        },
+        "features": {
+          "title": "Key Features",
+          "items": [
+            "User authentication and authorization",
+            "Client and freelancer dashboards",
+            "Create, edit, and manage projects",
+            "Browse and search freelance jobs",
+            "Freelancer profile management",
+            "Project application system",
+            "Responsive design for all devices",
+            "Secure backend architecture",
+            "Modern and intuitive UI",
+            "Optimized performance with server-side rendering"
+          ]
+        },
+        "techStack": {
+          "title": "Tech Stack",
+          "frontend": "Next.js, React, TypeScript, Tailwind CSS",
+          "backend": "Next.js API Routes, Node.js",
+          "database": "PostgreSQL / Prisma",
+          "auth": "Clerk / NextAuth",
+          "deployment": "Vercel"
+        },
+        "modules": {
+          "title": "Main Modules",
+          "items": [
+            "Authentication",
+            "User Dashboard",
+            "Job Marketplace",
+            "Project Management",
+            "Freelancer Profiles",
+            "Search & Filtering",
+            "Responsive UI",
+            "API Integration"
+          ]
+        },
+        "highlights": {
+          "title": "Highlights",
+          "items": [
+            "Fast page loading with Next.js",
+            "Fully responsive design",
+            "Type-safe development using TypeScript",
+            "Clean and reusable component architecture",
+            "Modern UI built with Tailwind CSS",
+            "Optimized deployment on Vercel"
+          ]
+        }
+      }
+    },
+    "2": {
+      "status": "Modern Responsive Drone Web Application",
+      "title": "VIBE&VINE",
+      "sections": {
+        "description": {
+          "title": "Project Overview",
+          "p1": "VIBE&VINE is a modern responsive landing website for a drone product/company, engineered using React.js and Vite for ultra-fast performance and clean component architecture.",
+          "p2": "Built with single page application (SPA) performance, responsive grid layouts, and modular component architecture to deliver a seamless user experience."
+        },
+        "features": {
+          "title": "Main Features",
+          "items": [
+            "Responsive Landing Page",
+            "Modern UI Design",
+            "Product Showcase",
+            "Hero Section & Navigation Bar",
+            "About Section & Drone Features",
+            "Image Gallery",
+            "Call-to-Action Section",
+            "Contact & Footer Section",
+            "Mobile Responsive Layout"
+          ]
+        },
+        "techStack": {
+          "title": "Technologies Used",
+          "frontend": "React.js, JavaScript (ES6+), HTML5, CSS3",
+          "backend": "Vite",
+          "database": "npm",
+          "auth": "ESLint",
+          "deployment": "Netlify / Vercel"
+        },
+        "modules": {
+          "title": "Skills Demonstrated",
+          "items": [
+            "React Component Architecture",
+            "Responsive Web Design",
+            "Modern UI Development",
+            "Single Page Application (SPA)",
+            "Vite Project Setup",
+            "CSS Layout (Flexbox & Grid)",
+            "Asset Management",
+            "Performance Optimization"
+          ]
+        },
+        "highlights": {
+          "title": "Possible Libraries",
+          "items": [
+            "React & React DOM",
+            "Vite & ESLint",
+            "React Icons",
+            "Framer Motion",
+            "Swiper.js",
+            "AOS (Animate On Scroll)",
+            "GSAP"
+          ]
+        }
+      }
+    },
+    "3": {
+      "status": "High-Performance Astro Web Application",
+      "title": "animation_gallary",
+      "sections": {
+        "description": {
+          "title": "Project Overview",
+          "p1": "Animation Gallery is a modern, responsive web application designed to showcase high-quality animations in an organized and visually engaging interface.",
+          "p2": "The project emphasizes smooth user interactions, clean layouts, reusable components, and optimized performance using the Astro framework."
+        },
+        "features": {
+          "title": "Features",
+          "items": [
+            "Responsive gallery layout",
+            "Smooth page transitions",
+            "Modern UI/UX",
+            "Animation showcase",
+            "Optimized image loading",
+            "Fast page rendering",
+            "Reusable components",
+            "Mobile-friendly interface",
+            "SEO-friendly architecture",
+            "Lightweight and high-performance design"
+          ]
+        },
+        "techStack": {
+          "title": "Technologies Used",
+          "frontend": "Astro, TypeScript, HTML5, CSS3, JavaScript (ES6+)",
+          "backend": "Astro Build System, Vite",
+          "database": "npm",
+          "auth": "VS Code, Git & GitHub",
+          "deployment": "Vercel / Netlify"
+        },
+        "modules": {
+          "title": "Skills Demonstrated",
+          "items": [
+            "Astro Framework Development",
+            "Component-Based Architecture",
+            "TypeScript Development",
+            "Responsive Web Design",
+            "Performance Optimization",
+            "Modern Frontend Development",
+            "UI/UX Design",
+            "Git Version Control"
+          ]
+        },
+        "highlights": {
+          "title": "Performance Features",
+          "items": [
+            "Static Site Generation (SSG)",
+            "Optimized Assets",
+            "Lazy Loading",
+            "Fast Navigation",
+            "Lightweight Build",
+            "SEO Optimization"
+          ]
+        }
+      }
+    }
+  }
+}
+

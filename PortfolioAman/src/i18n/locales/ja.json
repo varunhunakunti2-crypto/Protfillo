@@ -1,0 +1,292 @@
+{
+  "nav": {
+    "about": "プロフィール",
+    "impact": "インパクト",
+    "skills": "スキル",
+    "projects": "プロジェクト",
+    "contact": "お問い合わせ",
+    "home": "ホーム",
+    "resume": "履歴書",
+    "resumeEnglish": "英語版",
+    "resumeJapanese": "日本語版"
+  },
+  "home": {
+    "scrollDown": "スクロール",
+    "words": ["エンジニア", "デザイナー", "ビルダー", "Web開発", "コミット", "クリエイティブ", "クラフト", "集中"],
+    "tagline": "アイデアを丁寧なWeb体験へ",
+    "cta": "話しましょう",
+    "exploreCta": "自己紹介を見る",
+    "role": "フロントエンドエンジニア",
+    "subtitle": "高速で使いやすいWebインターフェースを設計",
+    "location": "日本在住・Vue・Tailwind"
+  },
+  "impact": {
+    "quote": "このポートフォリオは、問題解決へのアプローチやデザインの判断、そしてアイデアを信頼性の高いインターフェースへと形にするプロセスを紹介するものです。"
+  },
+  "about": {
+    "title": "自己紹介",
+    "paragraph1": "アマンと申します。デザインと機能性のバランスを大切にしながら、直感的でモダンなWebインターフェースの制作に取り組んでいます。",
+    "paragraph2": "クリエイティブ分野での経験を活かし、論理的な視点と視覚的な意図の両方を意識した開発を行い、成長や変化に対応できるデジタル体験を設計しています。"
+  },
+  "experience": {
+    "title": "職歴と経歴",
+    "bgText": "CAREER",
+    "jobs": [
+      {
+        "role": "フルスタックエンジニア",
+        "company": "フリーランス",
+        "duration": "2024 - 現在",
+        "description": "React、Vue、Node.js、および最新のスタイリングライブラリを使用した高性能Webアプリケーションの設計と構築。クリーンなコードアーキテクチャの提供においてグローバルクライアントと連携。"
+      },
+      {
+        "role": "フロントエンドエンジニア インターン",
+        "company": "Tech Solutions Inc.",
+        "duration": "2023 - 2024",
+        "description": "インタラクティブなユーザーインターフェースとモジュール式レイアウトの開発。コアウェブバイタルのパフォーマンスを35%最適化し、REST APIの統合を実施。"
+      }
+    ]
+  },
+  "skills": {
+    "title": "スキル",
+    "bgText": "スキル",
+    "taglineStatic": "より良い体験をつくるために",
+    "taglineWords": ["学習", "改善", "挑戦", "成長"]
+  },
+  "statement": {
+    "dividerText": "これまでの制作を通じて、",
+    "dividerText2": "現在の制作スタイルを築いてきました。",
+    "selected": "制作実績",
+    "projects": "",
+    "showcase": "主なプロジェクト"
+  },
+  "contact": {
+    "title": "まずは、お話ししましょう。",
+    "subtitle": "ご相談やご連絡をお待ちしています。",
+    "formTitle": "お問い合わせ",
+    "nameLabel": "お名前",
+    "namePlaceholder": "お名前をご入力ください",
+    "emailLabel": "メールアドレス",
+    "emailPlaceholder": "ご連絡可能なメールアドレス",
+    "messageLabel": "お問い合わせ内容",
+    "messagePlaceholder": "ご相談内容をご記入ください",
+    "errors": {
+      "nameRequired": "お名前を入力してください",
+      "emailInvalid": "有効なメールアドレスを入力してください",
+      "messageRequired": "メッセージを入力してください"
+    },
+    "warnings": {
+      "emailDomainTypo": "{domain}の入力ミスではありませんか？"
+    },
+    "requiredFieldMessage": "必須項目です。入力してください。",
+    "send": "送信する",
+    "sendLoading": "送信中",
+    "successTitle": "お問い合わせありがとうございます。",
+    "successMessageLine1": "メッセージを受け取りました。",
+    "successMessageLine2": "近日中にご返信いたします。",
+    "successMessage": "メッセージを受け取りました。近日中にご返信いたします。"
+  },
+  "footer": {
+    "github": "GITHUB",
+    "linkedin": "LINKEDIN",
+    "inquiry": "お問い合わせ",
+    "location": "東京/日本: (GMT+9)",
+    "tagline": "コードでデザインを語る",
+    "rights": "All Rights Reserved.",
+    "name": "AMAN"
+  },
+  "projects": {
+    "jlptLab": "JLPT 練習アプリ",
+    "jlptLabSubtitle": "実際の試験パターンを基にした、わかりやすくストレスの少ないJLPT練習プラットフォーム",
+    "freelanceHub": "FreelaceHub",
+    "freelanceHubSubtitle": "フリーランスとクライアントを繋ぐプラットフォーム",
+    "vibeVine": "VIBE&VINE",
+    "vibeVineSubtitle": "モダンな味わいと洗練された雰囲気のソーシャルダイニング・ウェブサイト",
+    "animationGallery": "animation_gallary",
+    "animationGallerySubtitle": "作品を展示し、発見・収集できる3Dアニメーションギャラリープラットフォーム。"
+  },
+  "projectDetail": {
+    "back": "戻る",
+    "status": "フルスタック・フリーランス・マーケットプレイス",
+    "title": "FreelaceHub"
+  },
+  "projectDetails": {
+    "1": {
+      "status": "フルスタック・フリーランス・マーケットプレイス",
+      "title": "FreelaceHub",
+      "sections": {
+        "description": {
+          "title": "プロジェクト概要",
+          "p1": "FreelaceHubは、クライアントとスキルのあるフリーランスを繋ぐモダンなフルスタック・フリーランス・マーケットプレイスです。案件の投稿、人材の発見、応募管理、効率的なコラボレーションを、レスポンシブで直感的なUIで実現します。",
+          "p2": "パフォーマンス、拡張性、セキュリティを考慮して設計されており、最新のWeb技術を活用して高速で信頼性の高いユーザー体験を提供します。"
+        },
+        "features": {
+          "title": "主な機能",
+          "items": [
+            "ユーザー認証およびアクセス権限管理",
+            "クライアントおよびフリーランス用ダッシュボード",
+            "プロジェクトの作成・編集・管理",
+            "フリーランス案件の閲覧・検索",
+            "フリーランスのプロフィール管理",
+            "プロジェクト応募・選考システム",
+            "全デバイス対応のレスポンシブデザイン",
+            "安全なバックエンドアーキテクチャ",
+            "直感的でモダンなUIデザイン",
+            "サーバーサイドレンダリングによる最適化されたパフォーマンス"
+          ]
+        },
+        "techStack": {
+          "title": "技術スタック",
+          "frontend": "Next.js, React, TypeScript, Tailwind CSS",
+          "backend": "Next.js API Routes, Node.js",
+          "database": "PostgreSQL / Prisma",
+          "auth": "Clerk / NextAuth",
+          "deployment": "Vercel"
+        },
+        "modules": {
+          "title": "主要モジュール",
+          "items": [
+            "ユーザー認証",
+            "ユーザーダッシュボード",
+            "案件マーケットプレイス",
+            "プロジェクト管理",
+            "フリーランスプロフィール",
+            "検索・フィルタリング",
+            "レスポンシブUI",
+            "APIインテグレーション"
+          ]
+        },
+        "highlights": {
+          "title": "ハイライト",
+          "items": [
+            "Next.jsによる高速なページロード",
+            "完全レスポンシブ対応デザイン",
+            "TypeScriptによる型安全な開発",
+            "クリーンで再利用可能なコンポーネント構成",
+            "Tailwind CSSによるモダンなスタイリング",
+            "Vercelによる最適化されたデプロイ"
+          ]
+        }
+      }
+    },
+    "2": {
+      "status": "モダン・レスポンシブ・ドローンWebアプリケーション",
+      "title": "VIBE&VINE",
+      "sections": {
+        "description": {
+          "title": "プロジェクト概要",
+          "p1": "VIBE&VINEは、ドローン製品・企業向けのモダンなレスポンシブ・ランディングWebサイトです。React.jsとViteを採用し、高速な描画性能と拡張性の高いコンポーネント設計を実現しています。",
+          "p2": "シングルページアプリケーション（SPA）の高速なナビゲーションとフレキシブルなグリッドレイアウトを採用し、優れたユーザー体験を提供します。"
+        },
+        "features": {
+          "title": "主な機能",
+          "items": [
+            "レスポンシブ・ランディングページ",
+            "モダンなUIデザイン",
+            "プロダクト・ショーケース",
+            "ヒーローセクション & ナビゲーションバー",
+            "アバウトセクション & ドローン機能解説",
+            "インタラクティブ画像ギャラリー",
+            "Call-to-Action (CTA) セクション",
+            "コンタクト / フッターセクション",
+            "モバイル対応レスポンシブレイアウト"
+          ]
+        },
+        "techStack": {
+          "title": "使用技術",
+          "frontend": "React.js, JavaScript (ES6+), HTML5, CSS3",
+          "backend": "Vite",
+          "database": "npm",
+          "auth": "ESLint",
+          "deployment": "Netlify / Vercel"
+        },
+        "modules": {
+          "title": "実証したスキル",
+          "items": [
+            "Reactコンポーネント・アーキテクチャ",
+            "レスポンシブWebデザイン",
+            "モダンUI開発",
+            "シングルページアプリケーション (SPA)",
+            "Viteプロジェクト構築",
+            "CSSレイアウト (Flexbox & Grid)",
+            "アセット管理",
+            "パフォーマンス最適化"
+          ]
+        },
+        "highlights": {
+          "title": "活用ライブラリ",
+          "items": [
+            "React & React DOM",
+            "Vite & ESLint",
+            "React Icons",
+            "Framer Motion",
+            "Swiper.js",
+            "AOS (Animate On Scroll)",
+            "GSAP"
+          ]
+        }
+      }
+    },
+    "3": {
+      "status": "高性能Astro Webアプリケーション",
+      "title": "animation_gallary",
+      "sections": {
+        "description": {
+          "title": "プロジェクト概要",
+          "p1": "Animation Galleryは、高品質なアニメーションを整理された視覚的なインターフェースで公開するためのモダンでレスポンシブなWebアプリケーションです。",
+          "p2": "Astroフレームワークを採用し、スムーズなインタラクション、クリーンなレイアウト、再利用可能なコンポーネント、最適化されたパフォーマンスを重視して構築されています。"
+        },
+        "features": {
+          "title": "主な機能",
+          "items": [
+            "レスポンシブ・ギャラリー・レイアウト",
+            "スムーズなページ遷移",
+            "モダンなUI/UXデザイン",
+            "アニメーション・ショーケース",
+            "最適化された画像ローディング",
+            "高速なページ描画",
+            "再利用可能なコンポーネント構成",
+            "モバイルフレンドリーな画面設計",
+            "SEOフレンドリーなアーキテクチャ",
+            "軽量で高性能な設計"
+          ]
+        },
+        "techStack": {
+          "title": "使用技術",
+          "frontend": "Astro, TypeScript, HTML5, CSS3, JavaScript (ES6+)",
+          "backend": "Astro Build System, Vite",
+          "database": "npm",
+          "auth": "VS Code, Git & GitHub",
+          "deployment": "Vercel / Netlify"
+        },
+        "modules": {
+          "title": "実証したスキル",
+          "items": [
+            "Astroフレームワーク開発",
+            "コンポーネント指向アーキテクチャ",
+            "TypeScript開発",
+            "レスポンシブWebデザイン",
+            "パフォーマンス最適化",
+            "モダンフロントエンド開発",
+            "UI/UXデザイン",
+            "Gitバージョン管理"
+          ]
+        },
+        "highlights": {
+          "title": "パフォーマンス機能",
+          "items": [
+            "静的サイト生成 (SSG)",
+            "最適化されたアセット管理",
+            "画像の遅延読み込み (Lazy Loading)",
+            "高速なページナビゲーション",
+            "軽量なビルドサイズ",
+            "SEO最適化"
+          ]
+        }
+      }
+    }
+  }
+}
+
+
+
+
