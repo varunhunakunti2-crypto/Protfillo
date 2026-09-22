@@ -84,9 +84,7 @@ import {
   playKeySound, 
   KEY_PAN, 
   PBT_NOISE_URI, 
-  KEYCAP_BASE, 
-  LEGEND_INK, 
-  LEGEND_INK_SOFT,
+  isRedKey,
   ROW_SCULPT_TIERS,
   RADIUS_TIERS,
   NOISE_OPACITY_TIERS,
@@ -186,25 +184,47 @@ const noiseSize = computed(() => NOISE_SIZE_TIERS[props.tier]);
 const legendFont = computed(() => LEGEND_FONT_TIERS[props.tier]);
 const contactShadow = computed(() => CONTACT_SHADOW_TIERS[props.tier]);
 const keyHeight = computed(() => KEY_HEIGHT_TIERS[props.tier]);
+const isRed = computed(() => isRedKey(props.config.id));
 
 const layers = computed(() => {
   const v = variance.value;
   const s = sculpt.value;
   const insetTRBL = `${s.insetTop}px ${s.insetSide}px ${s.insetBottom}px ${s.insetSide}px`;
+  const red = isRed.value;
   
+  const wallGradient = red
+    ? `linear-gradient(180deg, ${shiftLightness("#d92c2c", v.lightnessShift)} 0%, ${shiftLightness("#c62828", v.lightnessShift)} 18%, ${shiftLightness("#b71c1c", v.lightnessShift)} 46%, ${shiftLightness("#8e1515", v.lightnessShift * 0.7)} 78%, ${shiftLightness("#6b0d0d", v.lightnessShift * 0.5)} 100%)`
+    : `linear-gradient(180deg, ${shiftLightness("#2c2f35", v.lightnessShift)} 0%, ${shiftLightness("#23262c", v.lightnessShift)} 18%, ${shiftLightness("#1b1d22", v.lightnessShift)} 46%, ${shiftLightness("#131518", v.lightnessShift * 0.7)} 78%, ${shiftLightness("#0d0e10", v.lightnessShift * 0.5)} 100%)`;
+
+  const wallShadow = red
+    ? `inset 0 1px 0 rgba(255,180,180,0.35), inset 0.6px 0.4px 0 rgba(255,180,180,0.15), inset 0 -1.5px 2px rgba(30,0,0,0.35), inset 0 0 0 0.5px rgba(20,0,0,0.2)`
+    : `inset 0 1px 0 rgba(255,255,255,0.12), inset 0.6px 0.4px 0 rgba(255,255,255,0.06), inset 0 -1.5px 2px rgba(0,0,0,0.55), inset 0 0 0 0.5px rgba(0,0,0,0.4)`;
+
+  const topGradient = red
+    ? `radial-gradient(115% 125% at ${23 + v.specularShiftX * 0.4}% 9%, rgba(255,255,255,${0.32 - v.wearAmount * 0.05}), rgba(255,255,255,0) 44%), radial-gradient(150% 120% at 50% 118%, rgba(40,0,0,${0.25 + v.wearAmount * 0.05}), transparent 60%), ${shiftLightness("#c62828", v.lightnessShift * 0.6)}`
+    : `radial-gradient(115% 125% at ${23 + v.specularShiftX * 0.4}% 9%, rgba(255,255,255,${0.16 - v.wearAmount * 0.04}), rgba(255,255,255,0) 44%), radial-gradient(150% 120% at 50% 118%, rgba(0,0,0,${0.45 + v.wearAmount * 0.05}), transparent 60%), ${shiftLightness("#1e2025", v.lightnessShift * 0.6)}`;
+
+  const topShadow = red
+    ? `inset 0 0 0 0.75px rgba(120,20,20,0.4), inset 0 0.6px 0 rgba(255,200,200,0.35), inset 0 -0.8px 1.2px rgba(40,0,0,0.2)`
+    : `inset 0 0 0 0.75px rgba(0,0,0,0.65), inset 0 0.6px 0 rgba(255,255,255,0.12), inset 0 -0.8px 1.2px rgba(0,0,0,0.35)`;
+
+  const topShadowPressed = red
+    ? `inset 0 0 0 0.75px rgba(100,10,10,0.6), inset 0 0.5px 0 rgba(255,200,200,0.2), inset 0 1px 2px rgba(30,0,0,0.4)`
+    : `inset 0 0 0 0.75px rgba(0,0,0,0.85), inset 0 0.5px 0 rgba(255,255,255,0.06), inset 0 1px 2px rgba(0,0,0,0.65)`;
+
   return {
     insetTRBL,
-    wallGradient: `linear-gradient(180deg, ${shiftLightness(props.config.orange ? "#ffb74d" : "#f0e4d1", v.lightnessShift)} 0%, ${shiftLightness(props.config.orange ? "#ffa726" : "#e0cead", v.lightnessShift)} 18%, ${shiftLightness(props.config.orange ? "#ff9800" : "#c8b394", v.lightnessShift)} 46%, ${shiftLightness(props.config.orange ? "#f57c00" : "#a68e70", v.lightnessShift * 0.7)} 78%, ${shiftLightness(props.config.orange ? "#e65100" : "#8c7458", v.lightnessShift * 0.5)} 100%)`,
+    wallGradient,
     wallFilter: `hue-rotate(${v.hueShift}deg)`,
     wallNoisePosition: `${v.specularShiftX}px ${v.specularShiftY}px`,
-    wallShadow: `inset 0 1px 0 rgba(255,255,255,0.4), inset 0.6px 0.4px 0 rgba(255,255,255,0.14), inset 0 -1.5px 2px rgba(15,9,4,0.16), inset 0 0 0 0.5px rgba(15,9,4,0.06)`,
-    topGradient: `radial-gradient(115% 125% at ${23 + v.specularShiftX * 0.4}% 9%, rgba(255,255,255,${0.4 - v.wearAmount * 0.06}), rgba(255,255,255,0) 44%), radial-gradient(150% 120% at 50% 118%, rgba(15,9,4,${0.07 + v.wearAmount * 0.02}), transparent 60%), ${shiftLightness(props.config.orange ? "#ff9800" : KEYCAP_BASE, v.lightnessShift * 0.6)}`,
+    wallShadow,
+    topGradient,
     topFilter: `hue-rotate(${v.hueShift * 0.4}deg)`,
     topNoisePosition: `${v.specularShiftY}px ${v.specularShiftX}px`,
-    topShadow: `inset 0 0 0 0.75px rgba(96,70,42,0.28), inset 0 0.6px 0 rgba(255,250,238,0.4), inset 0 -0.8px 1.2px rgba(15,9,4,0.04)`,
-    topShadowPressed: `inset 0 0 0 0.75px rgba(96,70,42,0.34), inset 0 0.5px 0 rgba(255,250,238,0.22), inset 0 1px 2px rgba(15,10,5,0.1)`,
-    rimOpacityUp: 0.55 * v.rimBias,
-    rimOpacityDown: 0.22 * v.rimBias,
+    topShadow,
+    topShadowPressed,
+    rimOpacityUp: (red ? 0.45 : 0.25) * v.rimBias,
+    rimOpacityDown: (red ? 0.18 : 0.1) * v.rimBias,
   };
 });
 
@@ -219,7 +239,7 @@ const buttonStyle = computed(() => ({
 const shadowStyle = computed(() => ({
   inset: 0,
   borderRadius: `${radius.value.wall}px`,
-  boxShadow: pressed.value ? '0 0.5px 1px rgba(15,9,4,0.2), 0 2px 4px rgba(15,9,4,0.12)' : contactShadow.value,
+  boxShadow: pressed.value ? '0 0.5px 1px rgba(0,0,0,0.4), 0 2px 4px rgba(0,0,0,0.25)' : contactShadow.value,
   transition: 'box-shadow 140ms ease-out',
   zIndex: 0,
 }));
@@ -237,7 +257,7 @@ const wallNoiseStyle = computed(() => ({
   backgroundImage: `url("${PBT_NOISE_URI}")`,
   backgroundSize: `${noiseSize.value.wall}px ${noiseSize.value.wall}px`,
   backgroundPosition: layers.value.wallNoisePosition,
-  opacity: noiseOpacity.value.wall,
+  opacity: isRed.value ? noiseOpacity.value.wall : noiseOpacity.value.wall * 0.7,
   zIndex: 1,
 }));
 
@@ -257,15 +277,17 @@ const topNoiseStyle = computed(() => ({
   backgroundImage: `url("${PBT_NOISE_URI}")`,
   backgroundSize: `${noiseSize.value.top}px ${noiseSize.value.top}px`,
   backgroundPosition: layers.value.topNoisePosition,
-  opacity: noiseOpacity.value.top,
+  opacity: isRed.value ? noiseOpacity.value.top : noiseOpacity.value.top * 0.7,
   zIndex: 3,
 }));
 
 const rimHighlightStyle = computed(() => ({
   borderRadius: `${radius.value.top}px`,
   inset: layers.value.insetTRBL,
-  background: 'radial-gradient(55% 50% at 26% 18%, rgba(255,252,244,0.28), transparent 70%)',
-  opacity: pressed.value ? 0.4 : 1,
+  background: isRed.value
+    ? 'radial-gradient(55% 50% at 26% 18%, rgba(255,230,230,0.24), transparent 70%)'
+    : 'radial-gradient(55% 50% at 26% 18%, rgba(255,255,255,0.12), transparent 70%)',
+  opacity: pressed.value ? 0.3 : 1,
   transition: 'opacity 140ms ease-out',
   zIndex: 4,
 }));
@@ -273,7 +295,9 @@ const rimHighlightStyle = computed(() => ({
 const edgeLightingStyle = computed(() => ({
   borderRadius: `${radius.value.top}px`,
   inset: layers.value.insetTRBL,
-  background: 'linear-gradient(180deg, rgba(255,255,255,0.24) 0%, transparent 14%), linear-gradient(100deg, rgba(255,255,255,0.09) 0%, transparent 9%)',
+  background: isRed.value
+    ? 'linear-gradient(180deg, rgba(255,255,255,0.22) 0%, transparent 14%), linear-gradient(100deg, rgba(255,255,255,0.08) 0%, transparent 9%)'
+    : 'linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 14%), linear-gradient(100deg, rgba(255,255,255,0.04) 0%, transparent 9%)',
   opacity: pressed.value ? layers.value.rimOpacityDown : layers.value.rimOpacityUp,
   transition: 'opacity 140ms ease-out',
   zIndex: 4,
@@ -283,10 +307,12 @@ const shiftLabelStyle = computed(() => ({
   top: `calc(${sculpt.value.insetTop}px + ${LEGEND_SHARED.shiftTopOffset})`,
   left: LEGEND_SHARED.shiftLeftOffset,
   fontSize: legendFont.value.shift,
-  color: props.config.orange ? '#ffffff' : LEGEND_INK_SOFT,
+  color: isRed.value ? 'rgba(255, 255, 255, 0.88)' : '#9ca3af',
   opacity: LEGEND_SHARED.shiftOpacity,
   letterSpacing: '0.01em',
-  textShadow: props.config.orange ? '0 0.4px 0 rgba(0,0,0,0.1), 0 0 0.3px rgba(35,28,18,0.3)' : '0 0.4px 0 rgba(255,255,255,0.32), 0 0 0.3px rgba(35,28,18,0.3)',
+  textShadow: isRed.value
+    ? '0 0.4px 0 rgba(0,0,0,0.3), 0 0 0.3px rgba(35,0,0,0.5)'
+    : '0 0.4px 0 rgba(0,0,0,0.8), 0 0 0.3px rgba(0,0,0,0.8)',
 }));
 
 const primaryLabelStyle = computed(() => ({
@@ -294,10 +320,12 @@ const primaryLabelStyle = computed(() => ({
   left: primaryAlign.value === 'left' ? LEGEND_SHARED.primaryLeftOffset : (props.config.shiftLabel ? `calc(50% - ${LEGEND_SHARED.opticalCenterShift})` : '50%'),
   transform: primaryAlign.value === 'left' ? undefined : 'translateX(-50%)',
   fontSize: small.value ? legendFont.value.small : legendFont.value.normal,
-  color: props.config.orange ? '#ffffff' : LEGEND_INK,
+  color: isRed.value ? '#ffffff' : '#d1d5db',
   opacity: LEGEND_SHARED.primaryOpacity,
   letterSpacing: small.value ? '0.015em' : '-0.01em',
-  textShadow: props.config.orange ? '0 0.4px 0 rgba(0,0,0,0.1), 0 0 0.35px rgba(30,24,16,0.35)' : '0 0.4px 0 rgba(255,255,255,0.28), 0 0 0.35px rgba(30,24,16,0.35)',
+  textShadow: isRed.value
+    ? '0 0.5px 0 rgba(0,0,0,0.35), 0 0 0.5px rgba(20,0,0,0.5)'
+    : '0 0.5px 0 rgba(0,0,0,0.9), 0 0 0.5px rgba(0,0,0,0.8)',
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'clip',

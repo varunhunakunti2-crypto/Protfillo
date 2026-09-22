@@ -18,26 +18,6 @@
         VARUN
       </div>
 
-      <!-- 1. Diagonal Sleek Marquee (Top of footer) -->
-      <div class="absolute top-12 left-0 w-full overflow-hidden border-y border-[var(--border)] bg-[color-mix(in_srgb,var(--theme-bg)_60%,transparent)] backdrop-blur-md py-4 z-10 -rotate-2 scale-110 shadow-2xl">
-        <div class="flex w-max animate-footer-scroll-marquee text-xs md:text-sm font-bold tracking-[0.3em] text-[var(--muted-foreground)] uppercase">
-          <div class="flex items-center space-x-12 px-6">
-            <span>Accountability Redefined</span> <span class="text-[var(--primary)]/60">✦</span>
-            <span>Transparent Tracking</span> <span class="text-[var(--secondary)]/60">✦</span>
-            <span>Creative Development</span> <span class="text-[var(--primary)]/60">✦</span>
-            <span>Sponsor Connection</span> <span class="text-[var(--secondary)]/60">✦</span>
-            <span>Absolute Privacy</span> <span class="text-[var(--primary)]/60">✦</span>
-          </div>
-          <div class="flex items-center space-x-12 px-6">
-            <span>Accountability Redefined</span> <span class="text-[var(--primary)]/60">✦</span>
-            <span>Transparent Tracking</span> <span class="text-[var(--secondary)]/60">✦</span>
-            <span>Creative Development</span> <span class="text-[var(--primary)]/60">✦</span>
-            <span>Sponsor Connection</span> <span class="text-[var(--secondary)]/60">✦</span>
-            <span>Absolute Privacy</span> <span class="text-[var(--primary)]/60">✦</span>
-          </div>
-        </div>
-      </div>
-
       <!-- 2. Main Center Content -->
       <div class="relative z-10 flex flex-1 flex-col items-center justify-center px-6 mt-20 w-full max-w-5xl mx-auto">
         <h2
@@ -225,11 +205,6 @@ onUnmounted(() => {
   100% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
 }
 
-@keyframes footer-scroll-marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
 @keyframes footer-heartbeat {
   0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px color-mix(in oklch, var(--destructive) 50%, transparent)); }
   15%, 45% { transform: scale(1.2); filter: drop-shadow(0 0 10px color-mix(in oklch, var(--destructive) 80%, transparent)); }
@@ -238,10 +213,6 @@ onUnmounted(() => {
 
 .animate-footer-breathe {
   animation: footer-breathe 8s ease-in-out infinite alternate;
-}
-
-.animate-footer-scroll-marquee {
-  animation: footer-scroll-marquee 40s linear infinite;
 }
 
 .animate-footer-heartbeat {

@@ -24,7 +24,7 @@ export const ROWS = [
   [
     { id: "tab", label: "Tab", width: 1.5, align: "left", small: true },
     { id: "q", label: "Q" },
-    { id: "w", label: "W", orange: true },
+    { id: "w", label: "W" },
     { id: "e", label: "E" },
     { id: "r", label: "R" },
     { id: "t", label: "T" },
@@ -39,9 +39,9 @@ export const ROWS = [
   ],
   [
     { id: "caps", label: "CapsLock", width: 1.75, align: "left", small: true },
-    { id: "a", label: "A", orange: true },
-    { id: "s", label: "S", orange: true },
-    { id: "d", label: "D", orange: true },
+    { id: "a", label: "A" },
+    { id: "s", label: "S" },
+    { id: "d", label: "D" },
     { id: "f", label: "F" },
     { id: "g", label: "G" },
     { id: "h", label: "H" },
@@ -145,6 +145,19 @@ export const ALL_KEYS_BY_ID = (() => {
   }
   return map;
 })();
+
+export const RED_KEY_IDS = new Set([
+  "esc",
+  "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "minus", "equal",
+  "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "lbracket", "rbracket", "backslash",
+  "a", "s", "d", "f", "g", "h", "j", "k", "l", "semicolon", "quote",
+  "z", "x", "c", "v", "b", "n", "m", "comma", "period", "slash",
+  "space",
+]);
+
+export function isRedKey(id) {
+  return RED_KEY_IDS.has(id);
+}
 
 const MODIFIER_KEY_IDS = new Set([
   "esc",
@@ -531,9 +544,14 @@ export function playKeySound(category, muted, panHint = 0) {
   });
 }
 
-export const KEYCAP_BASE = "#DFD2C3";
-export const LEGEND_INK = "#413e38";
-export const LEGEND_INK_SOFT = "#726d64";
+export const KEYCAP_RED_TOP = "#c62828";
+export const KEYCAP_DARK_TOP = "#1e2126";
+export const KEYCAP_BASE = "#1e2126";
+export const LEGEND_INK = "#ffffff";
+export const LEGEND_INK_SOFT = "#cbd5e1";
+export const LEGEND_RED_KEY = "#ffffff";
+export const LEGEND_DARK_KEY = "#d1d5db";
+export const LEGEND_DARK_KEY_SOFT = "#9ca3af";
 
 const MOBILE_BREAKPOINT = "(max-width: 639px)";
 const TABLET_BREAKPOINT = "(max-width: 1023px)";
