@@ -84,7 +84,7 @@ import {
   playKeySound, 
   KEY_PAN, 
   PBT_NOISE_URI, 
-  isRedKey,
+  getKeyShade,
   ROW_SCULPT_TIERS,
   RADIUS_TIERS,
   NOISE_OPACITY_TIERS,
@@ -184,47 +184,110 @@ const noiseSize = computed(() => NOISE_SIZE_TIERS[props.tier]);
 const legendFont = computed(() => LEGEND_FONT_TIERS[props.tier]);
 const contactShadow = computed(() => CONTACT_SHADOW_TIERS[props.tier]);
 const keyHeight = computed(() => KEY_HEIGHT_TIERS[props.tier]);
-const isRed = computed(() => isRedKey(props.config.id));
+
+const shade = computed(() => getKeyShade(props.config.id));
+
+const SHADE_THEMES = {
+  white: {
+    stops: ["#ffffff", "#f5f5f5", "#e2e2e2", "#c8c8c8", "#aaaaaa"],
+    wallShadow: "inset 0 1px 0 rgba(255,255,255,0.95), inset 0.6px 0.4px 0 rgba(255,255,255,0.4), inset 0 -1.5px 2px rgba(0,0,0,0.18), inset 0 0 0 0.5px rgba(0,0,0,0.08)",
+    topBase: "#ffffff",
+    topSpecular: 0.65,
+    topShadow: "inset 0 0 0 0.75px rgba(0,0,0,0.15), inset 0 0.6px 0 rgba(255,255,255,0.95), inset 0 -0.8px 1.2px rgba(0,0,0,0.06)",
+    topShadowPressed: "inset 0 0 0 0.75px rgba(0,0,0,0.25), inset 0 0.5px 0 rgba(255,255,255,0.6), inset 0 1px 2px rgba(0,0,0,0.15)",
+    legendPrimary: "#111215",
+    legendShift: "#3f3f46",
+    legendShadow: "0 0.5px 0 rgba(255,255,255,0.6)",
+    rimOpacity: 0.6,
+  },
+  cream: {
+    stops: ["#eae6dd", "#ded9cf", "#c8c2b5", "#aba496", "#8d8677"],
+    wallShadow: "inset 0 1px 0 rgba(255,255,255,0.7), inset 0.6px 0.4px 0 rgba(255,255,255,0.3), inset 0 -1.5px 2px rgba(0,0,0,0.22), inset 0 0 0 0.5px rgba(0,0,0,0.1)",
+    topBase: "#dcd7cc",
+    topSpecular: 0.45,
+    topShadow: "inset 0 0 0 0.75px rgba(60,50,40,0.2), inset 0 0.6px 0 rgba(255,255,255,0.7), inset 0 -0.8px 1.2px rgba(0,0,0,0.08)",
+    topShadowPressed: "inset 0 0 0 0.75px rgba(60,50,40,0.3), inset 0 0.5px 0 rgba(255,255,255,0.4), inset 0 1px 2px rgba(0,0,0,0.2)",
+    legendPrimary: "#262626",
+    legendShift: "#52525b",
+    legendShadow: "0 0.5px 0 rgba(255,255,255,0.4)",
+    rimOpacity: 0.45,
+  },
+  mid_grey: {
+    stops: ["#b0b4bb", "#a2a6ad", "#8b8f97", "#6e7279", "#52555a"],
+    wallShadow: "inset 0 1px 0 rgba(255,255,255,0.4), inset 0.6px 0.4px 0 rgba(255,255,255,0.18), inset 0 -1.5px 2px rgba(0,0,0,0.3), inset 0 0 0 0.5px rgba(0,0,0,0.15)",
+    topBase: "#9ea2a9",
+    topSpecular: 0.35,
+    topShadow: "inset 0 0 0 0.75px rgba(0,0,0,0.28), inset 0 0.6px 0 rgba(255,255,255,0.4), inset 0 -0.8px 1.2px rgba(0,0,0,0.12)",
+    topShadowPressed: "inset 0 0 0 0.75px rgba(0,0,0,0.4), inset 0 0.5px 0 rgba(255,255,255,0.25), inset 0 1px 2px rgba(0,0,0,0.25)",
+    legendPrimary: "#18191c",
+    legendShift: "#334155",
+    legendShadow: "0 0.5px 0 rgba(255,255,255,0.25)",
+    rimOpacity: 0.35,
+  },
+  slate_grey: {
+    stops: ["#5e646f", "#525761", "#42464e", "#32353c", "#23252a"],
+    wallShadow: "inset 0 1px 0 rgba(255,255,255,0.2), inset 0.6px 0.4px 0 rgba(255,255,255,0.1), inset 0 -1.5px 2px rgba(0,0,0,0.45), inset 0 0 0 0.5px rgba(0,0,0,0.3)",
+    topBase: "#4e535c",
+    topSpecular: 0.22,
+    topShadow: "inset 0 0 0 0.75px rgba(0,0,0,0.5), inset 0 0.6px 0 rgba(255,255,255,0.18), inset 0 -0.8px 1.2px rgba(0,0,0,0.25)",
+    topShadowPressed: "inset 0 0 0 0.75px rgba(0,0,0,0.65), inset 0 0.5px 0 rgba(255,255,255,0.1), inset 0 1px 2px rgba(0,0,0,0.45)",
+    legendPrimary: "#e2e8f0",
+    legendShift: "#94a3b8",
+    legendShadow: "0 1px 2px rgba(0,0,0,0.7)",
+    rimOpacity: 0.25,
+  },
+  charcoal_grey: {
+    stops: ["#3c4048", "#33363e", "#282a30", "#1e1f24", "#141518"],
+    wallShadow: "inset 0 1px 0 rgba(255,255,255,0.14), inset 0.6px 0.4px 0 rgba(255,255,255,0.06), inset 0 -1.5px 2px rgba(0,0,0,0.5), inset 0 0 0 0.5px rgba(0,0,0,0.35)",
+    topBase: "#2e3137",
+    topSpecular: 0.18,
+    topShadow: "inset 0 0 0 0.75px rgba(0,0,0,0.6), inset 0 0.6px 0 rgba(255,255,255,0.14), inset 0 -0.8px 1.2px rgba(0,0,0,0.3)",
+    topShadowPressed: "inset 0 0 0 0.75px rgba(0,0,0,0.75), inset 0 0.5px 0 rgba(255,255,255,0.08), inset 0 1px 2px rgba(0,0,0,0.55)",
+    legendPrimary: "#94a3b8",
+    legendShift: "#64748b",
+    legendShadow: "0 1px 2px rgba(0,0,0,0.8)",
+    rimOpacity: 0.2,
+  },
+  black: {
+    stops: ["#282b30", "#202227", "#18191c", "#111215", "#0a0b0d"],
+    wallShadow: "inset 0 1px 0 rgba(255,255,255,0.1), inset 0.6px 0.4px 0 rgba(255,255,255,0.05), inset 0 -1.5px 2px rgba(0,0,0,0.6), inset 0 0 0 0.5px rgba(0,0,0,0.45)",
+    topBase: "#18191d",
+    topSpecular: 0.12,
+    topShadow: "inset 0 0 0 0.75px rgba(0,0,0,0.7), inset 0 0.6px 0 rgba(255,255,255,0.1), inset 0 -0.8px 1.2px rgba(0,0,0,0.35)",
+    topShadowPressed: "inset 0 0 0 0.75px rgba(0,0,0,0.85), inset 0 0.5px 0 rgba(255,255,255,0.05), inset 0 1px 2px rgba(0,0,0,0.65)",
+    legendPrimary: "#6b7280",
+    legendShift: "#4b5563",
+    legendShadow: "0 1px 2px rgba(0,0,0,0.9)",
+    rimOpacity: 0.18,
+  }
+};
 
 const layers = computed(() => {
   const v = variance.value;
   const s = sculpt.value;
   const insetTRBL = `${s.insetTop}px ${s.insetSide}px ${s.insetBottom}px ${s.insetSide}px`;
-  const red = isRed.value;
+  const t = SHADE_THEMES[shade.value] || SHADE_THEMES.black;
   
-  const wallGradient = red
-    ? `linear-gradient(180deg, ${shiftLightness("#d92c2c", v.lightnessShift)} 0%, ${shiftLightness("#c62828", v.lightnessShift)} 18%, ${shiftLightness("#b71c1c", v.lightnessShift)} 46%, ${shiftLightness("#8e1515", v.lightnessShift * 0.7)} 78%, ${shiftLightness("#6b0d0d", v.lightnessShift * 0.5)} 100%)`
-    : `linear-gradient(180deg, ${shiftLightness("#2c2f35", v.lightnessShift)} 0%, ${shiftLightness("#23262c", v.lightnessShift)} 18%, ${shiftLightness("#1b1d22", v.lightnessShift)} 46%, ${shiftLightness("#131518", v.lightnessShift * 0.7)} 78%, ${shiftLightness("#0d0e10", v.lightnessShift * 0.5)} 100%)`;
+  const wallGradient = `linear-gradient(180deg, ${shiftLightness(t.stops[0], v.lightnessShift)} 0%, ${shiftLightness(t.stops[1], v.lightnessShift)} 20%, ${shiftLightness(t.stops[2], v.lightnessShift)} 50%, ${shiftLightness(t.stops[3], v.lightnessShift * 0.7)} 80%, ${shiftLightness(t.stops[4], v.lightnessShift * 0.5)} 100%)`;
 
-  const wallShadow = red
-    ? `inset 0 1px 0 rgba(255,180,180,0.35), inset 0.6px 0.4px 0 rgba(255,180,180,0.15), inset 0 -1.5px 2px rgba(30,0,0,0.35), inset 0 0 0 0.5px rgba(20,0,0,0.2)`
-    : `inset 0 1px 0 rgba(255,255,255,0.12), inset 0.6px 0.4px 0 rgba(255,255,255,0.06), inset 0 -1.5px 2px rgba(0,0,0,0.55), inset 0 0 0 0.5px rgba(0,0,0,0.4)`;
-
-  const topGradient = red
-    ? `radial-gradient(115% 125% at ${23 + v.specularShiftX * 0.4}% 9%, rgba(255,255,255,${0.32 - v.wearAmount * 0.05}), rgba(255,255,255,0) 44%), radial-gradient(150% 120% at 50% 118%, rgba(40,0,0,${0.25 + v.wearAmount * 0.05}), transparent 60%), ${shiftLightness("#c62828", v.lightnessShift * 0.6)}`
-    : `radial-gradient(115% 125% at ${23 + v.specularShiftX * 0.4}% 9%, rgba(255,255,255,${0.16 - v.wearAmount * 0.04}), rgba(255,255,255,0) 44%), radial-gradient(150% 120% at 50% 118%, rgba(0,0,0,${0.45 + v.wearAmount * 0.05}), transparent 60%), ${shiftLightness("#1e2025", v.lightnessShift * 0.6)}`;
-
-  const topShadow = red
-    ? `inset 0 0 0 0.75px rgba(120,20,20,0.4), inset 0 0.6px 0 rgba(255,200,200,0.35), inset 0 -0.8px 1.2px rgba(40,0,0,0.2)`
-    : `inset 0 0 0 0.75px rgba(0,0,0,0.65), inset 0 0.6px 0 rgba(255,255,255,0.12), inset 0 -0.8px 1.2px rgba(0,0,0,0.35)`;
-
-  const topShadowPressed = red
-    ? `inset 0 0 0 0.75px rgba(100,10,10,0.6), inset 0 0.5px 0 rgba(255,200,200,0.2), inset 0 1px 2px rgba(30,0,0,0.4)`
-    : `inset 0 0 0 0.75px rgba(0,0,0,0.85), inset 0 0.5px 0 rgba(255,255,255,0.06), inset 0 1px 2px rgba(0,0,0,0.65)`;
+  const topGradient = `radial-gradient(115% 125% at ${23 + v.specularShiftX * 0.4}% 9%, rgba(255,255,255,${t.topSpecular - v.wearAmount * 0.05}), rgba(255,255,255,0) 44%), radial-gradient(150% 120% at 50% 118%, rgba(0,0,0,${0.35 + v.wearAmount * 0.05}), transparent 60%), ${shiftLightness(t.topBase, v.lightnessShift * 0.6)}`;
 
   return {
     insetTRBL,
     wallGradient,
     wallFilter: `hue-rotate(${v.hueShift}deg)`,
     wallNoisePosition: `${v.specularShiftX}px ${v.specularShiftY}px`,
-    wallShadow,
+    wallShadow: t.wallShadow,
     topGradient,
     topFilter: `hue-rotate(${v.hueShift * 0.4}deg)`,
     topNoisePosition: `${v.specularShiftY}px ${v.specularShiftX}px`,
-    topShadow,
-    topShadowPressed,
-    rimOpacityUp: (red ? 0.45 : 0.25) * v.rimBias,
-    rimOpacityDown: (red ? 0.18 : 0.1) * v.rimBias,
+    topShadow: t.topShadow,
+    topShadowPressed: t.topShadowPressed,
+    rimOpacityUp: t.rimOpacity * v.rimBias,
+    rimOpacityDown: (t.rimOpacity * 0.45) * v.rimBias,
+    legendPrimary: t.legendPrimary,
+    legendShift: t.legendShift,
+    legendShadow: t.legendShadow,
   };
 });
 
@@ -257,7 +320,7 @@ const wallNoiseStyle = computed(() => ({
   backgroundImage: `url("${PBT_NOISE_URI}")`,
   backgroundSize: `${noiseSize.value.wall}px ${noiseSize.value.wall}px`,
   backgroundPosition: layers.value.wallNoisePosition,
-  opacity: isRed.value ? noiseOpacity.value.wall : noiseOpacity.value.wall * 0.7,
+  opacity: (shade.value === 'white' || shade.value === 'cream') ? noiseOpacity.value.wall * 1.2 : noiseOpacity.value.wall * 0.7,
   zIndex: 1,
 }));
 
@@ -277,15 +340,15 @@ const topNoiseStyle = computed(() => ({
   backgroundImage: `url("${PBT_NOISE_URI}")`,
   backgroundSize: `${noiseSize.value.top}px ${noiseSize.value.top}px`,
   backgroundPosition: layers.value.topNoisePosition,
-  opacity: isRed.value ? noiseOpacity.value.top : noiseOpacity.value.top * 0.7,
+  opacity: (shade.value === 'white' || shade.value === 'cream') ? noiseOpacity.value.top * 1.2 : noiseOpacity.value.top * 0.7,
   zIndex: 3,
 }));
 
 const rimHighlightStyle = computed(() => ({
   borderRadius: `${radius.value.top}px`,
   inset: layers.value.insetTRBL,
-  background: isRed.value
-    ? 'radial-gradient(55% 50% at 26% 18%, rgba(255,230,230,0.24), transparent 70%)'
+  background: (shade.value === 'white' || shade.value === 'cream')
+    ? 'radial-gradient(55% 50% at 26% 18%, rgba(255,255,255,0.4), transparent 70%)'
     : 'radial-gradient(55% 50% at 26% 18%, rgba(255,255,255,0.12), transparent 70%)',
   opacity: pressed.value ? 0.3 : 1,
   transition: 'opacity 140ms ease-out',
@@ -295,8 +358,8 @@ const rimHighlightStyle = computed(() => ({
 const edgeLightingStyle = computed(() => ({
   borderRadius: `${radius.value.top}px`,
   inset: layers.value.insetTRBL,
-  background: isRed.value
-    ? 'linear-gradient(180deg, rgba(255,255,255,0.22) 0%, transparent 14%), linear-gradient(100deg, rgba(255,255,255,0.08) 0%, transparent 9%)'
+  background: (shade.value === 'white' || shade.value === 'cream')
+    ? 'linear-gradient(180deg, rgba(255,255,255,0.3) 0%, transparent 14%), linear-gradient(100deg, rgba(255,255,255,0.12) 0%, transparent 9%)'
     : 'linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 14%), linear-gradient(100deg, rgba(255,255,255,0.04) 0%, transparent 9%)',
   opacity: pressed.value ? layers.value.rimOpacityDown : layers.value.rimOpacityUp,
   transition: 'opacity 140ms ease-out',
@@ -307,12 +370,10 @@ const shiftLabelStyle = computed(() => ({
   top: `calc(${sculpt.value.insetTop}px + ${LEGEND_SHARED.shiftTopOffset})`,
   left: LEGEND_SHARED.shiftLeftOffset,
   fontSize: legendFont.value.shift,
-  color: isRed.value ? 'rgba(255, 255, 255, 0.88)' : '#9ca3af',
+  color: layers.value.legendShift,
   opacity: LEGEND_SHARED.shiftOpacity,
   letterSpacing: '0.01em',
-  textShadow: isRed.value
-    ? '0 0.4px 0 rgba(0,0,0,0.3), 0 0 0.3px rgba(35,0,0,0.5)'
-    : '0 0.4px 0 rgba(0,0,0,0.8), 0 0 0.3px rgba(0,0,0,0.8)',
+  textShadow: layers.value.legendShadow,
 }));
 
 const primaryLabelStyle = computed(() => ({
@@ -320,12 +381,10 @@ const primaryLabelStyle = computed(() => ({
   left: primaryAlign.value === 'left' ? LEGEND_SHARED.primaryLeftOffset : (props.config.shiftLabel ? `calc(50% - ${LEGEND_SHARED.opticalCenterShift})` : '50%'),
   transform: primaryAlign.value === 'left' ? undefined : 'translateX(-50%)',
   fontSize: small.value ? legendFont.value.small : legendFont.value.normal,
-  color: isRed.value ? '#ffffff' : '#d1d5db',
+  color: layers.value.legendPrimary,
   opacity: LEGEND_SHARED.primaryOpacity,
   letterSpacing: small.value ? '0.015em' : '-0.01em',
-  textShadow: isRed.value
-    ? '0 0.5px 0 rgba(0,0,0,0.35), 0 0 0.5px rgba(20,0,0,0.5)'
-    : '0 0.5px 0 rgba(0,0,0,0.9), 0 0 0.5px rgba(0,0,0,0.8)',
+  textShadow: layers.value.legendShadow,
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'clip',

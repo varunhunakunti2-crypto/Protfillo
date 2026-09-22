@@ -318,14 +318,14 @@ const mobileResumeDropdown = ref(null);
 const magneticCleanups = [];
 
 const resumeLinks = {
-  en: '/resume/first resume.pdf',
+  en: '/resume/first%20resume.pdf',
   ja: '/resume/resume-ja.pdf',
 };
 
 const sections = computed(() => [
   { id: "about", label: t("nav.about") },
   { id: "skills", label: t("nav.skills") },
-  { id: "projects", label: t("nav.projects"), targetId: "statement" },
+  { id: "projects", label: t("nav.projects"), targetId: "projects" },
   { id: "contact", label: t("nav.contact") },
 ]);
 
@@ -333,7 +333,7 @@ const mobileSections = computed(() => [
   { id: "home", label: t("nav.home"), targetId: "home" },
   { id: "about", label: t("nav.about"), targetId: "about" },
   { id: "skills", label: t("nav.skills"), targetId: "skills" },
-  { id: "projects", label: t("nav.projects"), targetId: "statement" },
+  { id: "projects", label: t("nav.projects"), targetId: "projects" },
   { id: "contact", label: t("nav.contact"), targetId: "contact" },
 ]);
 

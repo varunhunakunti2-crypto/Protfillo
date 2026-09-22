@@ -146,17 +146,41 @@ export const ALL_KEYS_BY_ID = (() => {
   return map;
 })();
 
-export const RED_KEY_IDS = new Set([
-  "esc",
-  "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "minus", "equal",
-  "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "lbracket", "rbracket", "backslash",
-  "a", "s", "d", "f", "g", "h", "j", "k", "l", "semicolon", "quote",
-  "z", "x", "c", "v", "b", "n", "m", "comma", "period", "slash",
-  "space",
-]);
+export const KEY_SHADES = {
+  // Level 5: Pure White
+  "1": "white",
+  "a": "white",
+  "rbracket": "white",
+  "slash": "white",
+  "space": "slate_grey",
 
-export function isRedKey(id) {
-  return RED_KEY_IDS.has(id);
+  // Level 4: Warm Cream / Light Grey
+  "2": "cream",
+  "s": "cream",
+  "lbracket": "cream",
+  "period": "cream",
+
+  // Level 3: Mid Silver Grey
+  "3": "mid_grey",
+  "d": "mid_grey",
+  "p": "mid_grey",
+  "comma": "mid_grey",
+
+  // Level 2: Slate Grey
+  "4": "slate_grey",
+  "f": "slate_grey",
+  "o": "slate_grey",
+  "m": "slate_grey",
+
+  // Level 1: Deep Charcoal Grey
+  "5": "charcoal_grey",
+  "g": "charcoal_grey",
+  "i": "charcoal_grey",
+  "n": "charcoal_grey",
+};
+
+export function getKeyShade(id) {
+  return KEY_SHADES[id] || "black";
 }
 
 const MODIFIER_KEY_IDS = new Set([
@@ -564,9 +588,9 @@ export function resolveTier() {
 }
 
 export const RADIUS_TIERS = {
-  desktop: { wall: 8, top: 6.5 },
-  tablet: { wall: 7, top: 5.5 },
-  mobile: { wall: 5.5, top: 4 },
+  desktop: { wall: 10, top: 8 },
+  tablet: { wall: 8.5, top: 7 },
+  mobile: { wall: 6.5, top: 5 },
 };
 
 export const NOISE_OPACITY_TIERS = {
@@ -583,25 +607,25 @@ export const NOISE_SIZE_TIERS = {
 
 export const ROW_SCULPT_TIERS = {
   desktop: [
-    { insetTop: 4, insetSide: 4.5, insetBottom: 11 },
-    { insetTop: 4, insetSide: 4.5, insetBottom: 9.5 },
-    { insetTop: 4, insetSide: 4.5, insetBottom: 8.5 },
-    { insetTop: 4, insetSide: 4.5, insetBottom: 9 },
-    { insetTop: 3.5, insetSide: 4, insetBottom: 7 },
+    { insetTop: 5, insetSide: 5.5, insetBottom: 13.5 },
+    { insetTop: 5, insetSide: 5.5, insetBottom: 11.8 },
+    { insetTop: 5, insetSide: 5.5, insetBottom: 10.5 },
+    { insetTop: 5, insetSide: 5.5, insetBottom: 11.2 },
+    { insetTop: 4.5, insetSide: 5, insetBottom: 8.8 },
   ],
   tablet: [
-    { insetTop: 3.2, insetSide: 3.6, insetBottom: 8.8 },
-    { insetTop: 3.2, insetSide: 3.6, insetBottom: 7.6 },
-    { insetTop: 3.2, insetSide: 3.6, insetBottom: 6.8 },
-    { insetTop: 3.2, insetSide: 3.6, insetBottom: 7.2 },
-    { insetTop: 2.8, insetSide: 3.2, insetBottom: 5.6 },
+    { insetTop: 3.8, insetSide: 4.2, insetBottom: 10.5 },
+    { insetTop: 3.8, insetSide: 4.2, insetBottom: 9.2 },
+    { insetTop: 3.8, insetSide: 4.2, insetBottom: 8.2 },
+    { insetTop: 3.8, insetSide: 4.2, insetBottom: 8.8 },
+    { insetTop: 3.4, insetSide: 3.8, insetBottom: 6.8 },
   ],
   mobile: [
-    { insetTop: 2.2, insetSide: 2.4, insetBottom: 5.8 },
-    { insetTop: 2.2, insetSide: 2.4, insetBottom: 5 },
-    { insetTop: 2.2, insetSide: 2.4, insetBottom: 4.4 },
-    { insetTop: 2.2, insetSide: 2.4, insetBottom: 4.7 },
-    { insetTop: 2, insetSide: 2.2, insetBottom: 3.6 },
+    { insetTop: 2.6, insetSide: 2.8, insetBottom: 6.8 },
+    { insetTop: 2.6, insetSide: 2.8, insetBottom: 5.8 },
+    { insetTop: 2.6, insetSide: 2.8, insetBottom: 5.2 },
+    { insetTop: 2.6, insetSide: 2.8, insetBottom: 5.5 },
+    { insetTop: 2.4, insetSide: 2.6, insetBottom: 4.2 },
   ],
 };
 
@@ -617,19 +641,19 @@ export const LEGEND_SHARED = {
 
 export const LEGEND_FONT_TIERS = {
   desktop: {
-    shift: "clamp(0.46rem, 0.74vw, 0.58rem)",
-    normal: "clamp(0.74rem, 1.38vw, 0.95rem)",
-    small: "clamp(0.56rem, 1.02vw, 0.7rem)",
+    shift: "clamp(0.55rem, 0.9vw, 0.75rem)",
+    normal: "clamp(0.95rem, 1.6vw, 1.28rem)",
+    small: "clamp(0.7rem, 1.2vw, 0.92rem)",
   },
   tablet: {
-    shift: "clamp(0.48rem, 1.12vw, 0.58rem)",
-    normal: "clamp(0.7rem, 2.05vw, 0.86rem)",
-    small: "clamp(0.55rem, 1.58vw, 0.68rem)",
+    shift: "clamp(0.52rem, 1.2vw, 0.68rem)",
+    normal: "clamp(0.85rem, 2.3vw, 1.12rem)",
+    small: "clamp(0.64rem, 1.7vw, 0.84rem)",
   },
   mobile: {
-    shift: "clamp(0.43rem, 2.05vw, 0.51rem)",
-    normal: "clamp(0.62rem, 3.65vw, 0.78rem)",
-    small: "clamp(0.51rem, 2.85vw, 0.63rem)",
+    shift: "clamp(0.46rem, 2.2vw, 0.58rem)",
+    normal: "clamp(0.72rem, 3.8vw, 0.92rem)",
+    small: "clamp(0.58rem, 3vw, 0.74rem)",
   },
 };
 
@@ -640,21 +664,21 @@ export const CONTACT_SHADOW_TIERS = {
 };
 
 export const KEY_HEIGHT_TIERS = {
-  desktop: "clamp(2.15rem, min(4.15vw, 7.5vh), 2.95rem)",
-  tablet: "clamp(1.95rem, min(5.4vw, 7vh), 2.6rem)",
-  mobile: "clamp(1.75rem, min(8vw, 6vh), 2.2rem)",
+  desktop: "clamp(2.75rem, min(5.5vw, 9vh), 3.95rem)",
+  tablet: "clamp(2.35rem, min(6.8vw, 8vh), 3.25rem)",
+  mobile: "clamp(1.95rem, min(9vw, 6.8vh), 2.55rem)",
 };
 
 export const KEY_GAP_TIERS = {
-  desktop: "3px",
-  tablet: "2.5px",
-  mobile: "2px",
+  desktop: "4px",
+  tablet: "3.5px",
+  mobile: "2.5px",
 };
 
 export const CONTAINER_TIERS = {
-  desktop: { padding: "clamp(1.5rem, 6.25vw, 2.5rem)", maxWidth: "48rem" },
-  tablet: { padding: "clamp(1.1rem, 3.6vw, 1.75rem)", maxWidth: "38rem" },
-  mobile: { padding: "clamp(0.6rem, 3vw, 0.9rem)", maxWidth: "26rem" },
+  desktop: { padding: "clamp(1rem, 2vw, 2rem)", maxWidth: "64rem" },
+  tablet: { padding: "clamp(0.75rem, 1.8vw, 1.25rem)", maxWidth: "48rem" },
+  mobile: { padding: "clamp(0.4rem, 1.5vw, 0.75rem)", maxWidth: "32rem" },
 };
 
 export const CASE_TIERS = {
