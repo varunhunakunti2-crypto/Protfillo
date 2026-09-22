@@ -1,141 +1,148 @@
 {
   "nav": {
-    "about": "プロフィール",
-    "impact": "インパクト",
-    "skills": "スキル",
-    "projects": "プロジェクト",
-    "contact": "お問い合わせ",
-    "home": "ホーム",
-    "resume": "履歴書",
-    "resumeEnglish": "英語版",
-    "resumeJapanese": "日本語版"
+    "about": "About",
+    "impact": "Impact",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact",
+    "home": "Home",
+    "resume": "Resume",
+    "resumeEnglish": "English",
+    "resumeJapanese": "Japanese",
+    "view": "View"
   },
   "home": {
-    "scrollDown": "スクロール",
-    "words": ["エンジニア", "デザイナー", "ビルダー", "Web開発", "コミット", "クリエイティブ", "クラフト", "集中"],
-    "tagline": "アイデアを丁寧なWeb体験へ",
-    "cta": "話しましょう",
-    "exploreCta": "自己紹介を見る",
-    "role": "フロントエンドエンジニア",
-    "subtitle": "高速で使いやすいWebインターフェースを設計",
-    "location": "日本在住・Vue・Tailwind"
+    "scrollDown": "SCROLL DOWN",
+    "words": ["Engineer", "Designer", "Builder", "WebDev", "Commit", "Creative", "Crafting", "Focused"],
+    "tagline": "Turning ideas into thoughtful web experiences",
+    "cta": "Let's connect",
+    "exploreCta": "Let's connect",
+    "role": "Full-Stack Software Engineer",
+    "subtitle": "Turning ideas into powerful digital experiences",
+    "location": "React • Node.js • Tailwind CSS • REST APIs"
   },
   "impact": {
-    "quote": "このポートフォリオは、問題解決へのアプローチやデザインの判断、そしてアイデアを信頼性の高いインターフェースへと形にするプロセスを紹介するものです。"
+    "quote": "This portfolio is a snapshot of my problem-solving mindset, design decisions, and the way I turn ideas into reliable interfaces."
   },
   "about": {
-    "title": "自己紹介",
-    "paragraph1": "アマンと申します。デザインと機能性のバランスを大切にしながら、直感的でモダンなWebインターフェースの制作に取り組んでいます。",
-    "paragraph2": "クリエイティブ分野での経験を活かし、論理的な視点と視覚的な意図の両方を意識した開発を行い、成長や変化に対応できるデジタル体験を設計しています。"
+    "title": "About me",
+    "paragraph1": "I'm Varun S, a Full-Stack Developer focused on building modern, scalable web applications that combine clean design with robust functionality.",
+    "paragraph2": "With a background in creative work, I approach development with both technical precision and visual intention, creating digital experiences that are intuitive, performant, and built to grow."
   },
   "experience": {
-    "title": "職歴と経歴",
+    "title": "Experience",
     "bgText": "CAREER",
     "jobs": [
       {
-        "role": "フルスタックエンジニア",
-        "company": "フリーランス",
-        "duration": "2024 - 現在",
-        "description": "React、Vue、Node.js、および最新のスタイリングライブラリを使用した高性能Webアプリケーションの設計と構築。クリーンなコードアーキテクチャの提供においてグローバルクライアントと連携。"
+        "role": "Full-Stack Software Engineer",
+        "company": "Freelance",
+        "duration": "2024 - Present",
+        "description": "Designing and building high-performance web applications using React, Vue, Node.js, and modern styling libraries. Collaborating with global clients to deliver clean code architectures."
       },
       {
-        "role": "フロントエンドエンジニア インターン",
+        "role": "Frontend Developer Intern",
         "company": "Tech Solutions Inc.",
         "duration": "2023 - 2024",
-        "description": "インタラクティブなユーザーインターフェースとモジュール式レイアウトの開発。コアウェブバイタルのパフォーマンスを35%最適化し、REST APIの統合を実施。"
+        "description": "Developed interactive user interfaces and modular layouts. Optimized core web vitals performance by 35% and integrated REST APIs."
       }
     ]
   },
   "skills": {
-    "title": "スキル",
-    "bgText": "スキル",
-    "taglineStatic": "より良い体験をつくるために",
-    "taglineWords": ["学習", "改善", "挑戦", "成長"]
+    "title": "Skills",
+    "bgText": "SKILLS",
+    "taglineStatic": "I constantly try to",
+    "taglineWords": ["Improve", "Learn", "Adapt", "Grow"]
   },
   "statement": {
-    "dividerText": "これまでの制作を通じて、",
-    "dividerText2": "現在の制作スタイルを築いてきました。",
-    "selected": "制作実績",
+    "dividerText": "Each project shaped",
+    "dividerText2": "how I work today.",
+    "selected": "SELECTED",
     "projects": "",
-    "showcase": "主なプロジェクト"
+    "showcase": "SHOWCASE"
   },
   "contact": {
-    "title": "まずは、お話ししましょう。",
-    "subtitle": "ご相談やご連絡をお待ちしています。",
-    "formTitle": "お問い合わせ",
-    "nameLabel": "お名前",
-    "namePlaceholder": "お名前をご入力ください",
-    "emailLabel": "メールアドレス",
-    "emailPlaceholder": "ご連絡可能なメールアドレス",
-    "messageLabel": "お問い合わせ内容",
-    "messagePlaceholder": "ご相談内容をご記入ください",
+    "title": "Conversation comes first",
+    "subtitle": "That's often where good things begin.",
+    "formTitle": "Open to opportunities",
+    "nameLabel": "Name",
+    "namePlaceholder": "How should I call you?",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Where can I reach you?",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Anything you'd like to discuss?",
     "errors": {
-      "nameRequired": "お名前を入力してください",
-      "emailInvalid": "有効なメールアドレスを入力してください",
-      "messageRequired": "メッセージを入力してください"
+      "nameRequired": "Please enter your name",
+      "emailInvalid": "Please enter a valid email address",
+      "messageRequired": "Please enter your message."
     },
     "warnings": {
-      "emailDomainTypo": "{domain}の入力ミスではありませんか？"
+      "emailDomainTypo": "Did you mean {domain}?"
     },
-    "requiredFieldMessage": "必須項目です。入力してください。",
-    "send": "送信する",
-    "sendLoading": "送信中",
-    "successTitle": "お問い合わせありがとうございます。",
-    "successMessageLine1": "メッセージを受け取りました。",
-    "successMessageLine2": "近日中にご返信いたします。",
-    "successMessage": "メッセージを受け取りました。近日中にご返信いたします。"
+    "requiredFieldMessage": "Please fill out this field.",
+    "send": "Send",
+    "sendLoading": "Sending...",
+    "successTitle": "Thanks for getting in touch.",
+    "successMessageLine1": "I've received your message.",
+    "successMessageLine2": "I'll follow up with you shortly.",
+    "successMessage": "I've received your message and will follow up soon."
   },
   "footer": {
     "github": "GITHUB",
     "linkedin": "LINKEDIN",
-    "inquiry": "お問い合わせ",
-    "location": "東京/日本: (GMT+9)",
-    "tagline": "コードでデザインを語る",
+    "inquiry": "INQUIRY",
+    "location": "TOKYO/JAPAN: (GMT+9)",
+    "tagline": "DESIGNING WITH CODE",
     "rights": "All Rights Reserved.",
     "name": "AMAN"
   },
+  "keyboard": {
+    "title": "Interactive Keyboard",
+    "desc": "A fully functional vintage keyboard built with Vue, Tailwind, and Web Audio API."
+  },
   "projects": {
-    "jlptLab": "JLPT 練習アプリ",
-    "jlptLabSubtitle": "実際の試験パターンを基にした、わかりやすくストレスの少ないJLPT練習プラットフォーム",
+    "jlptLab": "JLPT Practice Lab",
+    "jlptLabSubtitle": "Interactive JLPT practice platform built from real exam patterns to make learning clearer and less stressful.",
     "freelanceHub": "FreelaceHub",
-    "freelanceHubSubtitle": "フリーランスとクライアントを繋ぐプラットフォーム",
+    "freelanceHubSubtitle": "A platform for freelancers and clients to connect and collaborate.",
     "vibeVine": "VIBE&VINE",
-    "vibeVineSubtitle": "モダンな味わいと洗練された雰囲気のソーシャルダイニング・ウェブサイト",
+    "vibeVineSubtitle": "Experience the best of modern flavors in a vibrant atmosphere with craft cocktails and social dining.",
     "animationGallery": "animation_gallary",
-    "animationGallerySubtitle": "作品を展示し、発見・収集できる3Dアニメーションギャラリープラットフォーム。"
+    "animationGallerySubtitle": "A place to display your masterpiece. Artists can display their masterpieces, and buyers can discover and collect.",
+    "motionShowcase": "My Showcase Project",
+    "motionShowcaseSubtitle": "A visually rich React application that explores dynamic user interfaces."
   },
   "projectDetail": {
-    "back": "戻る",
-    "status": "フルスタック・フリーランス・マーケットプレイス",
+    "back": "Back",
+    "status": "Full-Stack Freelance Marketplace",
     "title": "FreelaceHub"
   },
   "projectDetails": {
     "1": {
-      "status": "フルスタック・フリーランス・マーケットプレイス",
+      "status": "Full-Stack Freelance Marketplace",
       "title": "FreelaceHub",
       "sections": {
         "description": {
-          "title": "プロジェクト概要",
-          "p1": "FreelaceHubは、クライアントとスキルのあるフリーランスを繋ぐモダンなフルスタック・フリーランス・マーケットプレイスです。案件の投稿、人材の発見、応募管理、効率的なコラボレーションを、レスポンシブで直感的なUIで実現します。",
-          "p2": "パフォーマンス、拡張性、セキュリティを考慮して設計されており、最新のWeb技術を活用して高速で信頼性の高いユーザー体験を提供します。"
+          "title": "Project Description",
+          "p1": "FreelaceHub is a modern full-stack freelance marketplace designed to connect clients with skilled freelancers. The platform provides a seamless experience for posting projects, discovering talent, managing applications, and collaborating efficiently through a responsive and user-friendly interface.",
+          "p2": "Built with performance, scalability, and security in mind, FreelaceHub leverages modern web technologies to deliver a fast and reliable user experience."
         },
         "features": {
-          "title": "主な機能",
+          "title": "Key Features",
           "items": [
-            "ユーザー認証およびアクセス権限管理",
-            "クライアントおよびフリーランス用ダッシュボード",
-            "プロジェクトの作成・編集・管理",
-            "フリーランス案件の閲覧・検索",
-            "フリーランスのプロフィール管理",
-            "プロジェクト応募・選考システム",
-            "全デバイス対応のレスポンシブデザイン",
-            "安全なバックエンドアーキテクチャ",
-            "直感的でモダンなUIデザイン",
-            "サーバーサイドレンダリングによる最適化されたパフォーマンス"
+            "User authentication and authorization",
+            "Client and freelancer dashboards",
+            "Create, edit, and manage projects",
+            "Browse and search freelance jobs",
+            "Freelancer profile management",
+            "Project application system",
+            "Responsive design for all devices",
+            "Secure backend architecture",
+            "Modern and intuitive UI",
+            "Optimized performance with server-side rendering"
           ]
         },
         "techStack": {
-          "title": "技術スタック",
+          "title": "Tech Stack",
           "frontend": "Next.js, React, TypeScript, Tailwind CSS",
           "backend": "Next.js API Routes, Node.js",
           "database": "PostgreSQL / Prisma",
@@ -143,56 +150,56 @@
           "deployment": "Vercel"
         },
         "modules": {
-          "title": "主要モジュール",
+          "title": "Main Modules",
           "items": [
-            "ユーザー認証",
-            "ユーザーダッシュボード",
-            "案件マーケットプレイス",
-            "プロジェクト管理",
-            "フリーランスプロフィール",
-            "検索・フィルタリング",
-            "レスポンシブUI",
-            "APIインテグレーション"
+            "Authentication",
+            "User Dashboard",
+            "Job Marketplace",
+            "Project Management",
+            "Freelancer Profiles",
+            "Search & Filtering",
+            "Responsive UI",
+            "API Integration"
           ]
         },
         "highlights": {
-          "title": "ハイライト",
+          "title": "Highlights",
           "items": [
-            "Next.jsによる高速なページロード",
-            "完全レスポンシブ対応デザイン",
-            "TypeScriptによる型安全な開発",
-            "クリーンで再利用可能なコンポーネント構成",
-            "Tailwind CSSによるモダンなスタイリング",
-            "Vercelによる最適化されたデプロイ"
+            "Fast page loading with Next.js",
+            "Fully responsive design",
+            "Type-safe development using TypeScript",
+            "Clean and reusable component architecture",
+            "Modern UI built with Tailwind CSS",
+            "Optimized deployment on Vercel"
           ]
         }
       }
     },
     "2": {
-      "status": "モダン・レスポンシブ・ドローンWebアプリケーション",
+      "status": "Modern Responsive Drone Web Application",
       "title": "VIBE&VINE",
       "sections": {
         "description": {
-          "title": "プロジェクト概要",
-          "p1": "VIBE&VINEは、ドローン製品・企業向けのモダンなレスポンシブ・ランディングWebサイトです。React.jsとViteを採用し、高速な描画性能と拡張性の高いコンポーネント設計を実現しています。",
-          "p2": "シングルページアプリケーション（SPA）の高速なナビゲーションとフレキシブルなグリッドレイアウトを採用し、優れたユーザー体験を提供します。"
+          "title": "Project Overview",
+          "p1": "VIBE&VINE is a modern responsive landing website for a drone product/company, engineered using React.js and Vite for ultra-fast performance and clean component architecture.",
+          "p2": "Built with single page application (SPA) performance, responsive grid layouts, and modular component architecture to deliver a seamless user experience."
         },
         "features": {
-          "title": "主な機能",
+          "title": "Main Features",
           "items": [
-            "レスポンシブ・ランディングページ",
-            "モダンなUIデザイン",
-            "プロダクト・ショーケース",
-            "ヒーローセクション & ナビゲーションバー",
-            "アバウトセクション & ドローン機能解説",
-            "インタラクティブ画像ギャラリー",
-            "Call-to-Action (CTA) セクション",
-            "コンタクト / フッターセクション",
-            "モバイル対応レスポンシブレイアウト"
+            "Responsive Landing Page",
+            "Modern UI Design",
+            "Product Showcase",
+            "Hero Section & Navigation Bar",
+            "About Section & Drone Features",
+            "Image Gallery",
+            "Call-to-Action Section",
+            "Contact & Footer Section",
+            "Mobile Responsive Layout"
           ]
         },
         "techStack": {
-          "title": "使用技術",
+          "title": "Technologies Used",
           "frontend": "React.js, JavaScript (ES6+), HTML5, CSS3",
           "backend": "Vite",
           "database": "npm",
@@ -200,20 +207,20 @@
           "deployment": "Netlify / Vercel"
         },
         "modules": {
-          "title": "実証したスキル",
+          "title": "Skills Demonstrated",
           "items": [
-            "Reactコンポーネント・アーキテクチャ",
-            "レスポンシブWebデザイン",
-            "モダンUI開発",
-            "シングルページアプリケーション (SPA)",
-            "Viteプロジェクト構築",
-            "CSSレイアウト (Flexbox & Grid)",
-            "アセット管理",
-            "パフォーマンス最適化"
+            "React Component Architecture",
+            "Responsive Web Design",
+            "Modern UI Development",
+            "Single Page Application (SPA)",
+            "Vite Project Setup",
+            "CSS Layout (Flexbox & Grid)",
+            "Asset Management",
+            "Performance Optimization"
           ]
         },
         "highlights": {
-          "title": "活用ライブラリ",
+          "title": "Possible Libraries",
           "items": [
             "React & React DOM",
             "Vite & ESLint",
@@ -227,31 +234,31 @@
       }
     },
     "3": {
-      "status": "高性能Astro Webアプリケーション",
+      "status": "High-Performance Astro Web Application",
       "title": "animation_gallary",
       "sections": {
         "description": {
-          "title": "プロジェクト概要",
-          "p1": "Animation Galleryは、高品質なアニメーションを整理された視覚的なインターフェースで公開するためのモダンでレスポンシブなWebアプリケーションです。",
-          "p2": "Astroフレームワークを採用し、スムーズなインタラクション、クリーンなレイアウト、再利用可能なコンポーネント、最適化されたパフォーマンスを重視して構築されています。"
+          "title": "Project Overview",
+          "p1": "Animation Gallery is a modern, responsive web application designed to showcase high-quality animations in an organized and visually engaging interface.",
+          "p2": "The project emphasizes smooth user interactions, clean layouts, reusable components, and optimized performance using the Astro framework."
         },
         "features": {
-          "title": "主な機能",
+          "title": "Features",
           "items": [
-            "レスポンシブ・ギャラリー・レイアウト",
-            "スムーズなページ遷移",
-            "モダンなUI/UXデザイン",
-            "アニメーション・ショーケース",
-            "最適化された画像ローディング",
-            "高速なページ描画",
-            "再利用可能なコンポーネント構成",
-            "モバイルフレンドリーな画面設計",
-            "SEOフレンドリーなアーキテクチャ",
-            "軽量で高性能な設計"
+            "Responsive gallery layout",
+            "Smooth page transitions",
+            "Modern UI/UX",
+            "Animation showcase",
+            "Optimized image loading",
+            "Fast page rendering",
+            "Reusable components",
+            "Mobile-friendly interface",
+            "SEO-friendly architecture",
+            "Lightweight and high-performance design"
           ]
         },
         "techStack": {
-          "title": "使用技術",
+          "title": "Technologies Used",
           "frontend": "Astro, TypeScript, HTML5, CSS3, JavaScript (ES6+)",
           "backend": "Astro Build System, Vite",
           "database": "npm",
@@ -259,34 +266,77 @@
           "deployment": "Vercel / Netlify"
         },
         "modules": {
-          "title": "実証したスキル",
+          "title": "Skills Demonstrated",
           "items": [
-            "Astroフレームワーク開発",
-            "コンポーネント指向アーキテクチャ",
-            "TypeScript開発",
-            "レスポンシブWebデザイン",
-            "パフォーマンス最適化",
-            "モダンフロントエンド開発",
-            "UI/UXデザイン",
-            "Gitバージョン管理"
+            "Astro Framework Development",
+            "Component-Based Architecture",
+            "TypeScript Development",
+            "Responsive Web Design",
+            "Performance Optimization",
+            "Modern Frontend Development",
+            "UI/UX Design",
+            "Git Version Control"
           ]
         },
         "highlights": {
-          "title": "パフォーマンス機能",
+          "title": "Performance Features",
           "items": [
-            "静的サイト生成 (SSG)",
-            "最適化されたアセット管理",
-            "画像の遅延読み込み (Lazy Loading)",
-            "高速なページナビゲーション",
-            "軽量なビルドサイズ",
-            "SEO最適化"
+            "Static Site Generation (SSG)",
+            "Optimized Assets",
+            "Lazy Loading",
+            "Fast Navigation",
+            "Lightweight Build",
+            "SEO Optimization"
+          ]
+        }
+      }
+    },
+    "5": {
+      "status": "Interactive 3D Web Experience",
+      "title": "Motion 3D Animated",
+      "sections": {
+        "description": {
+          "title": "Project Description",
+          "p1": "Motion 3D animated is a visually rich React application that explores dynamic user interfaces and seamless 3D model integration.",
+          "p2": "It features liquid-like flow buttons, magnetic interactive elements, and modern animations to create a highly stylized user experience."
+        },
+        "features": {
+          "title": "Key Features",
+          "items": [
+            "Seamless 3D model rendering",
+            "Liquid-like flow buttons",
+            "Magnetic interactive UI elements",
+            "Dynamic page transitions",
+            "Responsive and immersive design"
+          ]
+        },
+        "techStack": {
+          "title": "Tech Stack",
+          "frontend": "React, Three.js, React Three Fiber, GSAP, Tailwind CSS",
+          "backend": "Vite",
+          "database": "npm",
+          "auth": "ESLint",
+          "deployment": "Vercel"
+        },
+        "modules": {
+          "title": "Skills Demonstrated",
+          "items": [
+            "3D Canvas Integration",
+            "Animation Orchestration",
+            "Interactive UI Development",
+            "Performance Optimization"
+          ]
+        },
+        "highlights": {
+          "title": "Highlights",
+          "items": [
+            "High-performance 3D rendering in browser",
+            "Complex animation sequences",
+            "Engaging micro-interactions",
+            "Modern aesthetic design"
           ]
         }
       }
     }
   }
 }
-
-
-
-

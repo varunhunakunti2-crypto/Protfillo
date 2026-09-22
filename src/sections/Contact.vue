@@ -462,18 +462,19 @@ const handleSubmit = async () => {
   isSubmitting.value = true;
 
   try {
-    const response = await fetch('https://api.web3forms.com/submit', {
+    // Post to the Netlify Function so the Web3Forms access key stays server-side.
+    const response = await fetch('/.netlify/functions/contact', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
       body: JSON.stringify({
-        access_key: "047ee733-1efa-4cd7-84bb-3622451f0d87",
         name,
         email,
         message,
-        subject: "New Contact Form Submission from Portfolio"
+        subject: "New Contact Form Submission from Portfolio",
+        gotcha: websiteField?.value?.trim() || gotchaField?.value?.trim() || ""
       }),
     });
 

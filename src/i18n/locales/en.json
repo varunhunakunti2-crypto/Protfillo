@@ -8,7 +8,8 @@
     "home": "Home",
     "resume": "Resume",
     "resumeEnglish": "English",
-    "resumeJapanese": "Japanese"
+    "resumeJapanese": "Japanese",
+    "view": "View"
   },
   "home": {
     "scrollDown": "SCROLL DOWN",
@@ -81,6 +82,8 @@
     "send": "Send",
     "sendLoading": "Sending...",
     "successTitle": "Thanks for getting in touch.",
+    "successMessageLine1": "I've received your message.",
+    "successMessageLine2": "I'll follow up with you shortly.",
     "successMessage": "I've received your message and will follow up soon."
   },
   "footer": {
@@ -92,6 +95,10 @@
     "rights": "All Rights Reserved.",
     "name": "VARUN"
   },
+  "keyboard": {
+    "title": "Interactive Keyboard",
+    "desc": "A fully functional vintage keyboard built with Vue, Tailwind, and Web Audio API."
+  },
   "projects": {
     "jlptLab": "JLPT Practice Lab",
     "jlptLabSubtitle": "Interactive JLPT practice platform built from real exam patterns to make learning clearer and less stressful.",
@@ -100,7 +107,9 @@
     "vibeVine": "VIBE&VINE",
     "vibeVineSubtitle": "Experience the best of modern flavors in a vibrant atmosphere with craft cocktails and social dining.",
     "animationGallery": "animation_gallary",
-    "animationGallerySubtitle": "A place to display your masterpiece. Artists can display their masterpieces, and buyers can discover and collect."
+    "animationGallerySubtitle": "A place to display your masterpiece. Artists can display their masterpieces, and buyers can discover and collect.",
+    "motionShowcase": "My Showcase Project",
+    "motionShowcaseSubtitle": "A visually rich React application that explores dynamic user interfaces."
   },
   "projectDetail": {
     "back": "Back",
@@ -278,6 +287,53 @@
             "Fast Navigation",
             "Lightweight Build",
             "SEO Optimization"
+          ]
+        }
+      }
+    },
+    "5": {
+      "status": "Interactive 3D Web Experience",
+      "title": "Motion 3D Animated",
+      "sections": {
+        "description": {
+          "title": "Project Description",
+          "p1": "Motion 3D animated is a visually rich React application that explores dynamic user interfaces and seamless 3D model integration.",
+          "p2": "It features liquid-like flow buttons, magnetic interactive elements, and modern animations to create a highly stylized user experience."
+        },
+        "features": {
+          "title": "Key Features",
+          "items": [
+            "Seamless 3D model rendering",
+            "Liquid-like flow buttons",
+            "Magnetic interactive UI elements",
+            "Dynamic page transitions",
+            "Responsive and immersive design"
+          ]
+        },
+        "techStack": {
+          "title": "Tech Stack",
+          "frontend": "React, Three.js, React Three Fiber, GSAP, Tailwind CSS",
+          "backend": "Vite",
+          "database": "npm",
+          "auth": "ESLint",
+          "deployment": "Vercel"
+        },
+        "modules": {
+          "title": "Skills Demonstrated",
+          "items": [
+            "3D Canvas Integration",
+            "Animation Orchestration",
+            "Interactive UI Development",
+            "Performance Optimization"
+          ]
+        },
+        "highlights": {
+          "title": "Highlights",
+          "items": [
+            "High-performance 3D rendering in browser",
+            "Complex animation sequences",
+            "Engaging micro-interactions",
+            "Modern aesthetic design"
           ]
         }
       }

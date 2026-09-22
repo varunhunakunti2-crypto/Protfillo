@@ -151,7 +151,7 @@ const CONTACT_FADE_MOBILE_MULTIPLIER = 7;
 // Breakpoints mirror the layout shifts in the template.
 const DESKTOP_BREAKPOINT = 1024;
 const TABLET_MAX = 768;
-const words = [
+const fallbackWords = [
   "Engineer",
   "Designer",
   "Builder",
@@ -165,7 +165,12 @@ const words = [
 const { t, locale } = useI18n();
 const isJa = computed(() => locale.value === "ja");
 
-const currentWord = ref(words[0]);
+const words = computed(() => {
+  const localized = t('home.words');
+  return Array.isArray(localized) && localized.length ? localized : fallbackWords;
+});
+
+const currentWord = ref(words.value[0]);
 const activeIndex = ref(-1);
 const heroVisible = ref(false);
 const scrollSlide = ref(0);
@@ -240,8 +245,8 @@ const triggerHeroReveal = () => {
 const startWordRotation = () => {
   if (timerId) return;
   timerId = setInterval(() => {
-    wordIndex = (wordIndex + 1) % words.length;
-    currentWord.value = words[wordIndex];
+    wordIndex = (wordIndex + 1) % words.value.length;
+    currentWord.value = words.value[wordIndex];
   }, WORD_ROTATE_MS);
 };
 

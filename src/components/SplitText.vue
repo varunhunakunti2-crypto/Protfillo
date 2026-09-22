@@ -39,7 +39,8 @@ let animation = null;
 
 const splitWords = computed(() => {
   if (!props.text) return [];
-  return props.text.split(' ').map(w => w + '\u00A0'); // Add non-breaking space to keep spacing natural
+  const words = props.text.split(' ').filter(Boolean);
+  return words.map((w, i) => (i < words.length - 1 ? w + '\u00A0' : w)); // non-breaking space between words, none trailing
 });
 
 onMounted(async () => {

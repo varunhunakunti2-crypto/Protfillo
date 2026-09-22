@@ -20,9 +20,14 @@
           <span
             class="statement-outline-text"
             :class="{ 'is-ja': isJa }"
-            :data-text="t('statement.showcase')"
           >
-            {{ t('statement.showcase') }}
+            <span
+              v-for="(char, index) in showcaseChars"
+              :key="index"
+              class="statement-outline-char"
+              :class="{ 'is-space': char === ' ' }"
+              :data-char="char"
+            >{{ char }}</span>
           </span>
         </p>
       </div>
@@ -33,8 +38,6 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const statementSection = ref(null);
 const statementText = ref(null);
@@ -42,10 +45,15 @@ const statementOutline = ref(null);
 const dividerText = ref(null);
 const { t, locale } = useI18n();
 const isJa = computed(() => locale.value === 'ja');
+const showcaseChars = computed(() => (t('statement.showcase') || 'SHOWCASE').split(''));
 
 let statementTimeline = null;
 
-onMounted(() => {
+onMounted(async () => {
+  const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
+    import('gsap'),
+    import('gsap/ScrollTrigger'),
+  ]);
   gsap.registerPlugin(ScrollTrigger);
 
   const sectionEl = statementSection.value;
@@ -229,18 +237,30 @@ onUnmounted(() => {
   padding-right: 0;
 }
 
-/* 3D shadow layer behind text */
+/* 3D shadow layer behind each character */
 .statement-outline-text {
+  position: relative;
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.statement-outline-char {
   position: relative;
   display: inline-block;
   color: transparent;
   -webkit-text-stroke: 2px var(--statement-outline-color);
   text-stroke: 2px var(--statement-outline-color);
-  transition: color 0.3s ease, -webkit-text-stroke-color 0.3s ease;
+  transition: color 0.25s ease, -webkit-text-stroke 0.25s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: center bottom;
+  cursor: default;
 }
 
-.statement-outline-text::before {
-  content: attr(data-text);
+.statement-outline-char.is-space {
+  width: 0.35em;
+}
+
+.statement-outline-char::before {
+  content: attr(data-char);
   position: absolute;
   top: 0;
   left: 0;
@@ -249,10 +269,11 @@ onUnmounted(() => {
   color: transparent;
   -webkit-text-stroke: 2px var(--statement-shadow-color);
   text-stroke: 2px var(--statement-shadow-color);
-  transition: -webkit-text-stroke-color 0.3s ease;
+  transition: -webkit-text-stroke 0.25s ease, opacity 0.25s ease;
+  pointer-events: none;
 }
 
-.statement-outline-text.is-ja {
+.statement-outline-text.is-ja .statement-outline-char {
   font-size: clamp(1.4rem, 4.5vw, 3.2rem);
   color: var(--theme-text-muted);
   opacity: 0.45;
@@ -260,24 +281,27 @@ onUnmounted(() => {
   text-stroke: 0 transparent;
 }
 
-.statement-outline-text.is-ja::before {
+.statement-outline-text.is-ja .statement-outline-char::before {
   content: none;
   display: none;
 }
 
-.statement-outline-text.is-ja:hover {
+.statement-outline-text.is-ja .statement-outline-char:hover {
   color: var(--theme-text-muted);
   -webkit-text-stroke: 0 transparent;
   text-stroke: 0 transparent;
+  transform: none;
 }
 
-.statement-outline-text:hover {
+.statement-outline-char:hover {
   color: var(--statement-showcase-hover-fill);
   -webkit-text-stroke: 0 transparent;
   text-stroke: 0 transparent;
+  transform: scale(1.15) translateY(-6px);
+  z-index: 10;
 }
 
-.statement-outline-text:hover::before {
+.statement-outline-char:hover::before {
   -webkit-text-stroke: 0 transparent;
   text-stroke: 0 transparent;
 }
@@ -304,7 +328,6 @@ onUnmounted(() => {
   --statement-showcase-hover-fill: #f4f1eb;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .statement-section {
     padding: 4rem 1rem;
@@ -359,39 +382,39 @@ onUnmounted(() => {
     padding-right: 1rem;
   }
 
-  .statement-outline-text {
+  .statement-outline-char {
     -webkit-text-stroke: 1.5px var(--statement-outline-color);
     text-stroke: 1.5px var(--statement-outline-color);
   }
 
-  .statement-outline-text.is-ja {
+  .statement-outline-text.is-ja .statement-outline-char {
     -webkit-text-stroke: 0 transparent;
     text-stroke: 0 transparent;
   }
 
-  .statement-outline-text.is-ja::before {
+  .statement-outline-text.is-ja .statement-outline-char::before {
     content: none;
     display: none;
   }
 
-  .statement-outline-text::before {
+  .statement-outline-char::before {
     transform: translate(3px, 3px);
     -webkit-text-stroke: 1.5px var(--statement-shadow-color);
     text-stroke: 1.5px var(--statement-shadow-color);
   }
 
-  .statement-outline-text:hover {
+  .statement-outline-char:hover {
     color: transparent;
     -webkit-text-stroke: 1.5px var(--statement-outline-color);
     text-stroke: 1.5px var(--statement-outline-color);
   }
 
-  .statement-outline-text:hover::before {
+  .statement-outline-char:hover::before {
     -webkit-text-stroke: 1.5px var(--statement-shadow-color);
     text-stroke: 1.5px var(--statement-shadow-color);
   }
 
-  .statement-outline-text.is-ja:hover {
+  .statement-outline-text.is-ja .statement-outline-char:hover {
     color: var(--theme-text-muted);
     -webkit-text-stroke: 0 transparent;
     text-stroke: 0 transparent;
@@ -399,34 +422,39 @@ onUnmounted(() => {
 }
 
 @media (max-width: 480px) {
-  .statement-outline-text::before {
+  .statement-outline-char::before {
     transform: translate(2px, 2px);
     -webkit-text-stroke: 1px var(--statement-shadow-color);
     text-stroke: 1px var(--statement-shadow-color);
   }
 
-  .statement-outline-text.is-ja {
+  .statement-outline-text.is-ja .statement-outline-char {
     -webkit-text-stroke: 0 transparent;
     text-stroke: 0 transparent;
   }
 
-  .statement-outline-text.is-ja::before {
+  .statement-outline-text.is-ja .statement-outline-char::before {
     content: none;
     display: none;
   }
 
-  .statement-outline-text:hover {
+  .statement-outline-char {
+    -webkit-text-stroke: 1px var(--statement-outline-color);
+    text-stroke: 1px var(--statement-outline-color);
+  }
+
+  .statement-outline-char:hover {
     color: transparent;
     -webkit-text-stroke: 1px var(--statement-outline-color);
     text-stroke: 1px var(--statement-outline-color);
   }
 
-  .statement-outline-text:hover::before {
+  .statement-outline-char:hover::before {
     -webkit-text-stroke: 1px var(--statement-shadow-color);
     text-stroke: 1px var(--statement-shadow-color);
   }
 
-  .statement-outline-text.is-ja:hover {
+  .statement-outline-text.is-ja .statement-outline-char:hover {
     color: var(--theme-text-muted);
     -webkit-text-stroke: 0 transparent;
     text-stroke: 0 transparent;

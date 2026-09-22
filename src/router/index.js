@@ -47,7 +47,7 @@ const router = createRouter({
     const section = Array.isArray(to.query.section) ? to.query.section[0] : to.query.section;
     const target = hashTarget || (section ? `#${section}` : null);
     if (target) {
-      return scrollToTarget(target).then((didScroll) => (didScroll ? false : false));
+      return scrollToTarget(target).then(() => false);
     }
 
     // On page reload (initial navigation has no from.name), skip scrolling here.

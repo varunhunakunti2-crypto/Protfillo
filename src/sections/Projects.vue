@@ -2,18 +2,19 @@
   <section
     id="projects"
     ref="projectsSection"
-    class="projects-section relative max-w-[1200px] mx-auto py-8 pb-20 mb-24 md:mb-32 px-[clamp(1rem,5vw,4rem)]"
+    class="projects-section relative py-12 mb-24 md:mb-32 overflow-hidden bg-[#000]/80 backdrop-blur-lg"
   >
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <article
-        v-for="(project, index) in projects"
-        :key="project.id"
-        class="project-card flex flex-col rounded-[20px] overflow-hidden cursor-pointer"
-        ref="projectItems"
-        data-cursor="view"
-        @click="goToProject(project)"
-      >
-        <div class="project-image-container relative h-56 w-full overflow-hidden">
+    <div class="projects-pin-container h-[85vh] min-h-[500px] flex flex-col justify-center">
+      <div class="projects-track flex flex-nowrap gap-6 px-[clamp(1rem,5vw,4rem)] w-max" ref="projectsTrack">
+        <article
+          v-for="(project, index) in projects"
+          :key="project.id"
+          class="project-card flex flex-col flex-shrink-0 w-[85vw] max-w-[380px] rounded-[20px] overflow-hidden cursor-pointer"
+          ref="projectItems"
+            data-cursor="view"
+            @click="goToProject(project)"
+          >
+            <div class="project-image-container relative h-56 w-full overflow-hidden">
           <!-- Category Badge -->
           <div class="absolute top-4 left-4 z-10 px-3 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase" style="background: rgba(0,0,0,0.65); color: #fff; backdrop-filter: blur(8px);">
             {{ project.category }}
@@ -21,10 +22,10 @@
           
           <!-- Links -->
           <div class="absolute top-4 right-4 z-10 flex gap-2">
-             <a v-if="project.github" :href="project.github" target="_blank" @click.stop class="icon-btn magnetic-project-btn" aria-label="GitHub Repository">
+             <a v-if="project.github" :href="project.github" target="_blank" rel="noopener noreferrer" @click.stop class="icon-btn magnetic-project-btn" aria-label="GitHub Repository">
                 <i class="bi bi-github"></i>
              </a>
-             <a v-if="project.link" :href="project.link" target="_blank" @click.stop class="icon-btn magnetic-project-btn" aria-label="Live Site">
+             <a v-if="project.link" :href="project.link" target="_blank" rel="noopener noreferrer" @click.stop class="icon-btn magnetic-project-btn" aria-label="Live Site">
                 <i class="bi bi-box-arrow-up-right"></i>
              </a>
           </div>
@@ -40,9 +41,9 @@
         
         <div class="project-content p-6 flex-1 flex flex-col">
           <h3 class="text-[1.35rem] font-bold mb-3 text-[color:var(--theme-text-strong)] tracking-tight">{{ project.title }}</h3>
-          <p class="text-[0.95rem] text-[color:var(--theme-text-muted)] mb-6 flex-1 leading-relaxed">{{ project.description }}</p>
+          <p class="text-[0.95rem] text-[color:var(--theme-text-muted)] mb-6 leading-relaxed">{{ project.description }}</p>
           
-          <div class="flex flex-wrap gap-2 mt-auto pt-4">
+          <div class="flex flex-wrap gap-2 pt-2">
             <span
               v-for="(tag, tagIndex) in project.tags"
               :key="tagIndex"
@@ -52,7 +53,8 @@
             </span>
           </div>
         </div>
-      </article>
+        </article>
+      </div>
     </div>
   </section>
 </template>
@@ -62,15 +64,16 @@ import { computed, inject, onMounted, onUnmounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { makeMagnetic } from '@/composables/useMagnetic.js';
-import progress1Img from '@/assets/progress1.jpg';
 import freelanceHubImg from '@/assets/freelance-hub.png';
 import vibeVineImg from '@/assets/vibe-vine.png';
 import animationGalleryImg from '@/assets/animation-gallery.png';
+import motionShowcaseImg from '@/assets/motion-showcase.png';
 
 const { t } = useI18n();
 const router = useRouter();
 const startPageTransition = inject('startPageTransition', null);
 const projectsSection = ref(null);
+const projectsTrack = ref(null);
 const projectItems = ref([]);
 const magneticCleanups = [];
 
@@ -106,14 +109,14 @@ const projects = computed(() => [
     link: "https://animation-gallary.vercel.app/"
   },
   {
-    id: 4,
-    category: "PREDICTIVE ML",
-    title: t('projects.taskApp') || "Task Management App",
-    description: t('projects.taskAppSubtitle') || "A collaborative task management tool with real-time updates.",
-    tags: ["Vue", "TensorFlow", "Node.js"],
-    image: progress1Img,
-    github: "#",
-    link: "#"
+    id: 5,
+    category: "3D model",
+    title: t('projects.motionShowcase') || "My Showcase Project",
+    description: t('projects.motionShowcaseSubtitle') || "A visually rich React application that explores dynamic user interfaces.",
+    tags: ["Project", "Showcase","3D","Animation"],
+    image: motionShowcaseImg,
+    github: "https://github.com/varunhunakunti2-crypto/Motion-SHowcase",
+    link: "https://motion-s-howcase.vercel.app/"
   }
 ]);
 
@@ -140,30 +143,22 @@ onMounted(async () => {
   gsap.registerPlugin(ScrollTrigger);
 
   const sectionEl = projectsSection.value;
-  if (!sectionEl) return;
+  const trackEl = projectsTrack.value;
+  if (!sectionEl || !trackEl) return;
 
-  const items = sectionEl.querySelectorAll('.project-card');
-  if (!items.length) return;
+  const getScrollAmount = () => -(trackEl.scrollWidth - window.innerWidth + 120);
 
-  gsap.set(items, {
-    opacity: 0,
-    y: 50
-  });
-
-  projectsTimeline = gsap.timeline({
+  projectsTimeline = gsap.to(trackEl, {
+    x: getScrollAmount,
+    ease: "none",
     scrollTrigger: {
       trigger: sectionEl,
-      start: 'top 75%',
-      toggleActions: 'play none none none'
+      start: "top 5%",
+      end: () => `+=${Math.abs(getScrollAmount())}`,
+      pin: true,
+      scrub: 1,
+      invalidateOnRefresh: true,
     }
-  });
-
-  projectsTimeline.to(items, {
-    opacity: 1,
-    y: 0,
-    duration: 0.8,
-    ease: 'power3.out',
-    stagger: 0.15
   });
 
   const magneticEls = sectionEl.querySelectorAll('.magnetic-project-btn');

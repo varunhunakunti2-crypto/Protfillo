@@ -156,8 +156,10 @@ const handleMouseMove = (e) => {
 
     if (distance < maxDist) {
       const force = (maxDist - distance) / maxDist; // 0 (far) to 1 (close)
-      const repelX = -(distX / distance) * force * 16; // Repel up to 16px
-      const repelY = -(distY / distance) * force * 16;
+      const dirX = distance > 0 ? distX / distance : 0; // avoid NaN when cursor is exactly at the center
+      const dirY = distance > 0 ? distY / distance : 0;
+      const repelX = -dirX * force * 16; // Repel up to 16px
+      const repelY = -dirY * force * 16;
       
       gsap.to(card, {
         x: repelX,
