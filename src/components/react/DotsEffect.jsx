@@ -53,7 +53,7 @@ export function DotsEffect({ label = "Halo particle animation" }) {
     <div ref={hostRef} style={{ width: "100%", height: "100%" }}>
       <DotSwarm
         shape="halo"
-        count={900}
+        count={1200}
         color={color}
         paused={paused}
         reducedMotion={reducedMotion}

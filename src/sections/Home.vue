@@ -363,30 +363,32 @@ onBeforeUnmount(() => {
 /* Halo particle ribbon: sits behind the headline and follows its centre. */
 .hero-halo {
   position: absolute;
-  left: 0;
-  right: 0;
+  left: -10%;
+  right: -10%;
   top: 50%;
-  height: 320px;
+  height: 440px;
   z-index: -1;
   pointer-events: none;
-  transform: translateY(-50%);
+  transform: translateY(-50%) scale(1.18);
   opacity: 0;
-  transition: opacity 1.2s ease-out;
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
 }
 
 .hero-halo.is-visible {
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 @media (max-width: 1023px) {
   /* Keep the swarm clear of the tagline and CTA below the headline. */
   .hero-halo {
-    height: 260px;
-    transform: translateY(-100%);
+    left: -5%;
+    right: -5%;
+    height: 360px;
+    transform: translateY(-75%) scale(1.1);
   }
 
   .hero-halo.is-visible {
-    opacity: 0.55;
+    opacity: 0.7;
   }
 }
 
