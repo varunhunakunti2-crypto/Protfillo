@@ -24,7 +24,7 @@
           ref="headingRef"
           class="text-4xl sm:text-5xl md:text-8xl font-black footer-text-glow tracking-tighter mb-8 md:mb-12 text-center"
         >
-          Clear mind. Full focus.
+        Code.Build.Repeat.
         </h2>
 
         <!-- Interactive Magnetic Pills Layout -->
@@ -57,6 +57,7 @@
         <!-- Copyright -->
         <div class="text-[var(--muted-foreground)] text-[10px] md:text-xs font-semibold tracking-widest uppercase order-2 md:order-1">
           © 2026 VARUN. All rights reserved.
+          <h1>Complete Built by Varun.</h1>
         </div>
 
 

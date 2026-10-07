@@ -106,9 +106,9 @@ html {
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --theme-bg: #030303;
+  --theme-bg: #000000;
   --theme-bg-gradient: none;
-  --theme-nav-bg: rgba(3, 3, 3, 0.65);
+  --theme-nav-bg: rgba(0, 0, 0, 0.85);
   --theme-bg-overlay: rgba(0, 0, 0, 0.45);
   --theme-bg-filter: none;
   --theme-bg-blend: normal;
@@ -121,7 +121,7 @@ html {
   --theme-line-strong: rgba(255, 255, 255, 0.75);
   --theme-line-soft: rgba(255, 255, 255, 0.32);
   --theme-line-shadow: rgba(255, 255, 255, 0.18);
-  --theme-cta-bg: #0a0a0a;
+  --theme-cta-bg: #000000;
   --theme-cta-text: #ffffff;
   --theme-pill-bg: rgba(255, 255, 255, 0.06);
   --theme-pill-border: rgba(255, 255, 255, 0.08);
@@ -130,8 +130,8 @@ html {
   --theme-resume-text: #404040;
   --theme-resume-hover-bg: #000000;
   --theme-resume-hover-text: #ffffff;
-  --theme-menu-overlay: rgba(0, 0, 0, 0.6);
-  --theme-menu-circle: linear-gradient(180deg, #050505 0%, #080808 54%, #050505 100%);
+  --theme-menu-overlay: #000000;
+  --theme-menu-circle: #000000;
   --theme-logo-filter: invert(1) brightness(1);
   --theme-logo-secondary-filter: invert(1) brightness(1);
   --theme-icon-filter: invert(1) brightness(1.6);
