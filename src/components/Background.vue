@@ -51,8 +51,10 @@ onBeforeUnmount(() => {
 }
 
 .bg-lottie {
-  width: 100vw;
-  height: 100vh;
+  /* Match the fixed wrapper exactly; 100vw/100vh can overflow on
+     scrollbars and mobile browser chrome. */
+  width: 100%;
+  height: 100%;
   filter: var(--theme-bg-filter) var(--theme-bg-shadow);
   mix-blend-mode: var(--theme-bg-blend);
   transform: scale(var(--theme-bg-scale));

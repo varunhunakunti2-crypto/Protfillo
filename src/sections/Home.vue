@@ -1,5 +1,5 @@
 <template>
-  <section id="home" class="min-h-screen px-5 lg:px-28 pt-6 pb-16 lg:pt-6 flex items-center relative overflow-hidden">
+  <section id="home" class="min-h-[100svh] px-5 sm:px-8 lg:px-28 pt-6 pb-16 lg:pt-6 flex items-center relative overflow-hidden">
     <nav ref="heroNavEl" class="hidden lg:flex fixed left-6 top-1/2 -translate-y-1/2 z-30 flex-col items-start gap-3" :class="{ 'hero-nav-dim': isHomeNavDimmed }" aria-label="Section navigation">
       <button
         v-for="(sectionId, index) in sectionIds"
@@ -29,13 +29,16 @@
       <span class="scroll-line"></span>
     </div>
 
-    <div ref="heroTextEl" class="mx-auto flex w-full max-w-6xl flex-col gap-12 lg:flex-row lg:items-center lg:gap-16">
-      <div class="flex-[1.2] min-w-0 flex flex-col lg:justify-center">
+    <div ref="heroTextEl" class="mx-auto flex w-full max-w-6xl flex-col gap-10 sm:gap-12 lg:flex-row lg:items-center lg:gap-16">
+      <div class="flex-[1.2] min-w-0 flex flex-col lg:justify-center relative">
+        <div class="hero-halo" :class="{ 'is-visible': heroVisible }">
+          <HaloSwarm />
+        </div>
         <h1 class="mx-auto w-full text-center text-6xl font-extrabold uppercase leading-[0.9] text-[color:var(--theme-text-strong)] sm:text-6xl lg:text-7xl lg:mt-0">
-          <span class="block min-h-[2.85rem] overflow-hidden sm:min-h-[3.8rem] lg:min-h-[4.275rem]">
+          <span class="block min-h-[2.7rem] overflow-hidden sm:min-h-[4.1rem] lg:min-h-[5.9rem]">
             <span
               :key="currentWord"
-              class="inline-block w-full max-w-full text-center whitespace-nowrap word-rotator text-[clamp(2.6rem,12vw,3.4rem)] bg-gradient-to-b from-[color:var(--theme-headline-from)] via-[color:var(--theme-headline-via)] to-[color:var(--theme-headline-to)] text-transparent bg-clip-text sm:text-7xl lg:text-[6.5rem] tracking-[0.08em] sm:tracking-[0.18em]"
+              class="inline-block w-full max-w-full text-center whitespace-nowrap word-rotator text-[clamp(2.4rem,11vw,3.4rem)] bg-gradient-to-b from-[color:var(--theme-headline-from)] via-[color:var(--theme-headline-via)] to-[color:var(--theme-headline-to)] text-transparent bg-clip-text sm:text-7xl lg:text-[clamp(3rem,6.8vw,6.5rem)] tracking-[0.06em] sm:tracking-[0.16em]"
             >
               {{ currentWord }}
             </span>
@@ -43,7 +46,7 @@
         </h1>
       </div>
 
-      <div class="flex flex-[0.8] flex-col gap-6 text-[color:var(--theme-text-muted)] lg:flex-row lg:items-start lg:mt-5">
+      <div class="flex flex-[0.8] min-w-0 flex-col gap-6 text-[color:var(--theme-text-muted)] lg:flex-row lg:items-start lg:mt-5">
         <div
           class="steel-line relative hidden h-[1.5px] w-20 bg-gradient-to-r from-transparent via-[color:var(--theme-line-strong)] to-transparent shadow-[0_0_4px_var(--theme-line-shadow)] lg:block lg:h-48 lg:w-0.5 lg:bg-gradient-to-b lg:from-[color:var(--theme-line-soft)] lg:via-[color:var(--theme-line-strong)] lg:to-[color:var(--theme-line-soft)] lg:rounded-full"
           :class="{ 'steel-line-animate': heroVisible, 'steel-line-hidden': !heroEffectsStarted }"
@@ -141,6 +144,7 @@
 import { computed, ref, onMounted, onBeforeUnmount } from "vue";
 import { useI18n } from "vue-i18n";
 import SplitText from "@/components/SplitText.vue";
+import HaloSwarm from "@/components/HaloSwarm.vue";
 
 const sectionIds = ["home", "about", "statement", "contact"];
 // Keep timing/breakpoints centralized so tweaks stay intentional.
@@ -356,6 +360,36 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
+/* Halo particle ribbon: sits behind the headline and follows its centre. */
+.hero-halo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 320px;
+  z-index: -1;
+  pointer-events: none;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 1.2s ease-out;
+}
+
+.hero-halo.is-visible {
+  opacity: 0.8;
+}
+
+@media (max-width: 1023px) {
+  /* Keep the swarm clear of the tagline and CTA below the headline. */
+  .hero-halo {
+    height: 260px;
+    transform: translateY(-100%);
+  }
+
+  .hero-halo.is-visible {
+    opacity: 0.55;
+  }
+}
+
 .word-rotator {
   font-family: "Oxanium", sans-serif;
 }

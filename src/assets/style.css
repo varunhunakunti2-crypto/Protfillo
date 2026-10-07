@@ -24,6 +24,18 @@
 
 html {
   scroll-behavior: smooth;
+  /* Abs-positioned decorative text must never create a horizontal scrollbar. */
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Safe-area helpers for notched / punch-hole devices in landscape. */
+:root {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
 }
 
 :root {

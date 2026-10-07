@@ -2,7 +2,7 @@
   <section
     id="skills"
     ref="skillsSection"
-    class="skills-section relative px-5 lg:px-28 py-24 lg:py-32"
+    class="skills-section relative px-5 sm:px-8 lg:px-28 py-24 lg:py-32 overflow-hidden"
     :class="isJa ? 'is-ja' : ''"
   >
     <div class="mx-auto w-full max-w-4xl text-center">
@@ -50,7 +50,7 @@
         </div>
       </div>
 
-      <div class="flex flex-wrap justify-center gap-3 md:gap-4" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
+      <div class="flex flex-wrap justify-center gap-2.5 sm:gap-3 md:gap-4" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
         <div
           v-for="skill in skills"
           :key="skill.name"
@@ -329,8 +329,9 @@ onUnmounted(() => {
 }
 
 .skills-divider-svg {
-  width: clamp(280px, 50vw, 400px);
+  width: clamp(220px, 50vw, 400px);
   height: 24px;
+  max-width: 100%;
 }
 
 .divider-stroke {
@@ -349,15 +350,16 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   width: 100%;
-  gap: 0;
+  gap: 0.35rem 0;
   font-size: clamp(1rem, 1.6vw, 1.25rem);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0;
   color: var(--theme-text-muted);
   text-align: center;
-  padding-left: 1.5rem;
+  padding-left: clamp(0rem, 4vw, 1.5rem);
 }
 
 .tagline-static {

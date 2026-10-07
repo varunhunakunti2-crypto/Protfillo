@@ -136,6 +136,7 @@ const goBack = () => {
 <style scoped>
 .project-detail-page {
   min-height: 100vh;
+  min-height: 100svh;
   padding: clamp(6rem, 10vw, 8rem) clamp(1.25rem, 5vw, 4.5rem) clamp(3rem, 8vw, 6rem);
   color: var(--theme-text-strong);
   position: relative;

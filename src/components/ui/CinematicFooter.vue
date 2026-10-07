@@ -1,10 +1,10 @@
 <template>
   <div
     ref="wrapperRef"
-    class="relative h-screen w-full"
+    class="relative h-[100svh] w-full"
     style="clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%)"
   >
-    <footer class="fixed bottom-0 left-0 flex h-screen w-full flex-col justify-between overflow-hidden cinematic-footer-wrapper text-[color:var(--theme-text-strong)] bg-[color:var(--theme-bg)]" style="--background: var(--theme-bg); --foreground: var(--theme-text-strong); --primary: var(--theme-text-strong); --secondary: var(--theme-text-muted); --destructive: #ef4444; --border: var(--theme-line-soft); --muted-foreground: var(--theme-text-muted);">
+    <footer class="fixed bottom-0 left-0 flex h-[100svh] w-full flex-col justify-between overflow-hidden cinematic-footer-wrapper text-[color:var(--theme-text-strong)] bg-[color:var(--theme-bg)]" style="--background: var(--theme-bg); --foreground: var(--theme-text-strong); --primary: var(--theme-text-strong); --secondary: var(--theme-text-muted); --destructive: #ef4444; --border: var(--theme-line-soft); --muted-foreground: var(--theme-text-muted);">
       
       <!-- Ambient Light & Grid Background -->
       <div class="footer-aurora absolute left-1/2 top-1/2 h-[60vh] w-[80vw] -translate-x-1/2 -translate-y-1/2 animate-footer-breathe rounded-[50%] blur-[80px] pointer-events-none z-0" />
@@ -19,10 +19,10 @@
       </div>
 
       <!-- 2. Main Center Content -->
-      <div class="relative z-10 flex flex-1 flex-col items-center justify-center px-6 mt-20 w-full max-w-5xl mx-auto">
+      <div class="footer-center relative z-10 flex flex-1 flex-col items-center justify-center px-6 mt-12 md:mt-20 w-full max-w-5xl mx-auto">
         <h2
           ref="headingRef"
-          class="text-5xl md:text-8xl font-black footer-text-glow tracking-tighter mb-12 text-center"
+          class="text-4xl sm:text-5xl md:text-8xl font-black footer-text-glow tracking-tighter mb-8 md:mb-12 text-center"
         >
           Clear mind. Full focus.
         </h2>
@@ -31,17 +31,17 @@
         <div ref="linksRef" class="flex flex-col items-center gap-6 w-full">
           <!-- Social & Inquiry Links (Primary) -->
           <div class="flex flex-wrap justify-center gap-4 w-full">
-            <a href="https://github.com/varunhunakunti2-crypto" target="_blank" rel="noopener noreferrer" class="footer-glass-pill cursor-pointer px-10 py-5 rounded-full font-bold text-sm md:text-base flex items-center gap-3 group" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
+            <a href="https://github.com/varunhunakunti2-crypto" target="_blank" rel="noopener noreferrer" class="footer-glass-pill cursor-pointer px-7 py-4 md:px-10 md:py-5 rounded-full font-bold text-sm md:text-base flex items-center gap-3 group" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
               <i class="bi bi-github text-lg text-[var(--muted-foreground)] group-hover:text-[color:var(--foreground)] transition-colors"></i>
               GITHUB
             </a>
             
-            <a href="https://www.linkedin.com/in/varun-kumar11/" target="_blank" rel="noopener noreferrer" class="footer-glass-pill cursor-pointer px-10 py-5 rounded-full font-bold text-sm md:text-base flex items-center gap-3 group" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
+            <a href="https://www.linkedin.com/in/varun-kumar11/" target="_blank" rel="noopener noreferrer" class="footer-glass-pill cursor-pointer px-7 py-4 md:px-10 md:py-5 rounded-full font-bold text-sm md:text-base flex items-center gap-3 group" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
               <i class="bi bi-linkedin text-lg text-[var(--muted-foreground)] group-hover:text-[color:var(--foreground)] transition-colors"></i>
               LINKEDIN
             </a>
 
-            <a href="mailto:varunhunakunti2@gmail.com" class="footer-glass-pill cursor-pointer px-10 py-5 rounded-full font-bold text-sm md:text-base flex items-center gap-3 group" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
+            <a href="mailto:varunhunakunti2@gmail.com" class="footer-glass-pill cursor-pointer px-7 py-4 md:px-10 md:py-5 rounded-full font-bold text-sm md:text-base flex items-center gap-3 group" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
               <i class="bi bi-envelope text-lg text-[var(--muted-foreground)] group-hover:text-[color:var(--foreground)] transition-colors"></i>
               INQUIRY
             </a>
@@ -52,7 +52,7 @@
       </div>
 
       <!-- 3. Bottom Bar / Credits -->
-      <div class="relative z-20 w-full pb-8 px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="relative z-20 w-full pb-[calc(2rem_+_var(--safe-bottom))] px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
         
         <!-- Copyright -->
         <div class="text-[var(--muted-foreground)] text-[10px] md:text-xs font-semibold tracking-widest uppercase order-2 md:order-1">
@@ -198,6 +198,24 @@ onUnmounted(() => {
   --pill-border-hover: color-mix(in oklch, var(--foreground) 20%, transparent);
   --pill-shadow-hover: color-mix(in oklch, var(--background) 70%, transparent);
   --pill-highlight-hover: color-mix(in oklch, var(--foreground) 20%, transparent);
+}
+
+/* Short viewports (landscape phones, small laptops): keep everything
+   inside the fixed full-height footer without clipping. */
+@media (max-height: 640px) {
+  .footer-center {
+    margin-top: 1.5rem;
+  }
+
+  .footer-text-glow {
+    font-size: clamp(1.6rem, 5vw, 2rem);
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-glass-pill {
+    padding: 0.6rem 1.1rem;
+    font-size: 0.8125rem;
+  }
 }
 
 @keyframes footer-breathe {

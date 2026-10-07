@@ -17,7 +17,7 @@
             :class="[
               'group flex w-fit items-center gap-1 cursor-pointer origin-center transition-all duration-300 hover:scale-103 active:scale-95 lg:justify-self-start magnetic-nav',
               'opacity-100',
-              isOpen ? 'lg:static fixed left-5 top-5 z-[101]' : 'lg:static'
+              isOpen ? 'safe-anchor lg:static fixed left-5 top-5 z-[101]' : 'lg:static'
             ]"
             @click="handleLogoClick"
           >
@@ -166,7 +166,7 @@
     <!-- Mobile Menu -->
     <div
       :class="[
-        'fixed top-0 right-0 w-full h-screen z-[56] flex items-center justify-center text-[color:var(--theme-text-muted)]',
+        'fixed top-0 right-0 w-full h-[100dvh] overflow-y-auto overflow-x-hidden overscroll-contain py-20 z-[56] flex text-[color:var(--theme-text-muted)]',
         isProjectPage ? '' : 'lg:hidden',
         isOpen ? 'pointer-events-auto' : 'pointer-events-none'
       ]"
@@ -185,7 +185,7 @@
         <div class="mobile-menu-overlay"></div>
       </div>
 
-      <ul class="relative z-10 flex flex-col gap-8 text-center">
+      <ul class="relative z-10 m-auto flex flex-col gap-5 sm:gap-8 text-center py-8">
         <li
           v-for="(item, index) in mobileSections"
           :key="item.id"
@@ -199,7 +199,7 @@
         >
           <button
             @click="scrollToSection(item.targetId ?? item.id)"
-            class="mobile-nav-link text-[28px] font-light tracking-[0.18em] text-[color:var(--theme-text-muted)] hover:text-[color:var(--theme-text-strong)] transition-colors duration-200 transition-transform hover:scale-105 cursor-pointer"
+            class="mobile-nav-link text-[clamp(1.35rem,6vw,1.75rem)] font-light tracking-[0.14em] sm:tracking-[0.18em] text-[color:var(--theme-text-muted)] hover:text-[color:var(--theme-text-strong)] transition-colors duration-200 transition-transform hover:scale-105 cursor-pointer"
           >
             {{ item.label }}
           </button>
@@ -597,7 +597,26 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
+nav {
+  padding-top: calc(1.25rem + var(--safe-top));
+}
+
+@media (max-width: 1023px) {
+  nav {
+    padding-left: calc(1.25rem + var(--safe-left));
+    padding-right: calc(1.25rem + var(--safe-right));
+  }
+}
+
+.safe-anchor {
+  top: calc(1.25rem + var(--safe-top));
+}
+
 .hamburger-btn {
+  top: calc(1.25rem + var(--safe-top));
+  right: calc(clamp(1.5rem, 5vw, 4rem) + var(--safe-right));
+  min-width: 44px;
+  min-height: 44px;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
   transform: scale(1.1);

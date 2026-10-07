@@ -2,7 +2,7 @@
 
 A personal portfolio site built from scratch to showcase my frontend skills. No templates, no themes just clean code and intentional design choices.
 
-> 🔗 **Live:** [obliviousaman.netlify.app]()
+> 🔗 **Live:** Portfolio Website
 
 ---
 

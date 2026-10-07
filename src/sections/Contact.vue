@@ -4,18 +4,18 @@
       ref="contactSection"
       class="w-full"
     >
-      <div class="flex flex-col md:flex-row min-h-[85vh] w-full items-stretch">
+      <div class="flex flex-col md:flex-row min-h-0 md:min-h-[85svh] w-full items-stretch">
         <!-- Left Panel: Image ONLY (No text overlay, fills height, crops sides) -->
-        <div class="contact-left-panel relative flex w-full md:w-1/2 items-center justify-center bg-[color:var(--theme-bg)] min-h-[40vh] md:min-h-[85vh] overflow-hidden opacity-0">
+        <div class="contact-left-panel relative flex w-full md:w-1/2 items-center justify-center bg-[color:var(--theme-bg)] h-[42svh] min-h-[15rem] md:h-auto md:min-h-[85svh] overflow-hidden opacity-0">
           <img
             :src="contactLeftBg"
             alt="Varun S character illustration"
-            class="w-full h-full object-cover shadow-xl"
+            class="absolute inset-0 w-full h-full object-cover shadow-xl"
           />
         </div>
 
         <!-- Right Panel: Text Content + Form -->
-        <div class="flex w-full md:w-1/2 flex-col justify-center bg-[color:var(--theme-nav-bg)] p-8 md:p-16 lg:p-20 border-t md:border-t-0 md:border-l border-[color:var(--theme-line-soft)]">
+        <div class="flex w-full md:w-1/2 flex-1 md:flex-none flex-col justify-center bg-[color:var(--theme-nav-bg)] p-6 sm:p-8 md:p-16 lg:p-20 border-t md:border-t-0 md:border-l border-[color:var(--theme-line-soft)]">
           <div class="w-full max-w-md mx-auto space-y-8">
             <!-- Header Text -->
             <div class="contact-right-panel-item text-left space-y-3 opacity-0">

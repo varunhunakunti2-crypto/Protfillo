@@ -4,12 +4,12 @@
     ref="projectsSection"
     class="projects-section relative py-12 mb-24 md:mb-32 overflow-hidden bg-[#000]/80 backdrop-blur-lg"
   >
-    <div class="projects-pin-container h-[85vh] min-h-[500px] flex flex-col justify-center">
+    <div class="projects-pin-container h-[85svh] min-h-[520px] flex flex-col justify-center">
       <div class="projects-track flex flex-nowrap gap-6 px-[clamp(1rem,5vw,4rem)] w-max" ref="projectsTrack">
         <article
           v-for="(project, index) in projects"
           :key="project.id"
-          class="project-card flex flex-col flex-shrink-0 w-[85vw] max-w-[380px] rounded-[20px] overflow-hidden cursor-pointer"
+          class="project-card flex flex-col flex-shrink-0 w-[82vw] sm:w-[70vw] max-w-[380px] rounded-[20px] overflow-hidden cursor-pointer"
           ref="projectItems"
             data-cursor="view"
             @click="goToProject(project)"
@@ -179,6 +179,20 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+/* Short viewports (landscape phones, small laptops): keep the pinned
+   track shorter than the card so nothing is clipped while scrubbing. */
+@media (max-height: 700px) {
+  .projects-pin-container {
+    height: auto;
+    min-height: 0;
+    padding: 3rem 0;
+  }
+
+  .project-image-container {
+    height: 9.5rem;
+  }
+}
+
 .project-card {
   position: relative;
   background: var(--project-card-bg);
