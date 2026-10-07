@@ -326,6 +326,7 @@ onMounted(() => {
 .kb-viewport {
   /* Responsive stage: was a hard 100dvh, which pushed the keyboard
      section past the fold on short/mobile viewports. */
+  min-height: 55vh;
   min-height: clamp(320px, 58svh, 640px);
 }
 </style>

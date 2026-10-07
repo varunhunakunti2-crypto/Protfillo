@@ -38,6 +38,34 @@ html {
   --safe-left: env(safe-area-inset-left, 0px);
 }
 
+/* Fallbacks for browsers without dynamic viewport units. */
+@supports not (height: 100dvh) {
+  .h-\[100dvh\] {
+    height: 100vh;
+  }
+}
+
+@supports not (height: 100svh) {
+  .min-h-\[100svh\] {
+    min-height: 100vh;
+  }
+  .h-\[100svh\] {
+    height: 100vh;
+  }
+  .h-\[85svh\] {
+    height: 85vh;
+  }
+  .min-h-\[85svh\] {
+    min-height: 85vh;
+  }
+  .md\:min-h-\[85svh\] {
+    min-height: 85vh;
+  }
+  .h-\[42svh\] {
+    height: 42vh;
+  }
+}
+
 :root {
   color-scheme: light;
   --theme-bg: #ffffff;
