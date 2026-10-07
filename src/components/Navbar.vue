@@ -672,7 +672,9 @@ nav {
 }
 
 .mobile-menu-bg {
-  position: absolute;
+  /* fixed (not absolute) so it stays put when the menu scrolls on
+     short viewports. */
+  position: fixed;
   inset: 0;
   z-index: 0;
   overflow: hidden;
