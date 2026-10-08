@@ -20,7 +20,7 @@ let root = null;
 onMounted(() => {
   if (!hostEl.value) return;
   root = createRoot(hostEl.value);
-  root.render(createElement(DotsEffect, { label: props.label }));
+  root.render(createElement(DotsEffect, { shape: "halo", count: 1200, label: props.label, style: { width: "100%", height: "100%" } }));
 });
 
 onBeforeUnmount(() => {

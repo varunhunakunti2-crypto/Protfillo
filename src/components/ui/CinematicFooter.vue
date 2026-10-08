@@ -19,16 +19,21 @@
       </div>
 
       <!-- 2. Main Center Content -->
-      <div class="footer-center relative z-10 flex flex-1 flex-col items-center justify-center px-6 mt-12 md:mt-20 w-full max-w-5xl mx-auto">
+      <div class="footer-center relative z-10 flex flex-1 flex-col items-center justify-center px-6 mt-2 md:mt-4 w-full max-w-6xl mx-auto">
         <h2
           ref="headingRef"
-          class="text-4xl sm:text-5xl md:text-8xl font-black footer-text-glow tracking-tighter mb-8 md:mb-12 text-center"
+          class="text-5xl sm:text-7xl md:text-9xl lg:text-[9.5rem] font-black footer-text-glow tracking-tighter leading-none mb-1 md:mb-2 text-center"
         >
         Code.Build.Repeat.
         </h2>
 
+        <!-- Atom Swarm Effect (Middle of Footer) -->
+        <div class="w-full max-w-xl my-1 md:my-2">
+          <AtomSwarm label="Atom particle animation" :count="950" :spread="1.25" :dot-size="1.4" />
+        </div>
+
         <!-- Interactive Magnetic Pills Layout -->
-        <div ref="linksRef" class="flex flex-col items-center gap-6 w-full">
+        <div ref="linksRef" class="flex flex-col items-center gap-6 w-full mt-2">
           <!-- Social & Inquiry Links (Primary) -->
           <div class="flex flex-wrap justify-center gap-4 w-full">
             <a href="https://github.com/varunhunakunti2-crypto" target="_blank" rel="noopener noreferrer" class="footer-glass-pill cursor-pointer px-7 py-4 md:px-10 md:py-5 rounded-full font-bold text-sm md:text-base flex items-center gap-3 group" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
@@ -83,6 +88,7 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import AtomSwarm from "@/components/AtomSwarm.vue";
 
 gsap.registerPlugin(ScrollTrigger);
 

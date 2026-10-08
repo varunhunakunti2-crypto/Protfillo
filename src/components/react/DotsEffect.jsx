@@ -12,13 +12,29 @@ const readThemeColor = () =>
     ? THEME_COLORS.light
     : THEME_COLORS.dark;
 
-export function DotsEffect({ label = "Halo particle animation" }) {
+export function DotsEffect({
+  shape = "atom",
+  count = 900,
+  label = "Atom particle animation",
+  style = { width: "100%", height: 320 },
+  speed = 1,
+  dotSize = 1.25,
+  spread = 1,
+  choreography,
+  transitionDuration = 2.4,
+  interactive = false,
+  color: customColor,
+}) {
   const hostRef = useRef(null);
-  const [color, setColor] = useState(THEME_COLORS.dark);
+  const [color, setColor] = useState(() => customColor || readThemeColor());
   const [reducedMotion, setReducedMotion] = useState(false);
   const [paused, setPaused] = useState(false);
 
   useEffect(() => {
+    if (customColor) {
+      setColor(customColor);
+      return undefined;
+    }
     const root = document.documentElement;
     const syncTheme = () => setColor(readThemeColor());
     syncTheme();
@@ -35,7 +51,7 @@ export function DotsEffect({ label = "Halo particle animation" }) {
       themeObserver.disconnect();
       motionQuery.removeEventListener("change", syncMotion);
     };
-  }, []);
+  }, [customColor]);
 
   useEffect(() => {
     const host = hostRef.current;
@@ -50,11 +66,17 @@ export function DotsEffect({ label = "Halo particle animation" }) {
   }, []);
 
   return (
-    <div ref={hostRef} style={{ width: "100%", height: "100%" }}>
+    <div ref={hostRef} style={{ width: "100%", height: "100%", minHeight: "100px", ...style }}>
       <DotSwarm
-        shape="halo"
-        count={1200}
+        shape={shape}
+        count={count}
         color={color}
+        speed={speed}
+        dotSize={dotSize}
+        spread={spread}
+        choreography={choreography}
+        transitionDuration={transitionDuration}
+        interactive={interactive}
         paused={paused}
         reducedMotion={reducedMotion}
         label={label}
