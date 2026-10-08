@@ -484,9 +484,9 @@ onBeforeUnmount(() => {
   letter-spacing: 0.12em;
   text-transform: lowercase;
   pointer-events: none;
-  background: linear-gradient(135deg, rgba(24, 150, 158, 0.95), rgba(26, 163, 173, 0.85));
-  color: #f8fbff;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, #ffffff, #e5e7eb);
+  color: #111827;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 10px 18px rgba(0, 0, 0, 0.26);
   opacity: 0;
   transform: translateX(8px) scale(0.98);
@@ -513,7 +513,8 @@ onBeforeUnmount(() => {
 
 .social-circle:hover {
   transform: translateX(-2px);
-  background: linear-gradient(135deg, rgba(24, 150, 158, 0.95), rgba(26, 163, 173, 0.85));
+  background: linear-gradient(135deg, #ffffff, #d1d5db);
+  color: #111827;
   box-shadow: none;
 }
 
@@ -565,28 +566,28 @@ onBeforeUnmount(() => {
 }
 
 :global([data-theme="dark"] .hero-explore-btn) {
-  color: #e6eef7;
-  background-color: rgba(16, 24, 36, 0.9);
-  border-color: rgba(255, 255, 255, 0.12);
+  color: #f3f4f6;
+  background-color: rgba(38, 38, 38, 0.9);
+  border-color: rgba(255, 255, 255, 0.15);
   box-shadow: -4px -2px 16px 0px rgba(255, 255, 255, 0.08), 4px 2px 16px 0px rgba(0, 0, 0, 0.6);
 }
 
 :global([data-theme="dark"] .hero-explore-btn:hover) {
-  color: #f3f7fb;
-  background-color: rgba(24, 36, 52, 0.95);
+  color: #ffffff;
+  background-color: rgba(64, 64, 64, 0.95);
   box-shadow: -2px -1px 8px 0px rgba(255, 255, 255, 0.08), 2px 1px 8px 0px rgba(0, 0, 0, 0.6);
 }
 
 :global([data-theme="light"] .hero-explore-btn) {
-  color: #2c3e50;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 248, 255, 0.9));
-  border-color: rgba(44, 62, 80, 0.25);
-  box-shadow: -2px -2px 12px 0px rgba(255, 255, 255, 0.8), 3px 3px 12px 0px rgba(26, 127, 142, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  color: #1f2937;
+  background: linear-gradient(135deg, #ffffff, #f3f4f6);
+  border-color: rgba(31, 41, 55, 0.2);
+  box-shadow: -2px -2px 12px 0px rgba(255, 255, 255, 0.8), 3px 3px 12px 0px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 :global([data-theme="light"] .hero-explore-btn:hover) {
-  color: #1a2633;
-  background: linear-gradient(135deg, rgba(26, 127, 142, 0.08), rgba(240, 248, 255, 0.95));
-  box-shadow: -1px -1px 8px 0px rgba(255, 255, 255, 0.9), 2px 2px 10px 0px rgba(26, 127, 142, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  color: #111827;
+  background: linear-gradient(135deg, #f9fafb, #e5e7eb);
+  box-shadow: -1px -1px 8px 0px rgba(255, 255, 255, 0.9), 2px 2px 10px 0px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 </style>

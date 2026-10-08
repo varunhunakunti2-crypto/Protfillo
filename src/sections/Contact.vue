@@ -11,6 +11,10 @@
             :src="contactLeftBg"
             alt="Varun S character illustration"
             class="absolute inset-0 w-full h-full object-cover shadow-xl"
+            fetchpriority="high"
+            decoding="async"
+            width="800"
+            height="1200"
           />
         </div>
 
@@ -160,7 +164,7 @@
 <script setup>
 import { computed, nextTick, onMounted, onBeforeUnmount, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import contactLeftBg from '@/assets/contact-left-bg.jpg';
+import contactLeftBg from '@/assets/contact-left-bg.webp';
 
 const contactWrapper = ref(null);
 const contactSection = ref(null);

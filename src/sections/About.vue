@@ -12,7 +12,7 @@
             aria-hidden="true"
           >
             <div
-              class="about-bg absolute inset-0 z-[1] rounded-[24px] bg-[linear-gradient(145deg,color-mix(in_srgb,var(--theme-bg)_78%,var(--theme-cta-bg)_22%),color-mix(in_srgb,var(--theme-bg)_48%,var(--theme-cta-bg)_52%))] shadow-[0_18px_50px_rgba(0,0,0,0.25),0_0_20px_color-mix(in_srgb,var(--theme-cta-bg)_30%,transparent)] blur-[2px]"
+              class="about-bg absolute inset-0 z-[1] rounded-[24px] bg-[linear-gradient(145deg,#374151,#111827)] shadow-[0_18px_50px_rgba(0,0,0,0.35)] blur-[2px]"
               :class="imageVisible ? 'is-visible' : ''"
             ></div>
             <div
@@ -61,8 +61,8 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useI18n } from 'vue-i18n';
-import profileImage from '@/assets/profile.png';
-import profileImageSmall from '@/assets/profile-1280.png';
+import profileImage from '@/assets/profile.webp';
+import profileImageSmall from '@/assets/profile-1280.webp';
 
 const { t } = useI18n();
 
@@ -220,23 +220,23 @@ onUnmounted(() => {
 .about-bg.is-visible {
   opacity: 0.985;
   transition: opacity 0.6s ease 1.8s, box-shadow 0s linear 1.8s;
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25),
-    0 0 20px color-mix(in srgb, var(--theme-cta-bg) 30%, transparent) !important;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35),
+    0 0 20px rgba(255, 255, 255, 0.08) !important;
 }
 
 :global([data-theme="dark"] .about-bg.is-visible) {
-  filter: brightness(1.08) saturate(1.08);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
-    0 0 34px color-mix(in srgb, var(--theme-cta-bg) 45%, transparent) !important;
+  filter: brightness(1.05);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 34px rgba(255, 255, 255, 0.05) !important;
 }
 
 :global([data-theme="dark"] .about-bg) {
-  background: color-mix(in srgb, #0f2b46 50%, #1f6e8c 50%) !important;
+  background: linear-gradient(145deg, #1f2937, #111827) !important;
   background-image: none !important;
 }
 
 :global([data-theme="dark"] .about-bg.is-visible) {
-  background: color-mix(in srgb, #0f2b46 50%, #1f6e8c 50%) !important;
+  background: linear-gradient(145deg, #374151, #1f2937) !important;
   background-image: none !important;
 }
 
@@ -256,11 +256,11 @@ onUnmounted(() => {
 }
 
 .about-image-frame::before {
-  background: var(--theme-cta-bg);
+  background: #4b5563;
 }
 
 .about-image-frame::after {
-  background: color-mix(in srgb, var(--theme-cta-bg) 55%, #000);
+  background: #9ca3af;
 }
 
 .about-image-frame.is-visible::before {

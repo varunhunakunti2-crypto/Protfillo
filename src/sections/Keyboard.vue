@@ -1,5 +1,5 @@
 <template>
-  <section id="keyboard" class="relative py-20 bg-[color:var(--theme-bg)] overflow-hidden">
+  <section id="keyboard" ref="sectionRef" class="relative py-20 bg-[color:var(--theme-bg)] overflow-hidden">
     <div class="container mx-auto px-4 md:px-6 relative z-10">
       <div class="mb-12 text-center" v-if="!hideTitle">
         <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-foreground mb-4 opacity-0 section-title">
@@ -18,8 +18,8 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
-import { gsap } from 'gsap';
+import { onMounted, onUnmounted, ref } from 'vue';
+import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import VintageKeyboard from '@/components/ui/VintageKeyboard.vue';
 
@@ -32,34 +32,43 @@ defineProps({
   }
 });
 
-onMounted(() => {
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: '#keyboard',
-      start: 'top 80%',
-      end: 'bottom 20%',
-      toggleActions: 'play none none reverse'
-    }
-  });
+const sectionRef = ref(null);
+let ctx;
 
-  tl.to('.section-title', {
-    y: 0,
-    opacity: 1,
-    duration: 0.6,
-    ease: 'power3.out'
-  }, 0)
-  .to('.section-desc', {
-    y: 0,
-    opacity: 1,
-    duration: 0.6,
-    ease: 'power3.out'
-  }, 0.2)
-  .to('.keyboard-container', {
-    y: 0,
-    opacity: 1,
-    duration: 0.8,
-    ease: 'power3.out'
-  }, 0.4);
+onMounted(() => {
+  ctx = gsap.context(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.value || '#keyboard',
+        start: 'top 80%',
+        end: 'bottom 20%',
+        toggleActions: 'play none none reverse'
+      }
+    });
+
+    tl.to('.section-title', {
+      y: 0,
+      opacity: 1,
+      duration: 0.6,
+      ease: 'power3.out'
+    }, 0)
+    .to('.section-desc', {
+      y: 0,
+      opacity: 1,
+      duration: 0.6,
+      ease: 'power3.out'
+    }, 0.2)
+    .to('.keyboard-container', {
+      y: 0,
+      opacity: 1,
+      duration: 0.8,
+      ease: 'power3.out'
+    }, 0.4);
+  }, sectionRef.value);
+});
+
+onUnmounted(() => {
+  if (ctx) ctx.revert();
 });
 </script>
 

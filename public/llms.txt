@@ -1,0 +1,12 @@
+# Varun S - Portfolio
+
+> Portfolio and projects of Varun S, Full Stack Web Developer & UI/UX Engineer.
+
+## Overview
+Varun S is a creative web developer specializing in Vue.js, React, Tailwind CSS, GSAP animations, and interactive web experiences.
+
+## Key Links
+- [Portfolio Homepage](https://protfillo-nine.vercel.app/)
+- [GitHub Profile](https://github.com/varunhunakunti2-crypto)
+- [LinkedIn Profile](https://www.linkedin.com/in/varun-kumar11/)
+- [Contact Page](https://protfillo-nine.vercel.app/#contact)

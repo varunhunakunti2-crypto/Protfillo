@@ -64,10 +64,10 @@ import { computed, inject, onMounted, onUnmounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { makeMagnetic } from '@/composables/useMagnetic.js';
-import freelanceHubImg from '@/assets/freelance-hub.png';
-import vibeVineImg from '@/assets/vibe-vine.png';
-import animationGalleryImg from '@/assets/animation-gallery.png';
-import motionShowcaseImg from '@/assets/motion-showcase.png';
+import freelanceHubImg from '@/assets/freelance-hub.webp';
+import vibeVineImg from '@/assets/vibe-vine.webp';
+import animationGalleryImg from '@/assets/animation-gallery.webp';
+import motionShowcaseImg from '@/assets/motion-showcase.webp';
 
 const { t } = useI18n();
 const router = useRouter();

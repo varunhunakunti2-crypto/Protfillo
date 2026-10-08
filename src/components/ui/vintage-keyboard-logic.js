@@ -220,7 +220,13 @@ export function getActiveKeyParts(ids) {
   return [...modifiers, ...others];
 }
 
+const lightnessCache = new Map();
+
 export function shiftLightness(hex, amount) {
+  const cacheKey = `${hex}_${amount}`;
+  let cached = lightnessCache.get(cacheKey);
+  if (cached) return cached;
+
   const n = parseInt(hex.slice(1), 16);
   const r = (n >> 16) & 255;
   const g = (n >> 8) & 255;
@@ -230,7 +236,9 @@ export function shiftLightness(hex, amount) {
   const rr = clamp(r + adj);
   const gg = clamp(g + adj);
   const bb = clamp(b + adj);
-  return `rgb(${rr}, ${gg}, ${bb})`;
+  cached = `rgb(${rr}, ${gg}, ${bb})`;
+  lightnessCache.set(cacheKey, cached);
+  return cached;
 }
 
 export function hashKeyId(id) {
@@ -242,13 +250,19 @@ export function hashKeyId(id) {
   return (h >>> 0) / 4294967295;
 }
 
+const keyVarianceCache = new Map();
+
 export function getKeyVariance(id, small) {
+  const key = `${id}_${small ? 's' : 'n'}`;
+  let cached = keyVarianceCache.get(key);
+  if (cached) return cached;
+
   const a = hashKeyId(id);
   const b = hashKeyId(id + "_b");
   const c = hashKeyId(id + "_c");
   const d = hashKeyId(id + "_d");
   const e = hashKeyId(id + "_e");
-  return {
+  cached = {
     hueShift: (a - 0.5) * 3,
     lightnessShift: (b - 0.5) * 4,
     specularShiftX: (c - 0.5) * 16,
@@ -261,6 +275,8 @@ export function getKeyVariance(id, small) {
     microTilt: (e - 0.5) * 0.32,
     rimBias: 0.85 + e * 0.25,
   };
+  keyVarianceCache.set(key, cached);
+  return cached;
 }
 
 export const CODE_TO_KEY_ID = {

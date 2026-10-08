@@ -12,13 +12,18 @@ export function useMagnetic(elRef, options = {}) {
   const { strength = 0.3, duration = 0.6 } = options;
 
   let el = null;
+  let rectCache = null;
+
+  const onMouseEnter = () => {
+    if (el) rectCache = el.getBoundingClientRect();
+  };
 
   const onMouseMove = (e) => {
     if (!el) return;
+    if (!rectCache) rectCache = el.getBoundingClientRect();
     
-    const rect = el.getBoundingClientRect();
-    const x = e.clientX - (rect.left + rect.width / 2);
-    const y = e.clientY - (rect.top + rect.height / 2);
+    const x = e.clientX - (rectCache.left + rectCache.width / 2);
+    const y = e.clientY - (rectCache.top + rectCache.height / 2);
 
     // Pull the button towards the cursor
     gsap.to(el, {
@@ -31,6 +36,7 @@ export function useMagnetic(elRef, options = {}) {
   };
 
   const onMouseLeave = () => {
+    rectCache = null;
     if (!el) return;
 
     // Reset button position smoothly
@@ -47,12 +53,14 @@ export function useMagnetic(elRef, options = {}) {
     el = elRef.value;
     if (!el) return;
 
-    el.addEventListener('mousemove', onMouseMove);
+    el.addEventListener('mouseenter', onMouseEnter);
+    el.addEventListener('mousemove', onMouseMove, { passive: true });
     el.addEventListener('mouseleave', onMouseLeave);
   });
 
   onBeforeUnmount(() => {
     if (!el) return;
+    el.removeEventListener('mouseenter', onMouseEnter);
     el.removeEventListener('mousemove', onMouseMove);
     el.removeEventListener('mouseleave', onMouseLeave);
   });
@@ -67,10 +75,16 @@ export function makeMagnetic(el, options = {}) {
   if (!el) return;
   const { strength = 0.3, duration = 0.6 } = options;
 
+  let rectCache = null;
+
+  const onMouseEnter = () => {
+    rectCache = el.getBoundingClientRect();
+  };
+
   const onMouseMove = (e) => {
-    const rect = el.getBoundingClientRect();
-    const x = e.clientX - (rect.left + rect.width / 2);
-    const y = e.clientY - (rect.top + rect.height / 2);
+    if (!rectCache) rectCache = el.getBoundingClientRect();
+    const x = e.clientX - (rectCache.left + rectCache.width / 2);
+    const y = e.clientY - (rectCache.top + rectCache.height / 2);
 
     gsap.to(el, {
       x: x * strength,
@@ -82,6 +96,7 @@ export function makeMagnetic(el, options = {}) {
   };
 
   const onMouseLeave = () => {
+    rectCache = null;
     gsap.to(el, {
       x: 0,
       y: 0,
@@ -91,10 +106,12 @@ export function makeMagnetic(el, options = {}) {
     });
   };
 
-  el.addEventListener('mousemove', onMouseMove);
+  el.addEventListener('mouseenter', onMouseEnter);
+  el.addEventListener('mousemove', onMouseMove, { passive: true });
   el.addEventListener('mouseleave', onMouseLeave);
 
   return () => {
+    el.removeEventListener('mouseenter', onMouseEnter);
     el.removeEventListener('mousemove', onMouseMove);
     el.removeEventListener('mouseleave', onMouseLeave);
   };
