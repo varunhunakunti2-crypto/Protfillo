@@ -309,19 +309,19 @@ onUnmounted(() => {
 }
 
 :global([data-theme="light"] .about-image-frame::before) {
-  background: #dcc3ae;
+  background: #e4e4e7;
 }
 
 :global([data-theme="light"] .about-image-frame::after) {
-  background: #c9ad94;
+  background: #a1a1aa;
 }
 
 :global([data-theme="dark"] .about-image-frame::before) {
-  background: #0f2b46;
+  background: #3f3f46;
 }
 
 :global([data-theme="dark"] .about-image-frame::after) {
-  background: #1f6e8c;
+  background: #71717a;
 }
 
 :global(:root.theme-switching[data-theme="light"] .about-bg.is-visible) {
