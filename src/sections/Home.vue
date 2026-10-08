@@ -176,7 +176,7 @@ const words = computed(() => {
 
 const currentWord = ref(words.value[0]);
 const activeIndex = ref(-1);
-const heroVisible = ref(false);
+const heroVisible = ref(true);
 const scrollSlide = ref(0);
 const isContactFading = ref(false);
 const isHomeNavDimmed = ref(true);
@@ -280,7 +280,7 @@ const startHeroEffects = () => {
           }
         });
       },
-      { threshold: 1 }
+      { threshold: 0.1 }
     );
 
   if (heroSection) heroObserver.observe(heroSection);
@@ -370,7 +370,7 @@ onBeforeUnmount(() => {
   z-index: -1;
   pointer-events: none;
   transform: translateY(-50%) scale(1.18);
-  opacity: 0;
+  opacity: 0.9;
   transition: opacity 1.2s ease-out, transform 1.2s ease-out;
 }
 
