@@ -9,7 +9,7 @@
         <div class="contact-left-panel relative flex w-full md:w-1/2 items-center justify-center bg-[color:var(--theme-bg)] h-[42svh] min-h-[15rem] md:h-auto md:min-h-[85svh] overflow-hidden opacity-0">
           <img
             :src="contactLeftBg"
-            alt="Varun S character illustration"
+            alt="Varun character illustration"
             class="absolute inset-0 w-full h-full object-cover shadow-xl"
             fetchpriority="high"
             decoding="async"

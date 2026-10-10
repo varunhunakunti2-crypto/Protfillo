@@ -19,7 +19,7 @@
             <span class="wa-online-indicator"></span>
           </div>
           <div class="wa-chat-card-title-area">
-            <span class="wa-chat-card-name">Varun S</span>
+            <span class="wa-chat-card-name">Varun</span>
             <span class="wa-chat-card-status">Online</span>
           </div>
         </div>

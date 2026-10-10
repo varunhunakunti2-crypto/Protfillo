@@ -25,7 +25,7 @@
               class="text-3xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[color:var(--theme-text-strong)] to-gray-400 drop-shadow-sm transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-md" 
               style="font-family: 'Playfair Display', serif; letter-spacing: -0.02em;"
             >
-              Varun S
+              Varun
             </span>
           </div>
 
