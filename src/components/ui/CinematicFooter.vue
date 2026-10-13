@@ -62,7 +62,7 @@
         <!-- Copyright -->
         <div class="text-[var(--muted-foreground)] text-[10px] md:text-xs font-semibold tracking-widest uppercase order-2 md:order-1">
           © 2026 VARUN. All rights reserved.
-          <h1>Complete Built by Varun.</h1>
+          <h1>Built by Varun S.</h1>
         </div>
 
 
