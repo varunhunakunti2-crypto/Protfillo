@@ -22,10 +22,10 @@
             @click="handleLogoClick"
           >
             <span 
-              class="text-3xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[color:var(--theme-text-strong)] to-gray-400 drop-shadow-sm transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-md" 
+              class="text-3xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[color:var(--theme-text-strong)] to-gray-400 transition-all duration-300 hover:scale-[1.03] hover:from-white hover:to-gray-300" 
               style="font-family: 'Playfair Display', serif; letter-spacing: -0.02em;"
             >
-              Varun S
+              <span class="nav-name-word">Varun</span>&nbsp;<span class="nav-name-word">S</span>
             </span>
           </div>
 
