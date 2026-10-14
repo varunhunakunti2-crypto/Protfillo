@@ -99,6 +99,11 @@
     "title": "Interactive Keyboard",
     "desc": "A fully functional vintage keyboard built with Vue, Tailwind, and Web Audio API."
   },
+  "notFound": {
+    "title": "Page not found",
+    "message": "The page you are looking for doesn't exist or may have been moved.",
+    "cta": "Back to home"
+  },
   "projects": {
     "jlptLab": "JLPT Practice Lab",
     "jlptLabSubtitle": "Interactive JLPT practice platform built from real exam patterns to make learning clearer and less stressful.",

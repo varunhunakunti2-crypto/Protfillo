@@ -40,6 +40,12 @@ const router = createRouter({
       name: "project-progress",
       component: () => import("@/pages/ProjectDetail.vue"),
     },
+    {
+      // Catch-all: must stay last so it only matches unmatched routes.
+      path: "/:pathMatch(.*)*",
+      name: "not-found",
+      component: () => import("@/pages/NotFound.vue"),
+    },
   ],
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) return savedPosition;

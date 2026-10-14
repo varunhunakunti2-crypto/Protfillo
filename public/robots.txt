@@ -1,0 +1,10 @@
+# robots.txt for Varun S — Portfolio
+# https://protfillo-nine.vercel.app/
+
+User-agent: *
+Allow: /
+
+# Netlify Functions endpoint — not a page, keep it out of the index.
+Disallow: /.netlify/
+
+Sitemap: https://protfillo-nine.vercel.app/sitemap.xml

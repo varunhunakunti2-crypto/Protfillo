@@ -476,7 +476,25 @@ const scrollToSection = (id) => {
     return;
   }
   const section = document.getElementById(id);
-  if (!section) return;
+  if (!section) {
+    // The current page has no such section (e.g. the 404 page).
+    // Route back home, then scroll to the requested section.
+    if (route.name !== "home") {
+      const navigate = () => {
+        router.push({ name: "home", query: { section: id } });
+      };
+      if (startPageTransition) {
+        startPageTransition(navigate);
+      } else {
+        navigate();
+      }
+    }
+    if (isOpen.value) {
+      isOpen.value = false;
+      playIcon(false);
+    }
+    return;
+  }
 
   if (id === "about") {
     const block = window.innerWidth < 1024 ? "start" : "center";
