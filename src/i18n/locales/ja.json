@@ -1,6 +1,7 @@
 {
   "nav": {
     "about": "About",
+    "services": "Services",
     "impact": "Impact",
     "skills": "Skills",
     "projects": "Projects",
@@ -28,6 +29,38 @@
     "title": "About me",
     "paragraph1": "I'm Varun S, a Full-Stack Developer focused on building modern, scalable web applications that combine clean design with robust functionality.",
     "paragraph2": "With a background in creative work, I approach development with both technical precision and visual intention, creating digital experiences that are intuitive, performant, and built to grow."
+  },
+  "services": {
+    "title": "Services",
+    "bgText": "SERVICES",
+    "intro": "What I bring to a project — from the first wireframe to the last performance pass.",
+    "hint": "Scroll",
+    "items": {
+      "fullstack": {
+        "title": "Full-Stack Development",
+        "description": "End-to-end web applications, from responsive front-ends to reliable APIs and data layers."
+      },
+      "uiux": {
+        "title": "UI / UX Engineering",
+        "description": "Pixel-accurate interfaces and reusable component systems built on a clear design language."
+      },
+      "motion": {
+        "title": "Motion & Interaction",
+        "description": "Scroll-driven animation and micro-interactions that make an interface feel alive."
+      },
+      "i18n": {
+        "title": "Internationalization",
+        "description": "Bilingual products with Vue I18n, tuned for both English and Japanese audiences."
+      },
+      "performance": {
+        "title": "Performance Optimization",
+        "description": "Faster load times through code-splitting, lazy loading and Core Web Vitals tuning."
+      },
+      "integration": {
+        "title": "API & Automation",
+        "description": "REST integration and workflow automation that connect a product to the tools it depends on."
+      }
+    }
   },
   "experience": {
     "title": "Experience",

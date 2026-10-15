@@ -227,11 +227,21 @@ const scrollToSection = (sectionId) => {
 
   // Special handling for about section
   if (sectionId === "about") {
+    if (window.__lenis) {
+      const offset = window.innerWidth < DESKTOP_BREAKPOINT ? 0 : -window.innerHeight * 0.15;
+      window.__lenis.scrollTo(sectionEl, { duration: 1.2, offset });
+      return;
+    }
     if (window.innerWidth < DESKTOP_BREAKPOINT) {
       sectionEl.scrollIntoView({ behavior: "smooth", block: "start" });
       return;
     }
     sectionEl.scrollIntoView({ behavior: "smooth", block: "center" });
+    return;
+  }
+
+  if (window.__lenis) {
+    window.__lenis.scrollTo(sectionEl, { duration: 1.2, offset: 0 });
     return;
   }
 

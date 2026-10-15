@@ -324,6 +324,7 @@ const resumeLinks = {
 
 const sections = computed(() => [
   { id: "about", label: t("nav.about") },
+  { id: "services", label: t("nav.services") },
   { id: "skills", label: t("nav.skills") },
   { id: "projects", label: t("nav.projects"), targetId: "projects" },
   { id: "contact", label: t("nav.contact") },
@@ -332,6 +333,7 @@ const sections = computed(() => [
 const mobileSections = computed(() => [
   { id: "home", label: t("nav.home"), targetId: "home" },
   { id: "about", label: t("nav.about"), targetId: "about" },
+  { id: "services", label: t("nav.services"), targetId: "services" },
   { id: "skills", label: t("nav.skills"), targetId: "skills" },
   { id: "projects", label: t("nav.projects"), targetId: "projects" },
   { id: "contact", label: t("nav.contact"), targetId: "contact" },
@@ -497,8 +499,13 @@ const scrollToSection = (id) => {
   }
 
   if (id === "about") {
-    const block = window.innerWidth < 1024 ? "start" : "center";
-    section.scrollIntoView({ behavior: "smooth", block });
+    if (window.__lenis) {
+      const offset = window.innerWidth < 1024 ? 0 : -window.innerHeight * 0.15;
+      window.__lenis.scrollTo(section, { duration: 1.2, offset });
+    } else {
+      const block = window.innerWidth < 1024 ? "start" : "center";
+      section.scrollIntoView({ behavior: "smooth", block });
+    }
     if (isOpen.value) {
       isOpen.value = false;
       playIcon(false);
@@ -506,7 +513,11 @@ const scrollToSection = (id) => {
     return;
   }
 
-  section.scrollIntoView({ behavior: "smooth" });
+  if (window.__lenis) {
+    window.__lenis.scrollTo(section, { duration: 1.2, offset: 0 });
+  } else {
+    section.scrollIntoView({ behavior: "smooth" });
+  }
 
   // close with animation
   if (isOpen.value) {

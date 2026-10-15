@@ -3,6 +3,7 @@
     <Home />
     <Impact />
     <About />
+    <Services />
     <Skills />
     <Keyboard />
     <Statement />
@@ -19,6 +20,7 @@ import { useRoute, useRouter } from "vue-router";
 import Home from "@/sections/Home.vue";
 import Impact from "@/sections/Impact.vue";
 import About from "@/sections/About.vue";
+import Services from "@/sections/Services.vue";
 import Skills from "@/sections/Skills.vue";
 import Keyboard from "@/sections/Keyboard.vue";
 import Statement from "@/sections/Statement.vue";
@@ -41,7 +43,11 @@ const scrollToRouteTarget = () => {
   const tryScroll = () => {
     const el = document.querySelector(target);
     if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
+      if (window.__lenis) {
+        window.__lenis.scrollTo(el, { duration: 1.2, offset: 0 });
+      } else {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
       if (route.hash || route.query.section) {
         const cleanUrl = router.resolve({ name: "home" }).href;
         window.history.replaceState({}, "", cleanUrl);

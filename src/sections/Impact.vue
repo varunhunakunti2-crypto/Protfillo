@@ -5,8 +5,7 @@
         <div class="w-full">
           <div
             ref="quoteSection"
-            class="impact-quote mt-6 flex items-start gap-6 transition-all duration-700"
-            :class="quoteVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
+            class="impact-quote mt-6 flex items-start gap-6"
           >
             <p class="impact-text">
               {{ t('impact.quote') }}
@@ -21,28 +20,45 @@
 <script setup>
 import { onMounted, onUnmounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const { t } = useI18n();
 
 const quoteSection = ref(null);
-const quoteVisible = ref(false);
-let observer = null;
+let impactTimeline = null;
 
 onMounted(() => {
-  observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        quoteVisible.value = entry.isIntersecting;
-      });
-    },
-    { threshold: 0.05, rootMargin: "0px 0px -10% 0px" }
-  );
+  gsap.registerPlugin(ScrollTrigger);
 
-  if (quoteSection.value) observer.observe(quoteSection.value);
+  if (quoteSection.value) {
+    gsap.set(quoteSection.value, {
+      opacity: 0,
+      y: 35,
+      filter: "blur(6px)",
+    });
+
+    impactTimeline = gsap.to(quoteSection.value, {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      duration: 1.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: quoteSection.value,
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      },
+    });
+  }
 });
 
 onUnmounted(() => {
-  if (observer) observer.disconnect();
+  if (impactTimeline) {
+    if (impactTimeline.scrollTrigger) impactTimeline.scrollTrigger.kill();
+    impactTimeline.kill();
+    impactTimeline = null;
+  }
 });
 </script>
 

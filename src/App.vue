@@ -14,8 +14,12 @@
 </template>
 
 <script setup>
-import { computed, provide, ref } from "vue";
+import { computed, onBeforeUnmount, onMounted, provide, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import Lenis from "lenis";
+import "lenis/dist/lenis.css";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "./components/Navbar.vue";
 import Background from "./components/Background.vue";
 import ScrollIndicator from "./components/ScrollIndicator.vue";
@@ -29,17 +33,64 @@ const showScrollIndicator = computed(() =>
 );
 const isPageTransitioning = ref(false);
 let transitionTimers = [];
+let lenisInstance = null;
+let tickerCallback = null;
+
+onMounted(() => {
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Initialize Lenis with smooth momentum physics
+  lenisInstance = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    orientation: "vertical",
+    gestureOrientation: "vertical",
+    smoothWheel: true,
+    wheelMultiplier: 1.0,
+    touchMultiplier: 1.5,
+    infinite: false,
+  });
+
+  window.__lenis = lenisInstance;
+
+  // Synchronize Lenis scroll with GSAP ScrollTrigger
+  lenisInstance.on("scroll", ScrollTrigger.update);
+
+  tickerCallback = (time) => {
+    lenisInstance.raf(time * 1000);
+  };
+  gsap.ticker.add(tickerCallback);
+  gsap.ticker.lagSmoothing(0);
+});
+
+onBeforeUnmount(() => {
+  if (tickerCallback) {
+    gsap.ticker.remove(tickerCallback);
+  }
+  if (lenisInstance) {
+    lenisInstance.destroy();
+    lenisInstance = null;
+    window.__lenis = null;
+  }
+});
 
 const startPageTransition = (onMidpoint) => {
   if (isPageTransitioning.value) return;
   isPageTransitioning.value = true;
+  if (window.__lenis) {
+    window.__lenis.stop();
+  }
   transitionTimers.forEach((timer) => window.clearTimeout(timer));
   transitionTimers = [];
 
   transitionTimers.push(
     window.setTimeout(() => {
       // Scroll to top while panels cover the screen
-      window.scrollTo({ top: 0, behavior: "instant" });
+      if (window.__lenis) {
+        window.__lenis.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo({ top: 0, behavior: "instant" });
+      }
       if (typeof onMidpoint === "function") onMidpoint();
     }, 580)
   );
@@ -47,6 +98,9 @@ const startPageTransition = (onMidpoint) => {
   transitionTimers.push(
     window.setTimeout(() => {
       isPageTransitioning.value = false;
+      if (window.__lenis) {
+        window.__lenis.start();
+      }
     }, 1350)
   );
 };
@@ -71,8 +125,6 @@ router.beforeEach((to, from, next) => {
 });
 
 // Restore scroll position while the intro tiles still cover the screen.
-// intro:reveal fires early in the exit animation, before tiles slide away,
-// so the user never sees the hero section flash.
 window.addEventListener("intro:reveal", () => {
   const saved = sessionStorage.getItem("scrollY");
   if (saved === null) return;
@@ -80,16 +132,17 @@ window.addEventListener("intro:reveal", () => {
   // Briefly lift the overflow lock so scrollTo can take effect.
   const prev = document.body.style.overflow;
   document.body.style.overflow = "";
-  window.scrollTo({ top: parseInt(saved, 10), behavior: "instant" });
+  const targetY = parseInt(saved, 10);
+  if (window.__lenis) {
+    window.__lenis.scrollTo(targetY, { immediate: true });
+  } else {
+    window.scrollTo({ top: targetY, behavior: "instant" });
+  }
   document.body.style.overflow = prev;
 }, { once: true });
 </script>
 
 <style>
-html {
-  scroll-behavior: smooth;
-}
-
 /* Multi-panel wipe transition */
 .page-transition {
   position: fixed;
