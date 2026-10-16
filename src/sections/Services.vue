@@ -32,13 +32,12 @@
             <div class="svc-card-header">
               <div class="svc-card-eyebrow">
                 <span class="svc-badge-dot"></span>
-                <span>{{ card.category }}</span>
+                <span>{{ t('services.soonBadge') }}</span>
               </div>
               <h3 class="svc-card-title">{{ card.title }}</h3>
-              <p class="svc-card-desc">{{ card.description }}</p>
             </div>
 
-            <div class="svc-card-footer">
+            <div v-if="card.tags.length || card.metric" class="svc-card-footer">
               <ul class="svc-card-tags">
                 <li v-for="tag in card.tags" :key="tag" class="svc-card-tag">{{ tag }}</li>
               </ul>
@@ -109,49 +108,37 @@ const cardDefs = [
     key: 'fullstack',
     layout: 'landscape',
     tone: 'orange',
-    category: 'FULL-STACK DEVELOPMENT',
     image: freelanceImg,
-    overlay: { val: '100%', desc: 'Production Architecture' },
   },
   {
     key: 'motion',
     layout: 'landscape',
     tone: 'coral',
-    category: 'MOTION & INTERACTION',
     image: motionImg,
-    overlay: { val: '60 FPS', desc: 'Hardware-Accelerated Motion' },
   },
   {
     key: 'uiux',
     layout: 'landscape',
     tone: 'mint',
-    category: 'UI / UX ENGINEERING',
     image: galleryImg,
-    overlay: { val: 'Pixel Accurate', desc: 'Reusable Design Tokens' },
   },
   {
     key: 'i18n',
     layout: 'landscape',
     tone: 'lilac',
-    category: 'LOCALIZATION',
     image: i18nImg,
-    overlay: { val: 'EN ⇄ JP', desc: 'Bilingual Audience' },
   },
   {
     key: 'performance',
     layout: 'landscape',
     tone: 'cream',
-    category: 'CORE WEB VITALS',
     image: perfImg,
-    overlay: { val: '100 / 100', desc: 'Lighthouse Performance' },
   },
   {
     key: 'integration',
     layout: 'landscape',
     tone: 'lavender',
-    category: 'API & AUTOMATION',
     image: vibeVineImg,
-    overlay: { val: '99.9%', desc: 'Reliable Cloud Integrations' },
   },
 ];
 
@@ -167,9 +154,8 @@ const tagsByKey = {
 const cards = computed(() =>
   cardDefs.map((def) => ({
     ...def,
-    imageAlt: t(`services.items.${def.key}.title`),
-    title: t(`services.items.${def.key}.title`),
-    description: t(`services.items.${def.key}.description`),
+    imageAlt: t('services.comingSoon'),
+    title: t('services.comingSoon'),
     tags: tagsByKey[def.key] || [],
   }))
 );
@@ -626,7 +612,7 @@ onUnmounted(() => {
   flex: 1.15 1 0%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   height: 100%;
   min-width: 0;
   padding: 0.4rem 0.2rem;
@@ -640,7 +626,10 @@ onUnmounted(() => {
 .svc-card-header {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 0.65rem;
+  text-align: center;
 }
 
 .svc-card-eyebrow {
@@ -667,14 +656,6 @@ onUnmounted(() => {
   letter-spacing: -0.02em;
   line-height: 1.22;
   color: #14131d;
-}
-
-.svc-card-desc {
-  font-size: clamp(0.88rem, 1vw, 0.98rem);
-  font-weight: 500;
-  line-height: 1.6;
-  color: rgba(20, 19, 29, 0.82);
-  margin-top: 0.2rem;
 }
 
 /* Card Footer / Tags & Badges */
@@ -861,11 +842,6 @@ onUnmounted(() => {
 
   .svc-card-title {
     font-size: 1.25rem;
-  }
-
-  .svc-card-desc {
-    font-size: 0.84rem;
-    line-height: 1.5;
   }
 }
 
