@@ -120,5 +120,12 @@ export default defineConfig(({ mode }) => {
         '@': fileURLToPath(new URL('./src', import.meta.url))
       },
     },
+    // Vite only forwards VITE_-prefixed vars to the client, so map the single
+    // WEB3FORMS_ACCESS_KEY you set in Vercel / .env.local onto the client-side
+    // name. It is a public alias to an email address, not a secret, and the
+    // contact form submits from the browser by design.
+    define: {
+      'import.meta.env.VITE_WEB3FORMS_ACCESS_KEY': JSON.stringify(env.WEB3FORMS_ACCESS_KEY || ''),
+    },
   }
 })
