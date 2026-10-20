@@ -12,6 +12,25 @@
     "resumeJapanese": "Japanese",
     "view": "View"
   },
+  "chatbot": {
+    "title": "Varunのアシスタント",
+    "status": "オンライン • 24時間365日対応",
+    "greeting": "こんにちは 👋 Varunのアシスタントです。",
+    "greetingSub": "スキルやプロジェクト、仕事の依頼方法について、何でも聞いてください。",
+    "placeholder": "Varunについて質問する...",
+    "send": "送信",
+    "close": "チャットを閉じる",
+    "open": "チャットを開く",
+    "thinking": "入力中",
+    "error": "すみません、現在応答できません。しばらくしてからもう一度お試しください。",
+    "teaser": "こんにちは！Varunについて何でも聞いてください 👋",
+    "suggestions": [
+      "Varunは何をしているの？",
+      "技術スタックは？",
+      "プロジェクトを見せて",
+      "依頼できる？"
+    ]
+  },
   "home": {
     "scrollDown": "SCROLL DOWN",
     "words": ["Engineer", "Designer", "Builder", "WebDev", "Commit", "Creative", "Crafting", "Focused"],

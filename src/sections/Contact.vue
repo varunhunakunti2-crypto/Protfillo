@@ -466,8 +466,8 @@ const handleSubmit = async () => {
   isSubmitting.value = true;
 
   try {
-    // Post to the Netlify Function so the Web3Forms access key stays server-side.
-    const response = await fetch('/.netlify/functions/contact', {
+    // Post to the serverless proxy so the Web3Forms access key stays server-side.
+    const response = await fetch('/api/contact', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

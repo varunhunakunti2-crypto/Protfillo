@@ -11,6 +11,7 @@
     <div class="wipe-panel panel-4"></div>
   </div>
   <RouterView />
+  <ChatBot />
 </template>
 
 <script setup>
@@ -24,6 +25,7 @@ import Navbar from "./components/Navbar.vue";
 import Background from "./components/Background.vue";
 import ScrollIndicator from "./components/ScrollIndicator.vue";
 import IntroLoader from "./components/IntroLoader.vue";
+import ChatBot from "./components/ChatBot.vue";
 
 const showLoader = ref(true);
 const route = useRoute();

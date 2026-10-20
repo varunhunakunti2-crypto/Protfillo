@@ -105,3 +105,25 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
+## Chat Assistant (24/7)
+
+A floating AI assistant powered by **Groq** that answers visitor questions about the portfolio — skills, projects, availability, and how to get in touch.
+
+| Piece | Role |
+|------|------|
+| `src/components/ChatBot.vue` | Floating chat widget (theme-aware, bilingual, session history) |
+| `api/chat.js` | Vercel serverless function — runs 24/7, keeps the API key server-side |
+| `server/chat.mjs` | Shared Groq logic + system prompt, used in dev and production |
+
+**Setup**
+
+1. Grab a free key at [console.groq.com/keys](https://console.groq.com/keys)
+2. **Local:** copy `.env.example` to `.env.local` and set `GROQ_API_KEY`
+3. **Vercel:** add `GROQ_API_KEY` under *Project Settings → Environment Variables*, then redeploy
+
+Optional: set `GROQ_MODEL` to override the default (`openai/gpt-oss-120b`) — it must be a model your Groq account can access.
+
+The key is never bundled into the client. The browser only sends the conversation transcript to `/api/chat`.
+
+---
+

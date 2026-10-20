@@ -1,18 +1,148 @@
 import { fileURLToPath, URL } from 'node:url'
 
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import tailwindcss from '@tailwindcss/vite'
 
-// https://vite.dev/config/
-export default defineConfig({
-  plugins: [
-    vue(),
-    tailwindcss(),
-  ],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+import { createChatReply, normalizeMessages, rateLimit } from './server/chat.mjs'
+import { handleContact } from './server/contact.mjs'
+
+/**
+ * Local stand-ins for the Vercel functions in api/, so `npm run dev` and
+ * `npm run preview` behave exactly like the deployed site. Both handlers are
+ * the same modules production imports — one code path, one set of rules.
+ */
+function serverApiPlugin(env) {
+  const handle = (handler) => async (req, res, url) => {
+    try {
+      const result = await handler(req, url)
+      if (!result) return // handler already wrote the response
+      res.statusCode = result.status
+      res.setHeader('Content-Type', 'application/json; charset=utf-8')
+      if (result.headers) {
+        for (const [key, value] of Object.entries(result.headers)) res.setHeader(key, value)
+      }
+      res.end(JSON.stringify(result.payload))
+    } catch (err) {
+      console.error('[api] dev handler failed:', err)
+      if (!res.writableEnded) {
+        res.statusCode = 500
+        res.setHeader('Content-Type', 'application/json; charset=utf-8')
+        res.end(JSON.stringify({ error: 'internal_error' }))
+      }
+    }
+  }
+
+  const readBody = async (req) => {
+    let raw = ''
+    for await (const chunk of req) raw += chunk
+    try {
+      return JSON.parse(raw || '{}')
+    } catch {
+      return null
+    }
+  }
+
+  const chatHandler = async (req) => {
+    if (req.method !== 'POST') {
+      return { status: 405, headers: { Allow: 'POST' }, payload: { error: 'method_not_allowed' } }
+    }
+
+    const ip = req.socket?.remoteAddress || 'local'
+    const limited = rateLimit(ip)
+    if (!limited.ok) {
+      return {
+        status: 429,
+        headers: { 'Retry-After': String(limited.retryAfter) },
+        payload: { error: 'rate_limited' },
+      }
+    }
+
+    const body = await readBody(req)
+    if (!body || typeof body !== 'object') {
+      return { status: 400, payload: { error: 'invalid_json' } }
+    }
+
+    const { ok, messages, error } = normalizeMessages(body.messages)
+    if (!ok) {
+      return { status: 400, payload: { error: error || 'invalid_messages' } }
+    }
+
+    const result = await createChatReply({
+      messages,
+      apiKey: env.GROQ_API_KEY,
+      model: env.GROQ_MODEL,
+      locale: typeof body.locale === 'string' ? body.locale.slice(0, 8) : undefined,
+    })
+
+    if (!result.ok) {
+      return { status: result.status, payload: { error: result.code } }
+    }
+
+    return { status: 200, payload: { reply: result.reply } }
+  }
+
+  const contactHandler = async (req) => {
+    if (req.method !== 'POST') {
+      return {
+        status: 405,
+        headers: { Allow: 'POST' },
+        payload: { success: false, message: 'Method not allowed' },
+      }
+    }
+
+    const body = await readBody(req)
+    if (body === null) {
+      return { status: 400, payload: { success: false, message: 'Invalid JSON body' } }
+    }
+
+    const { status, payload } = await handleContact({
+      body,
+      accessKey: env.WEB3FORMS_ACCESS_KEY,
+    })
+
+    return { status, headers: { 'Cache-Control': 'no-store' }, payload }
+  }
+
+  const routes = {
+    '/api/chat': handle(chatHandler),
+    '/api/contact': handle(contactHandler),
+  }
+
+  return {
+    name: 'portfolio-server-api',
+    configureServer(server) {
+      register(server.middlewares)
     },
-  },
+    configurePreviewServer(server) {
+      register(server.middlewares)
+    },
+  }
+
+  function register(middlewares) {
+    middlewares.use((req, res, next) => {
+      const url = (req.url || '').split('?')[0]
+      const handler = routes[url]
+      if (!handler) return next()
+      handler(req, res, url)
+    })
+  }
+}
+
+// https://vite.dev/config/
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '')
+
+  return {
+    plugins: [
+      vue(),
+      tailwindcss(),
+      serverApiPlugin(env),
+    ],
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new URL('./src', import.meta.url))
+      },
+    },
+  }
 })

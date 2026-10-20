@@ -11,6 +11,25 @@
     "resumeEnglish": "English",
     "view": "View"
   },
+  "chatbot": {
+    "title": "Varun's Assistant",
+    "status": "Online • Available 24/7",
+    "greeting": "Hi 👋 I'm Varun's assistant.",
+    "greetingSub": "Ask me anything about his skills, projects, or how to hire him.",
+    "placeholder": "Ask about Varun...",
+    "send": "Send message",
+    "close": "Close chat",
+    "open": "Open chat assistant",
+    "thinking": "Typing",
+    "error": "I couldn't reach my brain for a moment. Please try again.",
+    "teaser": "Hi! Ask me anything about Varun 👋",
+    "suggestions": [
+      "What does Varun do?",
+      "What's his tech stack?",
+      "Show me his projects",
+      "Is he available to hire?"
+    ]
+  },
   "home": {
     "scrollDown": "SCROLL DOWN",
     "words": ["Engineer", "Designer", "Builder", "WebDev", "Commit", "Creative", "Crafting", "Focused"],
