@@ -5,7 +5,6 @@ import vue from '@vitejs/plugin-vue'
 import tailwindcss from '@tailwindcss/vite'
 
 import { createChatReply, normalizeMessages, rateLimit } from './server/chat.mjs'
-import { handleContact } from './server/contact.mjs'
 
 /**
  * Local stand-ins for the Vercel functions in api/, so `npm run dev` and
@@ -82,31 +81,8 @@ function serverApiPlugin(env) {
     return { status: 200, payload: { reply: result.reply } }
   }
 
-  const contactHandler = async (req) => {
-    if (req.method !== 'POST') {
-      return {
-        status: 405,
-        headers: { Allow: 'POST' },
-        payload: { success: false, message: 'Method not allowed' },
-      }
-    }
-
-    const body = await readBody(req)
-    if (body === null) {
-      return { status: 400, payload: { success: false, message: 'Invalid JSON body' } }
-    }
-
-    const { status, payload } = await handleContact({
-      body,
-      accessKey: env.WEB3FORMS_ACCESS_KEY,
-    })
-
-    return { status, headers: { 'Cache-Control': 'no-store' }, payload }
-  }
-
   const routes = {
     '/api/chat': handle(chatHandler),
-    '/api/contact': handle(contactHandler),
   }
 
   return {

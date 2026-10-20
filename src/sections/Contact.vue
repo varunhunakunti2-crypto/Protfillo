@@ -466,23 +466,25 @@ const handleSubmit = async () => {
   isSubmitting.value = true;
 
   try {
-    // Post to the serverless proxy so the Web3Forms access key stays server-side.
-    const response = await fetch('/api/contact', {
+    // Web3Forms' free plan only accepts browser-side submissions; calling their
+    // API from a server requires the paid plan. Their access key is a public
+    // alias to an email address (not a secret) by design, so it lives here.
+    const response = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
       body: JSON.stringify({
+        access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY,
         name,
         email,
         message,
-        subject: "New Contact Form Submission from Portfolio",
-        gotcha: websiteField?.value?.trim() || gotchaField?.value?.trim() || ""
+        subject: "New Contact Form Submission from Portfolio"
       }),
     });
 
-    const result = await response.json();
+    const result = await response.json().catch(() => ({}));
 
     if (!response.ok || !result.success) {
       console.error('Form submission failed:', result);
