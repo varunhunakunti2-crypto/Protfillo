@@ -1,5 +1,10 @@
 <template>
-  <div v-if="ready" ref="rootRef" class="bot-root" :class="{ 'is-open': isOpen }">
+  <div
+    v-if="ready"
+    ref="rootRef"
+    class="bot-root"
+    :class="{ 'is-open': isOpen, 'is-hidden': isHidden }"
+  >
     <!-- Nudge bubble, shown once if the visitor never opens the chat -->
     <transition name="bot-teaser">
       <button
@@ -126,7 +131,6 @@
     <!-- Floating action button -->
     <button
       class="bot-fab"
-      :class="{ 'is-pulse': shouldPulse }"
       type="button"
       :aria-label="isOpen ? t('chatbot.close') : t('chatbot.open')"
       :aria-expanded="isOpen"
@@ -166,7 +170,7 @@ const HISTORY_LIMIT = 14;
 
 const ready = ref(false);
 const isOpen = ref(false);
-const shouldPulse = ref(true);
+const isHidden = ref(false);
 const showTeaser = ref(false);
 const isTyping = ref(false);
 const errorMessage = ref("");
@@ -233,8 +237,8 @@ const scrollToBottom = () => {
 
 const openChat = () => {
   isOpen.value = true;
+  isHidden.value = false;
   showTeaser.value = false;
-  shouldPulse.value = false;
   scrollToBottom();
   nextTick(() => inputRef.value?.focus());
 };
@@ -325,6 +329,25 @@ const onKeydown = (event) => {
   if (event.key === "Escape" && isOpen.value) closeChat();
 };
 
+/* ---------------- hide on scroll ---------------- */
+
+let lastScrollY = 0;
+
+const onScroll = () => {
+  // Keep the button visible while the panel is open or near the top of the page.
+  if (isOpen.value) return;
+
+  const y = window.scrollY;
+  if (y <= 80) {
+    isHidden.value = false;
+  } else if (y > lastScrollY + 4) {
+    isHidden.value = true; // scrolling down -> tuck the icon away
+  } else if (y < lastScrollY - 4) {
+    isHidden.value = false; // scrolling up -> bring it back
+  }
+  lastScrollY = y;
+};
+
 const setTimer = (fn, delay) => {
   const id = window.setTimeout(fn, delay);
   timers.push(id);
@@ -345,12 +368,10 @@ onMounted(() => {
 
   window.addEventListener("click", onWindowClick);
   window.addEventListener("keydown", onKeydown);
+  window.addEventListener("scroll", onScroll, { passive: true });
+  lastScrollY = window.scrollY;
 
-  // Pulse the button for a while, then offer a one-time nudge.
-  setTimer(() => {
-    shouldPulse.value = false;
-  }, 8000);
-
+  // Offer a one-time nudge after a short delay.
   setTimer(() => {
     if (isOpen.value) return;
     showTeaser.value = true;
@@ -363,6 +384,7 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener("click", onWindowClick);
   window.removeEventListener("keydown", onKeydown);
+  window.removeEventListener("scroll", onScroll);
   timers.forEach((id) => window.clearTimeout(id));
 });
 
@@ -385,6 +407,15 @@ watch(locale, () => {
   gap: 14px;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, sans-serif;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.25s ease;
+}
+
+/* Slid out of view while scrolling down; returns on scroll up. */
+.bot-root.is-hidden {
+  transform: translateY(calc(100% + 4rem));
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* ---------------- floating action button ---------------- */
@@ -425,20 +456,6 @@ watch(locale, () => {
 
 .bot-root.is-open .bot-fab svg {
   transform: rotate(90deg);
-}
-
-.bot-fab.is-pulse {
-  animation: bot-bounce 2.2s infinite ease-in-out;
-}
-
-@keyframes bot-bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
 }
 
 /* ---------------- teaser ---------------- */
@@ -834,8 +851,8 @@ watch(locale, () => {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bot-fab.is-pulse {
-    animation: none;
+  .bot-root {
+    transition: none;
   }
 
   .bot-msg,

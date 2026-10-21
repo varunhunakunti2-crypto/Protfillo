@@ -44,7 +44,6 @@
     <!-- Floating Bubble Button -->
     <button
       class="wa-bubble-btn"
-      :class="{ 'wa-pulse': shouldPulse }"
       aria-label="Contact on WhatsApp"
       @click="onBubbleClick"
     >
@@ -62,7 +61,6 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 
 const isOpen = ref(false);
-const shouldPulse = ref(true);
 const isMobile = ref(false);
 const containerRef = ref(null);
 
@@ -73,7 +71,6 @@ const checkMobile = () => {
 const onMouseEnter = () => {
   if (!isMobile.value) {
     isOpen.value = true;
-    shouldPulse.value = false;
   }
 };
 
@@ -85,8 +82,7 @@ const onMouseLeave = () => {
 
 const onBubbleClick = (event) => {
   event.stopPropagation();
-  shouldPulse.value = false;
-  
+
   if (isMobile.value) {
     isOpen.value = !isOpen.value;
   } else {
@@ -109,11 +105,6 @@ onMounted(() => {
   checkMobile();
   window.addEventListener('resize', checkMobile);
   window.addEventListener('click', onClickOutside);
-  
-  // Stop pulsing after 8 seconds if no interaction
-  setTimeout(() => {
-    shouldPulse.value = false;
-  }, 8000);
 });
 
 onBeforeUnmount(() => {
@@ -170,19 +161,6 @@ onBeforeUnmount(() => {
 }
 
 /* Pulse / Bounce Animation */
-.wa-bubble-btn.wa-pulse {
-  animation: wa-bounce-pulse 2.2s infinite ease-in-out;
-}
-
-@keyframes wa-bounce-pulse {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
 /* Chat Card */
 .wa-chat-card {
   width: 290px;
